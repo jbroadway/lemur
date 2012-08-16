@@ -1,4 +1,3 @@
-lemur
-=====
+# Lemur Learning
 
-Lemur Learning, an e-learning app for the Elefant CMS.
+An e-learning app for the [Elefant CMS](http://www.elefantcms.com/).
