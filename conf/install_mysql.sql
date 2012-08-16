@@ -1,3 +1,11 @@
+create table lemur_category (
+	id int not null auto_increment primary key,
+	owner int not null,
+	title char(72) not null,
+	sorting int not null,
+	index (owner, sorting)
+);
+
 create table lemur_course (
 	id int not null auto_increment primary key,
 	title char(72) not null,

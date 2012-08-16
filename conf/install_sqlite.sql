@@ -1,3 +1,12 @@
+create table lemur_category (
+	id integer primary key,
+	owner int not null,
+	title char(72) not null,
+	sorting int not null
+);
+
+create index lemur_category_owner on lemur_category (owner, sorting);
+
 create table lemur_course (
 	id integer primary key,
 	title char(72) not null,

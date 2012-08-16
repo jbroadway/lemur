@@ -1,0 +1,19 @@
+<script>
+var lemur = {
+	add_category: function () {
+		var category = prompt ('{"Category name:"}', '');
+		if (category.length > 0) {
+			window.location.href = '/lemur/category/add?category=' + encodeURIComponent (category);
+		}
+		return false;
+	}
+};
+</script>
+
+<p>
+	<a href="/lemur/course/add">{"Add Course"}</a>
+	|
+	<a href="#" onclick="return lemur.add_category ()">{"Add Category"}</a>
+</p>
+
+<p>...</p>
