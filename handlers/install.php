@@ -28,7 +28,7 @@ if (ELEFANT_VERSION < '1.1.0') {
 }
 
 $error = false;
-$sqldata = sql_split (file_get_contents ('apps/events/conf/install_' . $driver . '.sql'));
+$sqldata = sql_split (file_get_contents ('apps/lemur/conf/install_' . $driver . '.sql'));
 foreach ($sqldata as $sql) {
 	if (! db_execute ($sql)) {
 		$error = db_error ();
