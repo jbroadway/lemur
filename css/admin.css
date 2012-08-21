@@ -1,0 +1,19 @@
+.sub-link {
+	font-size: 13px;
+	font-weight: normal;
+}
+.category {
+	position: relative;
+}
+.category span {
+	display: none;
+}
+.category:hover span {
+	display: block;	
+	position: absolute;
+	font-weight: normal;
+	font-size: 13px;
+	margin-left: -80px;
+	padding-top: 5px;
+	color: #999;
+}
