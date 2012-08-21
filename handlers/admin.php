@@ -4,8 +4,26 @@ $page->layout = 'admin';
 
 $this->require_admin ();
 
-$page->title = __ ('Lemur Learning');
+$page->title = __ ('Courses');
 
-echo $tpl->render ('lemur/admin', array ());
+// fetch sorted categories
+$categories = lemur\Category::sorted ();
+
+// fetch and sort courses by category
+$courses = lemur\Course::categories ();
+foreach (array_keys ($categories) as $k) {
+	$categories[$k] = (object) array (
+		'id' => $k,
+		'title' => $categories[$k],
+		'courses' => array ()
+	);
+}
+foreach (array_keys ($courses) as $k) {
+	$categories[$courses[$k]->category]->courses[] = $courses[$k];
+}
+
+echo $tpl->render ('lemur/admin', array (
+	'categories' => $categories
+));
 
 ?>

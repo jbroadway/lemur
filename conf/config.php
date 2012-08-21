@@ -21,7 +21,7 @@ filepicker_key = Off
 [Admin]
 
 handler = lemur/admin
-name = Lemur Learning
+name = Courses
 install = lemur/install
 upgrade = lemur/upgrade
 version = 0.2-alpha

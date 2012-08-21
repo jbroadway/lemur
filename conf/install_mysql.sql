@@ -9,14 +9,16 @@ create table lemur_category (
 create table lemur_course (
 	id int not null auto_increment primary key,
 	title char(72) not null,
-	icon char(128) not null,
 	summary char(255) not null,
+	thumb char(128),
 	created datetime not null,
 	owner int not null,
 	category int not null,
 	sorting int not null,
+	availability int not null,
 	price float not null,
-	index (owner, category, sorting)
+	status int not null,
+	index (owner, category, sorting, status)
 );
 
 create table lemur_page (

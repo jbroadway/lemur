@@ -1,0 +1,74 @@
+<div class="form">
+<form method="POST" id="{{_form}}">
+
+<p>
+	{"Title"}:<br />
+	<input type="text" name="title" value="{{title|quotes}}" size="50" />
+	<span class="notice" id="title-notice">{"Please enter a title."}</span>
+</p>
+
+<p>
+	{"Summary"}: <span class="notice" id="summary-notice">{"Please enter a summary."}</span><br />
+	<textarea name="summary" cols="60" rows="4">{{summary|quotes}}</textarea>
+</p>
+
+<p>
+	{"Thumbnail (optional)"}:<br />
+	<input type="file" name="thumb" value="{{thumb|quotes}}" />
+</p>
+
+<p>
+	{"Category"}:<br />
+	<select name="category">
+	{% for categories as _key, _category %}
+		<option value="{{ _key }}"{% if _key == $data->category %} selected{% end %}>{{ _category }}</option>
+	{% end %}
+	</select>
+</p>
+
+<p>
+	{"Availability"}:<br />
+	<select name="availability" id="availability">
+		<option value="1"{% if availability == 1 %} selected{% end %}>{"Private"}</option>
+		<option value="2"{% if availability == 2 %} selected{% end %}>{"Public - Free"}</option>
+		<option value="3"{% if availability == 3 %} selected{% end %}>{"Public - Free w/ registration"}</option>
+		<option value="4"{% if availability == 4 %} selected{% end %}>{"Public - Paid"}</option>
+	</select>
+</p>
+
+<p id="pricing" style="display: none">
+	{"Price"}:<br />
+	$<input type="text" name="price" value="{{price|quotes}}" size="20" />
+	<span class="notice" id="price-notice">{"Please enter a price."}</span>
+</p>
+
+<p>
+	{"Status"}:<br />
+	<select name="status">
+		<option value="1"{% if status == 1 %} selected{% end %}>{"Draft"}</option>
+		<option value="2"{% if status == 2 %} selected{% end %}>{"Published"}</option>
+	</select>
+</p>
+
+<p><input type="submit" value="{"Add Course"}" /></p>
+
+</form>
+</div>
+
+<script>
+$(function () {
+	// on load
+	if ($('#availability').val () == 4) {
+		$('#pricing').show ();
+	}
+
+	// on change
+	$('#availability').change (function () {
+		if ($(this).val () == 4) {
+			$('#pricing').show ();
+		} else {
+			$('#pricing').hide ();
+		}
+	});
+});
+</script>

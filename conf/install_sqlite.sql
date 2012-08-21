@@ -10,16 +10,18 @@ create index lemur_category_owner on lemur_category (owner, sorting);
 create table lemur_course (
 	id integer primary key,
 	title char(72) not null,
-	icon char(128) not null,
+	thumb char(128),
 	summary char(255) not null,
 	created datetime not null,
 	owner int not null,
 	category int not null,
 	sorting int not null,
-	price float not null
+	availability int not null,
+	price float not null,
+	status int not null
 );
 
-create index lemur_course_owner_category on lemur_course (owner, category, sorting);
+create index lemur_course_owner_category on lemur_course (owner, category, sorting, status);
 
 create table lemur_page (
 	id integer primary key,
