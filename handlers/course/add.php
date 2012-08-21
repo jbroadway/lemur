@@ -28,7 +28,7 @@ echo $form->handle (function ($form) {
 		return;
 	}
 	$form->controller->add_notification (__ ('Course added.'));
-	$form->controller->redirect ('/lemur/course/manage/' . $c->id);
+	$form->controller->redirect ('/lemur/course/manage?id=' . $c->id);
 });
 
 ?>
