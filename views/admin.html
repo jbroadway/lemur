@@ -6,8 +6,29 @@ var lemur = {
 			window.location.href = '/lemur/category/add?category=' + encodeURIComponent (category);
 		}
 		return false;
+	},
+	
+	edit_category: function (el) {
+		var id = $(el.target).data ('id');
+		console.log ('click: ' + id);
+	},
+	
+	on_category: function (el) {
+		var id = $(el).data ('id');
+		console.log ('on: ' + id);
+	},
+	
+	off_category: function (el) {
+		var id = $(el).data ('id');
+		console.log ('off: ' + id);
 	}
 };
+
+$(function () {
+	$('.category')
+		.hover (lemur.on_category, lemur.off_category)
+		.click (lemur.edit_category);
+});
 </script>
 
 <style>
@@ -15,40 +36,62 @@ var lemur = {
 	font-size: 13px;
 	font-weight: normal;
 }
+.category {
+	position: relative;
+}
+.category span {
+	display: none;
+}
+.category:hover span {
+	display: block;	
+	position: absolute;
+	font-weight: normal;
+	font-size: 13px;
+	margin-left: -80px;
+	padding-top: 5px;
+	color: #999;
+}
 </style>
 
 <p style="margin-top: -10px">
 	<a href="#" onclick="return lemur.add_category ()">{"Add Category"}</a>
+	&nbsp;|&nbsp;
+	<a href="/lemur/categories/sort">{"Sort Categories"}</a>
 </p>
 
 {% foreach categories as category %}
-<h5>{{category->title}}<br />
-<a href="/lemur/course/add?category={{category->id}}" class="sub-link">{"Add Course"}</a></h5>
+<h5>
+	<span class="category" data-id="{{category-id}}">
+		<span>{"Click to edit"}</span>
+		{{category->title}}
+	</span><br />
+	<a href="/lemur/course/add?category={{category->id}}" class="sub-link">{"Add Course"}</a>
+</h5>
 
 {% if count ($data->category->courses) > 0 %}
 <p>
 <table width="100%">
 	<tr>
 		<th width="40%">{"Course"}</th>
-		<th width="20%">{"Availability"}</th>
-		<th width="20%">{"Status"}</th>
+		<th width="25%">{"Availability"}</th>
+		<th width="15%">{"Status"}</th>
 		<th width="20%">&nbsp;</th>
 	</tr>
 {% foreach category->courses as course %}
 	<tr>
-		<td width="40%">{{course->title}}</td>
-		<td width="20%">
+		<td>{{course->title}}</td>
+		<td>
 			{{course->availability|lemur\Filter::availability}}
 			{% if course->availability == 4 %}
 				({{course->price|lemur\Filter::money}})
 			{% end %}
 		</td>
-		<td width="20%">{{course->status|lemur\Filter::status}}</td>
-		<td width="20%">
+		<td>{{course->status|lemur\Filter::status}}</td>
+		<td>
 			<a href="/lemur/course/edit?id={{course->id}}">{"Settings"}</a>
-			|
+			&nbsp;|&nbsp;
 			<a href="/lemur/course/manage?id={{course->id}}">{"Content"}</a>
-			|
+			&nbsp;|&nbsp;
 			<a href="/lemur/course/delete?id={{course->id}}" onclick="return confirm ('{"Are you sure you want to delete this course?"}')">{"Delete"}</a>
 		</td>
 	</tr>
