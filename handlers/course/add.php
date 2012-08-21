@@ -20,6 +20,7 @@ echo $form->handle (function ($form) {
 	$_POST['created'] = gmdate ('Y-m-d H:i:s');
 	$_POST['owner'] = 0;
 	$_POST['sorting'] = $c->next ('sorting');
+	$_POST['status'] = 1;
 
 	$c = new lemur\Course ($_POST);
 	if (! $c->put ()) {
