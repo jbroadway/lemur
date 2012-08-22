@@ -2,18 +2,14 @@
 	font-size: 13px;
 	font-weight: normal;
 }
-.category {
-	position: relative;
-}
-.category span {
+
+.click-note {
 	display: none;
 }
-.category:hover span {
-	display: block;	
-	position: absolute;
+
+.hovering .click-note {
+	display: inline;
 	font-weight: normal;
 	font-size: 13px;
-	margin-left: -80px;
-	padding-top: 5px;
 	color: #999;
 }
