@@ -22,8 +22,8 @@ foreach (array_keys ($courses) as $k) {
 	$categories[$courses[$k]->category]->courses[] = $courses[$k];
 }
 
-$page->add_script ('/apps/lemur/js/admin.js');
 $page->add_style ('/apps/lemur/css/admin.css');
+$page->add_script ('/apps/lemur/js/admin.js');
 
 echo $tpl->render ('lemur/admin', array (
 	'categories' => $categories

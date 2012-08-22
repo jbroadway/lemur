@@ -1,0 +1,59 @@
+<p>
+	<a href="/lemur/admin">&laquo; {"Back"}</a>
+</p>
+
+<p><em>{"Drag and drop to re-order categories:"}</em></p>
+
+<ul id="categories" class="drop">
+{% foreach categories as id, category %}
+	<li data-id="{{id}}">{{category}}</li>
+{% end %}
+</ul>
+
+<script>
+var currentOrder = {{categories|json_encode (array_keys (%s))}};
+
+$(function () {
+	var $srcElement, srcIndex, dstIndex;
+
+	$('#categories>li').dragdrop ({
+		makeClone: true,
+		sourceHide: true,
+		dragClass: 'shadow',
+		canDrag: function ($src, event) {
+			$srcElement = $src;
+			srcIndex = $srcElement.index ();
+			dstIndex = srcIndex;
+			return $src;
+		},
+		canDrop: function ($dst) {
+			if ($dst.is ('li')) {
+				dstIndex = $dst.index ();
+				if (srcIndex < dstIndex) {
+					$srcElement.insertAfter ($dst);
+				} else {
+					$srcElement.insertBefore ($dst);
+				}
+			}
+			return true;
+		},
+		didDrop: function (src, dst) {
+			if (srcIndex != dstIndex) {
+				$.add_notification ('{"Saving new order..."}');
+
+				var value = currentOrder[srcIndex];
+				currentOrder.splice (srcIndex, 1);
+				currentOrder.splice (dstIndex, 0, value);
+
+				$.post ('/lemur/api/category_order', {order: currentOrder}, function (res) {
+					if (res.success) {
+						$.add_notification ('{"Saved!"}');
+					} else {
+						$.add_notification ('{"An error occurred."}');
+					}
+				});
+			}
+		}
+	});
+});
+</script>
