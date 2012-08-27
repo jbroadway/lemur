@@ -6,9 +6,11 @@
 
 <ul id="categories" class="drop">
 {% foreach categories as id, category %}
-	<li data-id="{{id}}">{{category}}</li>
+	<li data-id="{{id}}" class="draggable">{{category}}</li>
 {% end %}
 </ul>
+
+<p id="saving" class="notice"></p>
 
 <script>
 var currentOrder = {{categories|json_encode (array_keys (%s))}};
@@ -39,7 +41,7 @@ $(function () {
 		},
 		didDrop: function (src, dst) {
 			if (srcIndex != dstIndex) {
-				$.add_notification ('{"Saving new order..."}');
+				lemur.notice ('#saving', '{"Saving new order..."}');
 
 				var value = currentOrder[srcIndex];
 				currentOrder.splice (srcIndex, 1);
@@ -47,9 +49,9 @@ $(function () {
 
 				$.post ('/lemur/api/category_order', {order: currentOrder}, function (res) {
 					if (res.success) {
-						$.add_notification ('{"Saved!"}');
+						lemur.notice ('#saving', '{"Saved!"}');
 					} else {
-						$.add_notification ('{"An error occurred."}');
+						lemur.notice ('#saving', '{"An error occurred."}');
 					}
 				});
 			}

@@ -1,5 +1,5 @@
 <p style="margin-top: -10px">
-	<a href="#" onclick="return lemur.add_category ()">{"Add Category"}</a>
+	<a href="#" onclick="return lemur.add_category ('{"Category name:"}')">{"Add Category"}</a>
 	&nbsp;|&nbsp;
 	<a href="/lemur/category/sort">{"Sort Categories"}</a>
 </p>
@@ -10,6 +10,10 @@
 	<span class="click-note">{"Click to edit"}</span>
 	<br />
 	<a href="/lemur/course/add?category={{category->id}}" class="sub-link">{"Add Course"}</a>
+	{% if count ($data->category->courses) === 0 %}
+		<span class="sub-text">&nbsp;|&nbsp;</span>
+		<a href="/lemur/category/delete?id={{category->id}}" class="sub-link" onclick="return confirm ('{"Are you sure you want to delete this category?"}')">{"Delete Category"}</a>
+	{% end %}
 </h5>
 
 {% if count ($data->category->courses) > 0 %}

@@ -2,8 +2,8 @@ var lemur = {
 	/**
 	 * Prompt for and save a new category.
 	 */
-	add_category: function () {
-		var category = prompt ('Category name:', '');
+	add_category: function (msg) {
+		var category = prompt (msg, '');
 		if (category && category.length > 0) {
 			window.location.href = '/lemur/category/add?category=' + encodeURIComponent (category);
 		}
@@ -37,6 +37,14 @@ var lemur = {
 	 */
 	off_category: function (e) {
 		$(e.target).parent ().removeClass ('hovering');
+	},
+
+	/**
+	 * Update an element with a message that will fade out.
+	 * Usage: lemur.notice ('#saving', 'Saving...');
+	 */
+	notice: function (id, msg) {
+		$(id).stop (true).html (msg).show ().delay (1500).fadeOut (300);
 	}
 };
 
