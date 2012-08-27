@@ -2,11 +2,15 @@
 
 $this->require_admin ();
 
-if (! isset ($_GET['id']) || ! is_numeric ($_GET['id'])) {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 	$this->redirect ('/lemur/admin');
 }
 
-$cat = new lemur\Category ($_GET['id']);
+if (! isset ($_POST['id']) || ! is_numeric ($_POST['id'])) {
+	$this->redirect ('/lemur/admin');
+}
+
+$cat = new lemur\Category ($_POST['id']);
 
 if (! $cat->remove ()) {
 	$this->add_notification ('An error occurred.');
