@@ -47,7 +47,7 @@ $(function () {
 				currentOrder.splice (srcIndex, 1);
 				currentOrder.splice (dstIndex, 0, value);
 
-				$.post ('/lemur/api/category_order', {order: currentOrder}, function (res) {
+				$.post (lemur.prefix + 'category/order', {order: currentOrder}, function (res) {
 					if (res.success) {
 						lemur.notice ('#saving', '{"Saved!"}');
 					} else {

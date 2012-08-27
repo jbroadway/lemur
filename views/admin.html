@@ -6,7 +6,7 @@
 
 {% foreach categories as category %}
 <h5 class="category">
-	<span class="category-title" data-id="{{category-id}}" data-title="{{category->title}}">{{category->title}}</span>
+	<span class="category-title" data-id="{{category->id}}" data-title="{{category->title}}">{{category->title}}</span>
 	<span class="click-note">{"Click to edit"}</span>
 	<br />
 	<a href="/lemur/course/add?category={{category->id}}" class="sub-link">{"Add Course"}</a>
