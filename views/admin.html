@@ -20,14 +20,14 @@
 <p>
 <table width="100%">
 	<tr>
-		<th width="40%">{"Course"}</th>
-		<th width="25%">{"Availability"}</th>
-		<th width="15%">{"Status"}</th>
-		<th width="20%">&nbsp;</th>
+		<th width="38%">{"Course"}</th>
+		<th width="20%">{"Availability"}</th>
+		<th width="12%">{"Status"}</th>
+		<th width="30%">&nbsp;</th>
 	</tr>
 {% foreach category->courses as course %}
 	<tr>
-		<td>{{course->title}}</td>
+		<td><a href="/lemur/course/{{course->id}}/{{course->title|URLify::filter}}">{{course->title}}</a></td>
 		<td>
 			{{course->availability|lemur\Filter::availability}}
 			{% if course->availability == 4 %}
@@ -35,10 +35,12 @@
 			{% end %}
 		</td>
 		<td>{{course->status|lemur\Filter::status}}</td>
-		<td>
-			<a href="/lemur/course/edit?id={{course->id}}">{"Settings"}</a>
+		<td style="text-align: right">
+			<a href="/lemur/course/learners?id={{course->id}}">{"Learners"}</a>
 			&nbsp;|&nbsp;
 			<a href="/lemur/course/manage?id={{course->id}}">{"Content"}</a>
+			&nbsp;|&nbsp;
+			<a href="/lemur/course/edit?id={{course->id}}">{"Settings"}</a>
 			&nbsp;|&nbsp;
 			<a href="/lemur/course/delete" data-id="{{course->id}}" onclick="$.confirm_and_post (this, '{"Are you sure you want to delete this course?"}')">{"Delete"}</a>
 		</td>
