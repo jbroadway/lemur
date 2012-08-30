@@ -15,10 +15,10 @@ Course editing:
 * Course page editor
   * Text objects
   * Image objects
-    * Image resizing
+      * Image resizing
   * Audio objects
   * Video objects
-    * Encoding method TBD
+      * Encoding method TBD
   * Definition objects (for glossary)
   * Accordion objects
   * Formatted text objects (for code samples)
@@ -43,10 +43,10 @@ Public-facing:
   * Course content rendering
   * Comments in page footers
   * Input objects save to assessments
-    * Assessment list screen
-    * Assessment detail screen for individual input
-      * Comments in detail screen for student-instructor discussion
-    * Save an input to come back to without submitting
+      * Assessment list screen
+      * Assessment detail screen for individual input
+          * Comments in detail screen for student-instructor discussion
+      * Save an input to come back to without submitting
 
 Email notifications:
 
