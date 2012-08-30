@@ -56,4 +56,15 @@ Email notifications:
 * To instructor for new learner registered
 * To learner welcome email, course subscribed confirmation/receipt
 
+Documentation:
+
+* Installing Lemur Learning
+* Building courses
+* Managing learners
+* Managing discussions and assessments
+* Adding custom content types to page editor
+* How to embed and integrate external content
+* How to use the Lemur Learning API
+* How to contribute to the project
+
 Other TBD.
