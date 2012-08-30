@@ -2,7 +2,7 @@
 
 An e-learning app for the [Elefant CMS](http://www.elefantcms.com/).
 
-** Status: Pre-alpha **
+**Status: Pre-alpha**
 
 ## To do
 
