@@ -34,6 +34,16 @@ class Course extends \Model {
 				lemur_course.sorting asc'
 		);
 	}
+
+	/**
+	 * Get an associative array of pages for the current course.
+	 */
+	public function pages () {
+		return \DB::pairs (
+			'select id, title from lemur_page where course = ? order by sorting asc',
+			$this->id
+		);
+	}
 }
 
 ?>

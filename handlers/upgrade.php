@@ -13,7 +13,7 @@ if ($this->installed ('lemur', $appconf['Admin']['version']) === true) {
 	return;
 }
 
-$page->title = 'Upgrading app: lemur';
+$page->title = 'Upgrading app: Lemur Learning';
 
 echo '<p>Done.</p>';
 

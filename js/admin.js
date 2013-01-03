@@ -59,6 +59,58 @@ var lemur = (function ($) {
 	};
 
 	/**
+	 * Prompt for and save a new page.
+	 */
+	self.add_page = function (course, msg) {
+		var page = prompt (msg, '');
+		if (page && page.length > 0) {
+			window.location.href = '/lemur/page/add?course=' + course + '&page=' + encodeURIComponent (page);
+		}
+		return false;
+	};
+	
+	/**
+	 * Prompt for and update a page name.
+	 */
+	self.edit_page = function (e) {
+		var el = $(e.target),
+			id = el.data ('id'),
+			title = el.data ('title');
+
+		var page = prompt ('Page name:', title);
+		if (page && page.length > 0) {
+			// update ui immediately
+			el.data ('title', page).html (page);
+
+			$.post (self.prefix + 'page/update', {id: id, title: page}, function (res) {
+				if (res.success) {
+					$.add_notification (res.data);
+				} else {
+					$.add_notification (res.error);
+
+					// rollback on failure
+					el.data ('title', title).html (title);
+				}
+			});
+		}
+		return false;
+	};
+	
+	/**
+	 * Hover change for page titles.
+	 */
+	self.on_page = function (e) {
+		$(e.target).parent ().addClass ('hovering');
+	};
+	
+	/**
+	 * Hover off for page titles.
+	 */
+	self.off_page = function (e) {
+		$(e.target).parent ().removeClass ('hovering');
+	};
+
+	/**
 	 * Update an element with a message that will fade out.
 	 * Usage: lemur.notice ('#saving', 'Saving...');
 	 */

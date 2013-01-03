@@ -18,7 +18,7 @@ if ($cur === true) {
 	exit;
 }
 
-$page->title = 'Installing app: lemur';
+$page->title = 'Installing app: Lemur Learning';
 
 if (ELEFANT_VERSION < '1.1.0') {
 	$driver = conf ('Database', 'driver');
@@ -43,7 +43,7 @@ if ($error) {
 	return;
 }
 
-echo '<p>Done.</p>';
+echo '<p><a href="/lemur/admin">Done.</a></p>';
 
 $this->mark_installed ('lemur', $appconf['Admin']['version']);
 
