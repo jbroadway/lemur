@@ -75,12 +75,14 @@ var lemur = (function ($) {
 	self.edit_page = function (e) {
 		var el = $(e.target),
 			id = el.data ('id'),
-			title = el.data ('title');
+			title = el.data ('title'),
+			tel = $('#page-title-' + id);
 
 		var page = prompt ('Page name:', title);
 		if (page && page.length > 0) {
 			// update ui immediately
-			el.data ('title', page).html (page);
+			el.data ('title', page);
+			tel.html (page);
 
 			$.post (self.prefix + 'page/update', {id: id, title: page}, function (res) {
 				if (res.success) {
@@ -89,7 +91,8 @@ var lemur = (function ($) {
 					$.add_notification (res.error);
 
 					// rollback on failure
-					el.data ('title', title).html (title);
+					el.data ('title', title);
+					tel.html (title);
 				}
 			});
 		}
@@ -128,4 +131,7 @@ $(function () {
 	$('.category-title')
 		.hover (lemur.on_category, lemur.off_category)
 		.click (lemur.edit_category);
+
+	$('.page-rename')
+		.click (lemur.edit_page);
 });

@@ -1,0 +1,61 @@
+<p>
+	<a href="/lemur/course/manage?id={{course}}">&laquo; {"Back"}</a>
+</p>
+
+<p><em>{"Drag and drop to re-order pages in this course:"}</em></p>
+
+<ul id="pages" class="drop">
+{% foreach pages as id, title %}
+	<li data-id="{{id}}" class="draggable">{{title}}</li>
+{% end %}
+</ul>
+
+<p id="saving" class="notice"></p>
+
+<script>
+var currentOrder = {{pages|json_encode (array_keys (%s))}};
+
+$(function () {
+	var $srcElement, srcIndex, dstIndex;
+
+	$('#pages>li').dragdrop ({
+		makeClone: true,
+		sourceHide: true,
+		dragClass: 'shadow',
+		canDrag: function ($src, event) {
+			$srcElement = $src;
+			srcIndex = $srcElement.index ();
+			dstIndex = srcIndex;
+			return $src;
+		},
+		canDrop: function ($dst) {
+			if ($dst.is ('li')) {
+				dstIndex = $dst.index ();
+				if (srcIndex < dstIndex) {
+					$srcElement.insertAfter ($dst);
+				} else {
+					$srcElement.insertBefore ($dst);
+				}
+			}
+			return true;
+		},
+		didDrop: function (src, dst) {
+			if (srcIndex != dstIndex) {
+				lemur.notice ('#saving', '{"Saving new order..."}');
+
+				var value = currentOrder[srcIndex];
+				currentOrder.splice (srcIndex, 1);
+				currentOrder.splice (dstIndex, 0, value);
+
+				$.post (lemur.prefix + 'page/order', {course: {{course}}, order: currentOrder}, function (res) {
+					if (res.success) {
+						lemur.notice ('#saving', '{"Saved!"}');
+					} else {
+						lemur.notice ('#saving', '{"An error occurred."}');
+					}
+				});
+			}
+		}
+	});
+});
+</script>
