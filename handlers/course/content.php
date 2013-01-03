@@ -18,11 +18,17 @@ if ($p->error) {
 
 $page->title = __ ('Editing Page') . ': ' . $p->title;
 
+$page->add_script ('/apps/lemur/js/waypoints.min.js');
+$page->add_script ('/apps/lemur/js/knockout-2.2.0.min.js');
+$page->add_style ('/apps/lemur/css/admin.css');
+$page->add_script ('/apps/lemur/js/admin.js');
+
 echo View::render (
 	'lemur/course/content',
 	array (
 		'course' => $c->id,
-		'page' => $p->id
+		'page' => $p->id,
+		'items' => $p->items ()
 	)
 );
 

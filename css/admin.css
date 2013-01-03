@@ -17,3 +17,30 @@
 .draggable {
 	cursor: move;
 }
+
+.sidebar {
+	float: left;
+	width: 200px;
+	background: #e5e5e5;
+	padding: 10px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #d5d5d5;
+}
+
+.sticky {
+	position: fixed;
+	top: 45px;
+}
+
+.main {
+	width: 700px;
+	float: right;
+}
+
+.info {
+	font-style: italic;
+	color: #666;
+}

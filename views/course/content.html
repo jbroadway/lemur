@@ -1,3 +1,54 @@
 <p>
-	<a href="/lemur/course/manage?id={{course}}">&laquo; {"Back"}</a>
+	<a href="/lemur/course/manage?id={{course}}">&laquo; {"Done Editing"}</a>
 </p>
+
+<div class="sidebar">
+	{"Add content"}:
+	<ul>
+		<li><a href="#">{"Text"}</a></li>
+		<li><a href="#">{"Image"}</a></li>
+		<li><a href="#">{"Video"}</a></li>
+		<li><a href="#">{"HTML Code"}</a></li>
+		<li><a href="#">{"Pre-formatted text"}</a></li>
+		<li><a href="#">{"SCORM Module"}</a></li>
+		<li><a href="#">{"File download"}</a></li>
+		<li><a href="#">{"Accordion"}</a></li>
+		<li><a href="#">{"Definition"}</a></li>
+	</ul>
+	{"Inputs"}:
+	<ul>
+		<li><a href="#">{"Single-line text"}</a></li>
+		<li><a href="#">{"Paragraph text"}</a></li>
+		<li><a href="#">{"Drop down"}</a></li>
+		<li><a href="#">{"Checkboxes"}</a></li>
+		<li><a href="#">{"Multiple choice"}</a></li>
+	</ul>
+</div>
+
+<div class="main">
+	<p class="info">Click the links to the left to add content to your page.</p>
+	<ul data-bind="template: { name: displayMode, foreach: items }"></ul>
+</div>
+
+<script>
+$(function () {
+	$.waypoints.settings.scrollThrottle = 30;
+	$('.sidebar').waypoint (function (event, direction) {
+		if ($('body').scrollTop () >= 120 || $('html').scrollTop () >= 120) {
+			$(this).addClass ('sticky');
+		} else {
+			$(this).removeClass ('sticky');
+		}
+		event.stopPropagation ();
+	});
+});
+
+var viewModel = {
+	items: ko.observableArray (
+		{{items|json_encode}}
+	),
+	displayMode: function (item) {
+		return 'tpl-item-' + item.type;
+	}
+};
+</script>

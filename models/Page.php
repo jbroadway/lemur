@@ -28,6 +28,16 @@ class Page extends Model {
 		}
 		return $res;
 	}
+
+	/**
+	 * Fetch all items on a page.
+	 */
+	public function items () {
+		return Item::query ()
+			->where ('page', $this->id)
+			->order ('sorting', 'asc')
+			->fetch_orig ();
+	}
 }
 
 ?>
