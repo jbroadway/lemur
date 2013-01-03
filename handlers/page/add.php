@@ -21,6 +21,6 @@ if (! $pg->put ()) {
 	$this->add_notification ('Page added.');
 }
 
-$this->redirect ('/lemur/course/manage?id=' . $_GET['course']);
+$this->redirect ('/lemur/course/content?id=' . $_GET['course'] . '&page=' . $pg->id);
 
 ?>
