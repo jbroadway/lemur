@@ -44,3 +44,73 @@
 	font-style: italic;
 	color: #666;
 }
+
+#saving {
+	display: none;
+}
+
+.sortable-field-item a:hover {
+	cursor: move;
+}
+
+#items {
+	list-style-type: none;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+.item {
+	list-style-type: none;
+	background: #e5e5e5;
+	padding: 10px;
+	margin-left: 0px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #d5d5d5;
+};
+
+/* full/list fields toggle */
+.toggle {
+	text-align: right;
+	height: 28px;
+}
+
+	.toggle a {
+		display: block;
+		float: right;
+		width: 20px;
+		height: 20px;
+	}
+
+	#toggle-full {
+		background: url(full-off.png);
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		-moz-border-radius-topleft: 3px;
+		-moz-border-radius-bottomleft: 3px;
+		border-top-left-radius: 3px;
+		border-bottom-left-radius: 3px;
+		border: 1px solid #c5c5c5;
+		border-right: 0px;
+	}
+
+	#toggle-list {
+		background: url(list-off.png);
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+		-moz-border-radius-topright: 3px;
+		-moz-border-radius-bottomright: 3px;
+		border-top-right-radius: 3px;
+		border-bottom-right-radius: 3px;
+		border: 1px solid #c5c5c5;
+	}
+
+	#toggle-full.active {
+		background: url(full-on.png);
+	}
+
+	#toggle-list.active {
+		background: url(list-on.png);
+	}

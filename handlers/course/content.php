@@ -18,10 +18,14 @@ if ($p->error) {
 
 $page->title = __ ('Editing Page') . ': ' . $p->title;
 
-$page->add_script ('/apps/lemur/js/waypoints.min.js');
-$page->add_script ('/apps/lemur/js/knockout-2.2.0.min.js');
 $page->add_style ('/apps/lemur/css/admin.css');
+$page->add_style ('/apps/admin/js/redactor/redactor.css');
+$page->add_script ('/apps/lemur/js/waypoints.min.js');
+$page->add_script ('/apps/lemur/js/jquery-ui.min.js');
+$page->add_script ('/apps/lemur/js/knockout-2.2.0.min.js');
+$page->add_script ('/apps/admin/js/redactor/redactor.min.js');
 $page->add_script ('/apps/lemur/js/admin.js');
+$page->add_script ('/apps/lemur/js/editor.js');
 
 echo View::render (
 	'lemur/course/content',
