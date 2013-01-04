@@ -70,8 +70,8 @@ var editor = (function ($) {
 				$(element).sortable ({
 					update: function (event, ui) {
 						// get the item data
-						var item = ui.item[0];
-						console.log (ui.item);
+						var item = ko.dataFor (ui.item[0]);
+						console.log (item);
 
 						// figure out its new position
 						var position = ko.utils.arrayIndexOf (ui.item.parent ().children (), ui.item[0]);
