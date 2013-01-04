@@ -59,6 +59,10 @@ $(function () {
 		items: {{items|json_encode}},
 		str: {
 			delete_confirm: '{"Are you sure you want to delete this item?"}'
+		},
+		type_names: {
+			1: '{"Text"}',
+			2: '{"Image"}'
 		}
 	});
 
@@ -67,8 +71,11 @@ $(function () {
 </script>
 
 <script id="tpl-list-item" type="text/html">
-	<li class="sortable-field-item">
-		<a href="#" data-bind="text: title, click: function() { editor.select_field ($data); }"></a>
+	<li class="sortable-item" data-bind="attr: { 'data-id': id }">
+		<a href="#" data-bind="attr: { 'data-id': id }">
+			<span data-bind="text: title"></span>
+			(<span data-bind="text: type_name"></span>)
+		</a>
 	</li>
 </script>
 

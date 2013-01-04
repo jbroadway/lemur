@@ -34,6 +34,14 @@ var editor = (function ($) {
 	};
 
 	/**
+	 * Type names for display.
+	 */
+	self.type_names = {
+		1: 'Text',
+		2: 'Image'
+	};
+
+	/**
 	 * Options for the wysiwyg editor.
 	 */
 	self.redactor_options = {
@@ -52,6 +60,7 @@ var editor = (function ($) {
 	self.init = function (options) {
 		self.items = self.make_items_observable (options.items);
 		self.str = options.str;
+		self.type_names = options.type_names;
 		self.course = options.course;
 		self.page = options.page;
 
@@ -61,8 +70,8 @@ var editor = (function ($) {
 				$(element).sortable ({
 					update: function (event, ui) {
 						// get the item data
-						var id = $(ui.item).data ('id'),
-							item = self.get_item (id);
+						var item = ui.item[0];
+						console.log (ui.item);
 
 						// figure out its new position
 						var position = ko.utils.arrayIndexOf (ui.item.parent ().children (), ui.item[0]);
@@ -95,20 +104,28 @@ var editor = (function ($) {
 	 * Make an observable item from a regular one.
 	 */
 	self.make_item_observable = function (item) {
-		return {
+		var i = {
 			id: item.id,
 			title: ko.observable (item.title),
 			page: item.page,
 			sorting: ko.observable (item.sorting),
 			type: item.type,
-			content: ko.observable (item.content),
-			template: ko.computed (function () {
-				return self.template_name (this.type);
-			}, this),
-			item_id: ko.computed (function () {
-				return 'item-' + this.id;
-			}, this)
+			content: ko.observable (item.content)
 		};
+
+		i.template = ko.computed (function () {
+			return self.template_name (this);
+		}, i);
+
+		i.item_id = ko.computed (function () {
+			return 'item-' + this.id;
+		}, i);
+
+		type_name = ko.computed (function () {
+			return self.type_name (this);
+		}, i);
+
+		return i;
 	};
 
 	/**
@@ -144,6 +161,16 @@ var editor = (function ($) {
 	self.template_name = function (item) {
 		if (item && item.type) {
 			return 'tpl-item-' + item.type;
+		} else if (item) {
+			return 'tpl-item=' + item;
+		}
+	};
+
+	self.type_name = function (item) {
+		if (item && item.type) {
+			return self.type_names[item.type];
+		} else if (item) {
+			return self.type_names[item];
 		}
 	};
 
