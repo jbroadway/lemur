@@ -57,7 +57,13 @@ var editor = (function ($) {
 	 * Options for the wysiwyg editor.
 	 */
 	self.redactor_options = {
-		autoresize: false
+		autoresize: false,
+		buttons: [
+			'html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|',
+			'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
+			'table', 'link', '|', 'fontcolor', 'backcolor', '|',
+			'alignment', 'horizontalrule'
+		]
 	};
 	
 	/**
@@ -149,7 +155,8 @@ var editor = (function ($) {
 	/**
 	 * Delete an item from the list.
 	 */
-	self.delete_item = function (item) {
+	self.delete_item = function () {
+		var item = this;
 		if (confirm (self.str.delete_confirm)) {
 			self.items.remove (item);
 			return self.update_items ();
@@ -162,22 +169,26 @@ var editor = (function ($) {
 	 */
 	self.update_items = function () {
 		if (! self.initialized) {
-			return;
+			return false;
 		}
 		
 		if (self.updating_items) {
-			return;
+			return false;
 		}
 
 		self.updating_items = true;
 		self.show_saving ();
+
 		$.post (self.prefix + 'item/update_all', {items: ko.toJSON (self.items)}, function (res) {
 			self.updating_items = false;
 			self.done_saving ();
+
 			if (! res.success) {
 				$.add_notification (res.error);
 			}
 		});
+
+		return false;
 	};
 
 	/**

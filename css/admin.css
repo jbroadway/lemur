@@ -76,6 +76,10 @@
 		margin-bottom: 10px !important;
 	}
 
+	.delete {
+		float: right;
+	}
+
 /* full/list fields toggle */
 .toggle {
 	float: right;
