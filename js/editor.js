@@ -111,7 +111,9 @@ var editor = (function ($) {
 		}, i);
 
 		type_name = ko.computed (function () {
-			return self.type_name (this);
+			console.log (this.type);
+			console.log (self.type_names[this.type]);
+			return self.type_names[this.type];
 		}, i);
 
 		return i;
@@ -144,13 +146,14 @@ var editor = (function ($) {
 	 * Get the display name for an item type.
 	 * Accepts an item object or a type number.
 	 */
-	self.type_name = function (item) {
+	/*self.type_name = function (item) {
+		console.log (self.type_names);
 		if (item && item.type) {
 			return self.type_names[item.type];
 		} else if (item) {
 			return self.type_names[item];
 		}
-	};
+	};*/
 
 	/**
 	 * Delete an item from the list.
