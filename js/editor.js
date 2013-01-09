@@ -38,7 +38,19 @@ var editor = (function ($) {
 	 */
 	self.type_names = {
 		1: 'Text',
-		2: 'Image'
+		2: 'Image',
+		3: 'Video',
+		4: 'HTML code',
+		5: 'Pre-formatted text',
+		6: 'SCORM module',
+		7: 'File download',
+		8: 'Accordion',
+		9: 'Definition',
+		10: 'Single-line input',
+		11: 'Paragraph input',
+		12: 'Drop down',
+		13: 'Checkboxes',
+		14: 'Multiple choice'
 	};
 
 	/**
@@ -111,23 +123,8 @@ var editor = (function ($) {
 	};
 
 	/**
-	 * Get an item from the list by its ID.
-	 */
-	self.get_item = function (id) {
-		console.log (id);
-		console.log (self.items);
-		console.log (editor.items);
-		for (var i = 0; i < self.items.length; i++) {
-			console.log (self.items[i]);
-			if (self.items[i].id == id) {
-				return self.items[i];
-			}
-		}
-		return false;
-	};
-
-	/**
 	 * Determine the template ID for an item type.
+	 * Accepts an item object or a type number.
 	 */	
 	self.template_name = function (item) {
 		if (item && item.type) {
@@ -137,6 +134,10 @@ var editor = (function ($) {
 		}
 	};
 
+	/**
+	 * Get the display name for an item type.
+	 * Accepts an item object or a type number.
+	 */
 	self.type_name = function (item) {
 		if (item && item.type) {
 			return self.type_names[item.type];
@@ -180,13 +181,34 @@ var editor = (function ($) {
 	};
 
 	/**
+	 * Update items after wysiwyg editor loses focus,
+	 * then call editor.update_items().
+	 */
+	self.wysiwyg_update = function () {
+		$('.wysiwyg').each (function () {
+			var id = $(this).data ('id'),
+				html = $(this).getCode ();
+
+			for (var i in self.items ()) {
+				if (self.items ()[i].id == id) {
+					self.items ()[i].content (html);
+					break;
+				}
+			}
+		});
+
+		self.update_items ();
+	};
+
+	/**
 	 * Get the next sorting value.
 	 */
 	self.next = function () {
 		var sorting = 0;
-		for (var i = 0; i < self.items.length; i++) {
-			if (sorting < self.items[i].sorting ()) {
-				sorting = self.items[i].sorting ();
+		for (var i in self.items ()) {
+			var current = parseInt (self.items ()[i].sorting ());
+			if (sorting < current) {
+				sorting = current;
 			}
 		}
 		return sorting + 1;
@@ -218,10 +240,17 @@ var editor = (function ($) {
 	};
 
 	/**
-	 * Methods for adding fields to the list.
+	 * Add a text item.
 	 */
 	self.add_text_field = function () {
 		return self.create_blank_item (1);
+	};
+
+	/**
+	 * Add an image item.
+	 */
+	self.add_image_field = function () {
+		return self.create_blank_item (2);
 	};
 
 	/**

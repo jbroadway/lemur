@@ -7,11 +7,11 @@
 	{"Add content"}:
 	<ul>
 		<li><a href="#" id="add-text" data-bind="click: add_text_field">{"Text"}</a></li>
-		<li><a href="#" id="add-image" data-bind="click: add_text_field">{"Image"}</a></li>
+		<li><a href="#" id="add-image" data-bind="click: add_image_field">{"Image"}</a></li>
 		<li><a href="#">{"Video"}</a></li>
-		<li><a href="#">{"HTML Code"}</a></li>
+		<li><a href="#">{"HTML code"}</a></li>
 		<li><a href="#">{"Pre-formatted text"}</a></li>
-		<li><a href="#">{"SCORM Module"}</a></li>
+		<li><a href="#">{"SCORM module"}</a></li>
 		<li><a href="#">{"File download"}</a></li>
 		<li><a href="#">{"Accordion"}</a></li>
 		<li><a href="#">{"Definition"}</a></li>
@@ -67,6 +67,7 @@ $(function () {
 	});
 
 	$('.wysiwyg').redactor (editor.redactor_options);
+	$('.main').on ('blur', '.redactor_editor', editor.wysiwyg_update);
 });
 </script>
 
@@ -90,9 +91,22 @@ $(function () {
 			<textarea
 				name="content"
 				class="wysiwyg"
-				data-bind="value: content, event: { blur: editor.update_items }"
+				data-bind="value: content, attr: { 'data-id': id }"
 				style="width: 100%; height: 200px"
 			></textarea>
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-2" type="text/html">
+	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+		<p>
+			<label>{"Title"}:</label><br />
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="50" />
+		</p>
+		<p>
+			<label>{"Image"}:</label><br />
+			<input type="text" name="content" data-bind="value: content, event: { blur: editor.update_items }" size="50" />
 		</p>
 	</li>
 </script>

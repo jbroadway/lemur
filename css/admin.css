@@ -63,16 +63,22 @@
 	list-style-type: none;
 	background: #e5e5e5;
 	padding: 10px;
+	padding-bottom: 0px;
 	margin-left: 0px;
 	margin-bottom: 15px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border: 1px solid #d5d5d5;
-};
+}
+
+	.item p {
+		margin-bottom: 10px !important;
+	}
 
 /* full/list fields toggle */
 .toggle {
+	float: right;
 	text-align: right;
 	height: 28px;
 }
