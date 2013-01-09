@@ -64,36 +64,7 @@ var editor = (function ($) {
 		self.course = options.course;
 		self.page = options.page;
 
-		ko.bindingHandlers.sortableList = {
-			init: function (element, valueAccessor) {
-				var list = valueAccessor ();
-				$(element).sortable ({
-					update: function (event, ui) {
-						// get the item data
-						var item = ko.dataFor (ui.item[0]);
-						console.log (item);
-
-						// figure out its new position
-						var position = ko.utils.arrayIndexOf (ui.item.parent ().children (), ui.item[0]);
-						
-						// start updating the items
-						self.updating_items = true;
-
-						// remove the item and add it back in the right spot
-						if (position >= 0) {
-							list.remove (item);
-							list.splice (position, 0, item);
-						}
-						
-						// done updating items
-						self.updating_items = false;
-						
-						// save the changes
-						self.update_items ();
-					}
-				});
-			}
-		};
+		ko.bindingHandlers.sortable.afterMove = self.update_items;
 
 		ko.applyBindings (self);
 		self.initialized = true;
@@ -252,18 +223,6 @@ var editor = (function ($) {
 	self.add_text_field = function () {
 		return self.create_blank_item (1);
 	};
-
-	/**
-	 * Set the current drag item.
-	 */
-	self.select_item = function (item) {
-		self.selected_item (item);
-	};
-
-	/**
-	 * The current drag item.
-	 */
-	self.selected_item = ko.observable ();
 
 	/**
 	 * Put the last item into focus.
