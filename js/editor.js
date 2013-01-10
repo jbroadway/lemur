@@ -354,7 +354,10 @@ var editor = (function ($) {
 	self.add_pre_field			= function () { return self.create_blank_item (5); };
 	self.add_scorm_field		= function () { return self.create_blank_item (6); };
 	self.add_file_field			= function () { return self.create_blank_item (7); };
+	//self.add_accordion_field	= function () { return self.create_blank_item (8); };
 	self.add_definition_field	= function () { return self.create_blank_item (9); };
+	self.add_input_field		= function () { return self.create_blank_item (10); };
+	self.add_para_field			= function () { return self.create_blank_item (11); };
 
 	/**
 	 * Put the last item into focus.

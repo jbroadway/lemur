@@ -18,8 +18,8 @@
 	</ul>
 	{"Add a question"}:
 	<ul>
-		<li><a href="#">{"Single-line answer"}</a></li>
-		<li><a href="#">{"Paragraph answer"}</a></li>
+		<li><a href="#" data-bind="click: add_input_field">{"Single-line answer"}</a></li>
+		<li><a href="#" data-bind="click: add_para_field">{"Paragraph answer"}</a></li>
 		<li><a href="#">{"Drop down"}</a></li>
 		<li><a href="#">{"Checkboxes"}</a></li>
 		<li><a href="#">{"Multiple choice"}</a></li>
@@ -225,6 +225,28 @@ $(function () {
 				data-bind="value: content,event: { blur: editor.update_items }"
 				style="width: 98%; height: 50px"
 			></textarea>
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-10" type="text/html">
+	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
+		<h6 data-bind="text: type_name"></h6>
+		<p>
+			<label>{"Question"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" style="width: 580px" />
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-11" type="text/html">
+	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
+		<h6 data-bind="text: type_name"></h6>
+		<p>
+			<label>{"Question"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" style="width: 580px" />
 		</p>
 	</li>
 </script>
