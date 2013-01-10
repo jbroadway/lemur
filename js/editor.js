@@ -152,10 +152,23 @@ var editor = (function ($) {
 	 */
 	self.delete_item = function () {
 		var item = this;
+
 		if (confirm (self.str.delete_confirm)) {
-			self.items.remove (item);
-			return self.update_items ();
+			self.updating_items = true;
+			self.show_saving ();
+
+			$.post (self.prefix + 'item/delete', {item: item.id}, function (res) {
+				self.updating_items = false;
+				self.done_saving ();
+
+				if (! res.success) {
+					$.add_notification (res.error);
+				} else {
+					self.items.remove (item);
+				}
+			});
 		}
+
 		return false;
 	};
 
@@ -174,7 +187,12 @@ var editor = (function ($) {
 		self.updating_items = true;
 		self.show_saving ();
 
-		$.post (self.prefix + 'item/update_all', {items: ko.toJSON (self.items)}, function (res) {
+		var items = ko.toJS (self.items);
+		for (var i = 0; i < items.length; i++) {
+			items[i].sorting = i + 1;
+		}
+
+		$.post (self.prefix + 'item/update_all', {items: items}, function (res) {
 			self.updating_items = false;
 			self.done_saving ();
 
