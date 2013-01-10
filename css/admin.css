@@ -124,8 +124,16 @@
 		display: inline-block;
 	}
 
+	.item p label.wide {
+		width: 120px;
+	}
+
 	.delete {
 		float: right;
+	}
+
+	.item textarea {
+		font-family: monospace;
 	}
 
 /* full/list fields toggle */
@@ -172,3 +180,36 @@
 	#toggle-list.active {
 		background: url(list-on.png);
 	}
+
+/* wysiwyg editor visual integration */
+.redactor_box {
+	background: inherit;
+	border: 0px none;
+}
+
+.redactor_toolbar {
+	background: inherit;
+	border: 0px none;
+}
+
+.redactor_editor {
+	border: 1px solid #999;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.redactor_toolbar li.redactor_separator {
+	border-right: 0px none;
+}
+
+.CodeMirror {
+	background-color: #fff;
+	border: 1px solid #999;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	height: 160px;
+	width: 98%;
+	overflow: auto;
+}

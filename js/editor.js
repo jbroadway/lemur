@@ -30,7 +30,8 @@ var editor = (function ($) {
 	 * List of translatable strings.
 	 */
 	self.str = {
-		delete_confirm: 'Are you sure you want to delete this item?'
+		delete_confirm: 'Are you sure you want to delete this item?',
+		untitled: 'Untitled'
 	};
 
 	/**
@@ -88,8 +89,25 @@ var editor = (function ($) {
 		self.initialized = true;
 		self.show_full ();
 
+		// additional initializations for item types
 		$('.wysiwyg').redactor (editor.redactor_options);
 		$('.main').on ('blur', '.redactor_editor', editor.wysiwyg_update);
+		$('.html').each (function () {
+			var cm = CodeMirror.fromTextArea (this, {
+				mode: 'text/html',
+				lineNumbers: true,
+				indentWithTabs: true
+			});
+			cm.on ('blur', self.codemirror_update);
+		});
+		$('.pre').each (function () {
+			var cm = CodeMirror.fromTextArea (this, {
+				mode: 'text/plain',
+				lineNumbers: true,
+				indentWithTabs: true
+			});
+			cm.on ('blur', self.codemirror_update);
+		});
 	};
 
 	/**
@@ -104,6 +122,13 @@ var editor = (function ($) {
 			type: item.type,
 			content: ko.observable (item.content)
 		};
+
+		i.sortable_title = ko.computed (function () {
+			if (this.title () === '') {
+				return self.str.untitled;
+			}
+			return this.title ();
+		}, i);
 
 		i.template = ko.computed (function () {
 			return self.template_name (this);
@@ -234,6 +259,25 @@ var editor = (function ($) {
 	};
 
 	/**
+	 * Update items after codemirror editor loses focus,
+	 * then call editor.update_items().
+	 */
+	self.codemirror_update = function (cm) {
+		var textarea = cm.getTextArea (),
+			id = $(textarea).data ('id'),
+			html = cm.getValue ();
+		
+		for (var i in self.items ()) {
+			if (self.items ()[i].id == id) {
+				self.items ()[i].content (html);
+				break;
+			}
+		}
+
+		self.update_items ();
+	};
+
+	/**
 	 * Get the next sorting value.
 	 */
 	self.next = function () {
@@ -273,18 +317,13 @@ var editor = (function ($) {
 	};
 
 	/**
-	 * Add a text item.
+	 * Add an item by type.
 	 */
-	self.add_text_field = function () {
-		return self.create_blank_item (1);
-	};
-
-	/**
-	 * Add an image item.
-	 */
-	self.add_image_field = function () {
-		return self.create_blank_item (2);
-	};
+	self.add_text_field		= function () { return self.create_blank_item (1); };
+	self.add_image_field	= function () { return self.create_blank_item (2); };
+	self.add_video_field	= function () { return self.create_blank_item (3); };
+	self.add_html_field		= function () { return self.create_blank_item (4); };
+	self.add_pre_field		= function () { return self.create_blank_item (5); };
 
 	/**
 	 * Put the last item into focus.
