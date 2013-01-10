@@ -74,6 +74,11 @@ var editor = (function ($) {
 	self.updating_items = false;
 	
 	/**
+	 * Manages CodeMirror instances by item ID.
+	 */
+	self.codemirror_instances = [];
+	
+	/**
 	 * Initialize the data and settings.
 	 */
 	self.init = function (options) {
@@ -87,26 +92,43 @@ var editor = (function ($) {
 
 		ko.applyBindings (self);
 		self.initialized = true;
-		self.show_full ();
 
-		// additional initializations for item types
-		$('.wysiwyg').redactor (editor.redactor_options);
-		$('.main').on ('blur', '.redactor_editor', editor.wysiwyg_update);
+		// register event handlers
+		$('.main').on ('blur', '.redactor_editor', self.wysiwyg_update);
+
+		self.show_full ();
+	};
+
+	/**
+	 * Initialize or reinitialize plugins (wysiwyg editor, syntax highlighter, etc.).
+	 */
+	self.initialize_plugins = function () {
+		$('.wysiwyg').redactor (self.redactor_options);
+
 		$('.html').each (function () {
-			var cm = CodeMirror.fromTextArea (this, {
+			var id = $(this).data ('id');
+			if (id in self.codemirror_instances) {
+				self.codemirror_instances[id].toTextArea ();
+			}
+			self.codemirror_instances[id] = CodeMirror.fromTextArea (this, {
 				mode: 'text/html',
 				lineNumbers: true,
 				indentWithTabs: true
 			});
-			cm.on ('blur', self.codemirror_update);
+			self.codemirror_instances[id].on ('blur', self.codemirror_update);
 		});
+
 		$('.pre').each (function () {
-			var cm = CodeMirror.fromTextArea (this, {
+			var id = $(this).data ('id');
+			if (id in self.codemirror_instances) {
+				self.codemirror_instances[id].toTextArea ();
+			}
+			self.codemirror_instances[id] = CodeMirror.fromTextArea (this, {
 				mode: 'text/plain',
 				lineNumbers: true,
 				indentWithTabs: true
 			});
-			cm.on ('blur', self.codemirror_update);
+			self.codemirror_instances[id].on ('blur', self.codemirror_update);
 		});
 	};
 
@@ -189,6 +211,9 @@ var editor = (function ($) {
 				if (! res.success) {
 					$.add_notification (res.error);
 				} else {
+					if (self.codemirror_instances[item.id]) {
+						self.codemirror_instances.splice (item.id, 1);
+					}
 					self.items.remove (item);
 				}
 			});
@@ -234,7 +259,6 @@ var editor = (function ($) {
 	 * sorting items..
 	 */
 	self.sortable_update = function () {
-		$('.wysiwyg').redactor (editor.redactor_options);
 		self.update_items ();
 	};
 
@@ -308,9 +332,7 @@ var editor = (function ($) {
 				return;
 			}
 			self.items.push (self.make_item_observable (res.data));
-			if (res.data.type == 1) {
-				$('.wysiwyg').redactor (self.redactor_options);
-			}
+			self.initialize_plugins ();
 			self.focus_last_item ();
 		});
 		return false;
@@ -379,6 +401,9 @@ var editor = (function ($) {
 		$('#toggle-list').removeClass ('active');
 		$('#item-list-full').show ();
 		$('#item-list-list').hide ();
+
+		// init/re-init plugins
+		self.initialize_plugins ();
 		return false;
 	};
 	
