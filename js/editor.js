@@ -82,11 +82,14 @@ var editor = (function ($) {
 		self.course = options.course;
 		self.page = options.page;
 
-		ko.bindingHandlers.sortable.afterMove = self.update_items;
+		ko.bindingHandlers.sortable.afterMove = self.sortable_update;
 
 		ko.applyBindings (self);
 		self.initialized = true;
 		self.show_full ();
+
+		$('.wysiwyg').redactor (editor.redactor_options);
+		$('.main').on ('blur', '.redactor_editor', editor.wysiwyg_update);
 	};
 
 	/**
@@ -145,19 +148,6 @@ var editor = (function ($) {
 	};
 
 	/**
-	 * Get the display name for an item type.
-	 * Accepts an item object or a type number.
-	 */
-	/*self.type_name = function (item) {
-		console.log (self.type_names);
-		if (item && item.type) {
-			return self.type_names[item.type];
-		} else if (item) {
-			return self.type_names[item];
-		}
-	};*/
-
-	/**
 	 * Delete an item from the list.
 	 */
 	self.delete_item = function () {
@@ -194,6 +184,15 @@ var editor = (function ($) {
 		});
 
 		return false;
+	};
+
+	/**
+	 * Update items after re-initializing editor from
+	 * sorting items..
+	 */
+	self.sortable_update = function () {
+		$('.wysiwyg').redactor (editor.redactor_options);
+		self.update_items ();
 	};
 
 	/**
