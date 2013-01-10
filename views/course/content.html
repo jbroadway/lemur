@@ -11,8 +11,8 @@
 		<li><a href="#" data-bind="click: add_video_field">{"Video"}</a></li>
 		<li><a href="#" data-bind="click: add_html_field">{"HTML code"}</a></li>
 		<li><a href="#" data-bind="click: add_pre_field">{"Pre-formatted text"}</a></li>
-		<li><a href="#">{"SCORM module"}</a></li>
-		<li><a href="#">{"File download"}</a></li>
+		<li><a href="#" data-bind="click: add_scorm_field">{"SCORM module"}</a></li>
+		<li><a href="#" data-bind="click: add_file_field">{"File download"}</a></li>
 		<li><a href="#">{"Accordion"}</a></li>
 		<li><a href="#">{"Definition"}</a></li>
 	</ul>
@@ -56,6 +56,7 @@ $(function () {
 		course: {{course}},
 		page: {{page}},
 		items: {{items|json_encode}},
+		scorm_modules: {{scorm_modules|json_encode}},
 		str: {
 			delete_confirm: '{"Are you sure you want to delete this item?"}',
 			untitled: '{"Untitled"}'
@@ -172,6 +173,39 @@ $(function () {
 				class="pre"
 				data-bind="value: content, attr: { 'data-id': id }"
 			></textarea>
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-6" type="text/html">
+	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
+		<h6 data-bind="text: type_name"></h6>
+		<p>
+			<label class="wide">{"SCORM module"}:</label>
+			<select
+				name="title"
+				data-bind="options: editor.scorm_modules, optionsCaption: '- {"Select"} -', value: title, event: { change: editor.update_items }"></select>
+		</p>
+		<p>
+			<label class="wide">{"Description"}:</label>
+			<input type="text" name="content" data-bind="value: content, event: { blur: editor.update_items }" size="90" />
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-7" type="text/html">
+	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
+		<h6 data-bind="text: type_name"></h6>
+		<p>
+			<label>{"File"}:</label>
+			<input type="text" name="content" placeholder="http://" data-bind="value: content, event: { blur: editor.update_items }" size="76" />
+			<input type="submit" value="{"Browse"}" />
+		</p>
+		<p>
+			<label>{"Description"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="90" />
 		</p>
 	</li>
 </script>

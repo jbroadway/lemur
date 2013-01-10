@@ -79,6 +79,11 @@ var editor = (function ($) {
 	self.codemirror_instances = [];
 	
 	/**
+	 * A list of SCORM modules available to the SCORM item type.
+	 */
+	self.scorm_modules = [];
+	
+	/**
 	 * Initialize the data and settings.
 	 */
 	self.init = function (options) {
@@ -87,6 +92,7 @@ var editor = (function ($) {
 		self.type_names = options.type_names;
 		self.course = options.course;
 		self.page = options.page;
+		self.scorm_modules = options.scorm_modules;
 
 		ko.bindingHandlers.sortable.afterMove = self.sortable_update;
 
@@ -346,6 +352,8 @@ var editor = (function ($) {
 	self.add_video_field	= function () { return self.create_blank_item (3); };
 	self.add_html_field		= function () { return self.create_blank_item (4); };
 	self.add_pre_field		= function () { return self.create_blank_item (5); };
+	self.add_scorm_field	= function () { return self.create_blank_item (6); };
+	self.add_file_field		= function () { return self.create_blank_item (7); };
 
 	/**
 	 * Put the last item into focus.

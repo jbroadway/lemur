@@ -16,6 +16,12 @@ if ($p->error) {
 	return;
 }
 
+try {
+	$scorm_modules = scorm\Util::get_modules ();
+} catch (Exception $e) {
+	$scorm_modules = array ();
+}
+
 $page->title = __ ('Editing Page') . ': ' . $p->title;
 
 $page->add_style ('/apps/admin/js/redactor/redactor.css');
@@ -39,7 +45,8 @@ echo View::render (
 	array (
 		'course' => $c->id,
 		'page' => $p->id,
-		'items' => $p->items ()
+		'items' => $p->items (),
+		'scorm_modules' => $scorm_modules
 	)
 );
 

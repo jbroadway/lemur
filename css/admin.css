@@ -120,12 +120,12 @@
 	}
 
 	.item p label {
-		width: 60px;
+		width: 75px;
 		display: inline-block;
 	}
 
 	.item p label.wide {
-		width: 120px;
+		width: 105px;
 	}
 
 	.delete {
