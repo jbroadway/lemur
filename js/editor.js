@@ -47,8 +47,8 @@ var editor = (function ($) {
 		7: 'File download',
 		8: 'Accordion',
 		9: 'Definition',
-		10: 'Single-line input',
-		11: 'Paragraph input',
+		10: 'Single-line answer',
+		11: 'Paragraph answer',
 		12: 'Drop down',
 		13: 'Checkboxes',
 		14: 'Multiple choice'
