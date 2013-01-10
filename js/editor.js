@@ -110,9 +110,11 @@ var editor = (function ($) {
 			return 'item-' + this.id;
 		}, i);
 
-		type_name = ko.computed (function () {
-			console.log (this.type);
-			console.log (self.type_names[this.type]);
+		/**
+		 * Get the display name for an item type.
+		 * Accepts an item object or a type number.
+		 */
+		i.type_name = ko.computed (function () {
 			return self.type_names[this.type];
 		}, i);
 

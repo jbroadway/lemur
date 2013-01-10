@@ -72,7 +72,7 @@
 	border: 1px solid #d5d5d5;
 }
 
-	.item p {
+	.item p, .item h6 {
 		margin-bottom: 10px !important;
 	}
 

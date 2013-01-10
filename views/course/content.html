@@ -95,6 +95,7 @@ $(function () {
 <script id="tpl-item-1" type="text/html">
 	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
+		<h6 data-bind="text: type_name"></h6>
 		<p>
 			<label>{"Title"}:</label><br />
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="50" />
@@ -114,6 +115,7 @@ $(function () {
 <script id="tpl-item-2" type="text/html">
 	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
+		<h6 data-bind="text: type_name"></h6>
 		<p>
 			<label>{"Title"}:</label><br />
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="50" />
