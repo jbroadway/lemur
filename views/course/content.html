@@ -44,13 +44,12 @@
 <script>
 $(function () {
 	$.waypoints.settings.scrollThrottle = 30;
-	$('.sidebar').waypoint (function (event, direction) {
-		if ($('body').scrollTop () >= 120 || $('html').scrollTop () >= 120) {
+	$('.sidebar').waypoint (function (direction) {
+		if (direction === 'down') {
 			$(this).addClass ('sticky');
 		} else {
 			$(this).removeClass ('sticky');
 		}
-		event.stopPropagation ();
 	});
 
 	editor.init ({
@@ -97,11 +96,10 @@ $(function () {
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
-			<label>{"Title"}:</label><br />
+			<label>{"Title"}:</label>
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="50" />
 		</p>
 		<p>
-			<label>{"Body"}:</label><br />
 			<textarea
 				name="content"
 				class="wysiwyg"
@@ -117,13 +115,13 @@ $(function () {
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
-			<label>{"Title"}:</label><br />
-			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="50" />
+			<label>{"Image"}:</label>
+			<input type="text" name="content" placeholder="http://" data-bind="value: content, event: { blur: editor.update_items }" size="56" />
+			<input type="submit" value="{"Browse"}" />
 		</p>
 		<p>
-			<label>{"Image"}:</label><br />
-			<input type="text" name="content" placeholder="http://" data-bind="value: content, event: { blur: editor.update_items }" size="36" />
-			<input type="submit" value="{"Browse"}" />
+			<label>{"Caption"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="70" />
 		</p>
 	</li>
 </script>

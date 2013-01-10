@@ -76,6 +76,11 @@
 		margin-bottom: 10px !important;
 	}
 
+	.item p label {
+		width: 60px;
+		display: inline-block;
+	}
+
 	.delete {
 		float: right;
 	}
