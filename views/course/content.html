@@ -13,8 +13,8 @@
 		<li><a href="#" data-bind="click: add_pre_field">{"Pre-formatted text"}</a></li>
 		<li><a href="#" data-bind="click: add_scorm_field">{"SCORM module"}</a></li>
 		<li><a href="#" data-bind="click: add_file_field">{"File download"}</a></li>
-		<li><a href="#">{"Accordion"}</a></li>
-		<li><a href="#">{"Definition"}</a></li>
+		<!-- li><a href="#" data-bind="click: add_accordion_field">{"Accordion"}</a></li -->
+		<li><a href="#" data-bind="click: add_definition_field">{"Definition"}</a></li>
 	</ul>
 	{"Add a question"}:
 	<ul>
@@ -182,13 +182,13 @@ $(function () {
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
-			<label class="wide">{"SCORM module"}:</label>
+			<label>{"Module"}:</label>
 			<select
 				name="title"
 				data-bind="options: editor.scorm_modules, optionsCaption: '- {"Select"} -', value: title, event: { change: editor.update_items }"></select>
 		</p>
 		<p>
-			<label class="wide">{"Description"}:</label>
+			<label>{"Description"}:</label>
 			<input type="text" name="content" data-bind="value: content, event: { blur: editor.update_items }" size="90" />
 		</p>
 	</li>
@@ -206,6 +206,25 @@ $(function () {
 		<p>
 			<label>{"Description"}:</label>
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="90" />
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-9" type="text/html">
+	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
+		<h6 data-bind="text: type_name"></h6>
+		<p>
+			<label>{"Term"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="50" />
+		</p>
+		<p>
+			<label>{"Definition"}:</label><br />
+			<textarea
+				name="content"
+				data-bind="value: content,event: { blur: editor.update_items }"
+				style="width: 98%; height: 50px"
+			></textarea>
 		</p>
 	</li>
 </script>

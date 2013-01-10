@@ -347,13 +347,14 @@ var editor = (function ($) {
 	/**
 	 * Add an item by type.
 	 */
-	self.add_text_field		= function () { return self.create_blank_item (1); };
-	self.add_image_field	= function () { return self.create_blank_item (2); };
-	self.add_video_field	= function () { return self.create_blank_item (3); };
-	self.add_html_field		= function () { return self.create_blank_item (4); };
-	self.add_pre_field		= function () { return self.create_blank_item (5); };
-	self.add_scorm_field	= function () { return self.create_blank_item (6); };
-	self.add_file_field		= function () { return self.create_blank_item (7); };
+	self.add_text_field			= function () { return self.create_blank_item (1); };
+	self.add_image_field		= function () { return self.create_blank_item (2); };
+	self.add_video_field		= function () { return self.create_blank_item (3); };
+	self.add_html_field			= function () { return self.create_blank_item (4); };
+	self.add_pre_field			= function () { return self.create_blank_item (5); };
+	self.add_scorm_field		= function () { return self.create_blank_item (6); };
+	self.add_file_field			= function () { return self.create_blank_item (7); };
+	self.add_definition_field	= function () { return self.create_blank_item (9); };
 
 	/**
 	 * Put the last item into focus.
