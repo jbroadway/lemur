@@ -156,7 +156,8 @@ var editor = (function ($) {
 			page: item.page,
 			sorting: ko.observable (item.sorting),
 			type: item.type,
-			content: ko.observable (item.content)
+			content: ko.observable (item.content),
+			answer: ko.observable (item.answer)
 		};
 
 		/**
@@ -192,6 +193,13 @@ var editor = (function ($) {
 				return self.default_img_src;
 			}
 			return this.content ();
+		}, i);
+
+		/**
+		 * Answers for a choice question.
+		 */
+		i.answers = ko.computed (function () {
+			return this.content ().split ("\n");
 		}, i);
 
 		return i;
@@ -392,7 +400,8 @@ var editor = (function ($) {
 			page: self.page,
 			sorting: self.next (),
 			type: type,
-			content: ''
+			content: '',
+			answer: ''
 		};
 		$.post (self.prefix + 'item/create', item, function (res) {
 			if (! res.success) {

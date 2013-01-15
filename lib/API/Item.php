@@ -22,6 +22,7 @@ class Item extends Restful {
 			$i->title = $item['title'];
 			$i->sorting = $item['sorting'];
 			$i->content = $item['content'];
+			$i->answer = $item['answer'];
 
 			if (! $i->put ()) {
 				return $this->error ($i->error);
@@ -43,7 +44,8 @@ class Item extends Restful {
 			'page' => $_POST['page'],
 			'sorting' => $_POST['sorting'],
 			'type' => $_POST['type'],
-			'content' => $_POST['content']
+			'content' => $_POST['content'],
+			'answer' => $_POST['answer']
 		));
 
 		if (! $i->put ()) {

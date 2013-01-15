@@ -260,7 +260,7 @@ $(function () {
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
-			<label>{"Question"}:</label>
+			<label class="wide">{"Question"}:</label>
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" style="width: 580px" />
 		</p>
 		<p>
@@ -270,6 +270,12 @@ $(function () {
 				data-bind="value: content,event: { blur: editor.update_items }"
 				style="width: 98%; height: 100px"
 			></textarea>
+		</p>
+		<p>
+			<label class="wide">{"Correct answer"}:</label>
+			<select
+				name="answer"
+				data-bind="options: answers, optionsCaption: '- {"Select"} -', value: answer, event: { change: editor.update_items }"></select>
 		</p>
 	</li>
 </script>
@@ -279,7 +285,7 @@ $(function () {
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
-			<label>{"Question"}:</label>
+			<label class="wide">{"Question"}:</label>
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" style="width: 580px" />
 		</p>
 		<p>
@@ -290,6 +296,14 @@ $(function () {
 				style="width: 98%; height: 100px"
 			></textarea>
 		</p>
+		<!--
+		<p>
+			<label class="wide">{"Correct answer"}:</label>
+			<select
+				name="answer"
+				data-bind="options: answers, optionsCaption: '- {"Select"} -', value: answer, event: { change: editor.update_items }"></select>
+		</p>
+		-->
 	</li>
 </script>
 
@@ -298,7 +312,7 @@ $(function () {
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
-			<label>{"Question"}:</label>
+			<label class="wide">{"Question"}:</label>
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" style="width: 580px" />
 		</p>
 		<p>
@@ -308,6 +322,12 @@ $(function () {
 				data-bind="value: content,event: { blur: editor.update_items }"
 				style="width: 98%; height: 100px"
 			></textarea>
+		</p>
+		<p>
+			<label class="wide">{"Correct answer"}:</label>
+			<select
+				name="answer"
+				data-bind="options: answers, optionsCaption: '- {"Select"} -', value: answer, event: { change: editor.update_items }"></select>
 		</p>
 	</li>
 </script>
