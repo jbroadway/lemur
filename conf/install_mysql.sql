@@ -36,5 +36,6 @@ create table lemur_item (
 	sorting int not null,
 	type int not null,
 	content text not null,
+	answer char(128) not null default '',
 	index (page, sorting)
 );

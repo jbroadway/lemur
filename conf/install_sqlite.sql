@@ -38,7 +38,8 @@ create table lemur_item (
 	page int not null,
 	sorting int not null,
 	type int not null,
-	content text not null
+	content text not null,
+	answer char(128) not null default ''
 );
 
 create index lemur_item_page on lemur_item (page, sorting);
