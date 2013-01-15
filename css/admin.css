@@ -136,6 +136,17 @@
 		font-family: monospace;
 	}
 
+	.img-preview {
+		width: 472px;
+		border: 0;
+		margin-left: 83px;
+		margin-bottom: 5px;
+	}
+
+	.img-button {
+		margin-left: 82px;
+	}
+
 /* full/list fields toggle */
 .toggle {
 	float: right;

@@ -91,7 +91,7 @@ $(function () {
 </script>
 
 <script id="tpl-item-1" type="text/html">
-	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
@@ -110,13 +110,14 @@ $(function () {
 </script>
 
 <script id="tpl-item-2" type="text/html">
-	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
-			<label>{"Image"}:</label>
-			<input type="text" name="content" placeholder="http://" data-bind="value: content, event: { blur: editor.update_items }" size="76" />
-			<input type="submit" value="{"Browse"}" />
+			{"Preview"}:<br />
+			<img data-bind="attr: { src: img_src }" class="img-preview" /><br />
+			<input type="hidden" name="content" data-bind="value: content, attr: { id: 'content-' + id }" size="76" />
+			<input type="submit" class="img-button" value="{"Browse"}" data-bind="event: { click: editor.filemanager_image }" />
 		</p>
 		<p>
 			<label>{"Description"}:</label>
@@ -126,13 +127,13 @@ $(function () {
 </script>
 
 <script id="tpl-item-3" type="text/html">
-	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
 			<label>{"Video"}:</label>
-			<input type="text" name="content" placeholder="http://" data-bind="value: content, event: { blur: editor.update_items }" size="76" />
-			<input type="submit" value="{"Browse"}" />
+			<input type="text" name="content" placeholder="http://" data-bind="value: content, attr: { id: 'content-' + id }, event: { blur: editor.update_items }" size="76" />
+			<input type="submit" value="{"Browse"}" data-bind="event: { click: editor.filemanager_video }" />
 		</p>
 		<p>
 			<label>{"Description"}:</label>
@@ -142,7 +143,7 @@ $(function () {
 </script>
 
 <script id="tpl-item-4" type="text/html">
-	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
@@ -160,7 +161,7 @@ $(function () {
 </script>
 
 <script id="tpl-item-5" type="text/html">
-	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
@@ -178,7 +179,7 @@ $(function () {
 </script>
 
 <script id="tpl-item-6" type="text/html">
-	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
@@ -195,13 +196,13 @@ $(function () {
 </script>
 
 <script id="tpl-item-7" type="text/html">
-	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
 			<label>{"File"}:</label>
-			<input type="text" name="content" placeholder="http://" data-bind="value: content, event: { blur: editor.update_items }" size="76" />
-			<input type="submit" value="{"Browse"}" />
+			<input type="text" name="content" placeholder="http://" data-bind="value: content, attr: { id: 'content-' + id }, event: { blur: editor.update_items }" size="76" />
+			<input type="submit" value="{"Browse"}" data-bind="event: { click: editor.filemanager_file }" />
 		</p>
 		<p>
 			<label>{"Description"}:</label>
@@ -211,7 +212,7 @@ $(function () {
 </script>
 
 <script id="tpl-item-9" type="text/html">
-	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
@@ -230,7 +231,7 @@ $(function () {
 </script>
 
 <script id="tpl-item-10" type="text/html">
-	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>
@@ -241,7 +242,7 @@ $(function () {
 </script>
 
 <script id="tpl-item-11" type="text/html">
-	<li class="item" data-bind="attr: { id: item_id, 'data-id': id }">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
 		<h6 data-bind="text: type_name"></h6>
 		<p>

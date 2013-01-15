@@ -27,6 +27,11 @@ var editor = (function ($) {
 	self.items = null;
 	
 	/**
+	 * The temp image for image items.
+	 */
+	self.default_img_src = '/apps/lemur/pix/default.png';
+	
+	/**
 	 * List of translatable strings.
 	 */
 	self.str = {
@@ -151,6 +156,9 @@ var editor = (function ($) {
 			content: ko.observable (item.content)
 		};
 
+		/**
+		 * The name of this item, or Untitled.
+		 */
 		i.sortable_title = ko.computed (function () {
 			if (this.title () === '') {
 				return self.str.untitled;
@@ -158,12 +166,11 @@ var editor = (function ($) {
 			return this.title ();
 		}, i);
 
+		/**
+		 * Which template to call for this item type.
+		 */
 		i.template = ko.computed (function () {
 			return self.template_name (this);
-		}, i);
-
-		i.item_id = ko.computed (function () {
-			return 'item-' + this.id;
 		}, i);
 
 		/**
@@ -172,6 +179,16 @@ var editor = (function ($) {
 		 */
 		i.type_name = ko.computed (function () {
 			return self.type_names[this.type];
+		}, i);
+
+		/**
+		 * The image to display, or a temp image.
+		 */
+		i.img_src = ko.computed (function () {
+			if (this.content () === '') {
+				return self.default_img_src;
+			}
+			return this.content ();
 		}, i);
 
 		return i;
@@ -305,6 +322,42 @@ var editor = (function ($) {
 		}
 
 		self.update_items ();
+	};
+
+	/**
+	 * Callback for the file browser.
+	 */
+	self.filemanager_image = function () {
+		var item = this;
+		$.wysiwyg.fileManager.setAjaxHandler ('//' + window.location.host + '/filemanager/embed');
+		$.wysiwyg.fileManager.init (function (file) {
+			item.content (file);
+			self.update_items ();
+		});
+	};
+
+	/**
+	 * Callback for the file browser.
+	 */
+	self.filemanager_video = function () {
+		var item = this;
+		$.wysiwyg.fileManager.setAjaxHandler ('//' + window.location.host + '/filemanager/embed');
+		$.wysiwyg.fileManager.init (function (file) {
+			item.content (file);
+			self.update_items ();
+		});
+	};
+
+	/**
+	 * Callback for the file browser.
+	 */
+	self.filemanager_file = function () {
+		var item = this;
+		$.wysiwyg.fileManager.setAjaxHandler ('//' + window.location.host + '/filemanager/embed');
+		$.wysiwyg.fileManager.init (function (file) {
+			item.content (file);
+			self.update_items ();
+		});
 	};
 
 	/**
