@@ -36,7 +36,10 @@ var editor = (function ($) {
 	 */
 	self.str = {
 		delete_confirm: 'Are you sure you want to delete this item?',
-		untitled: 'Untitled'
+		untitled: 'Untitled',
+		choose_image: 'Choose an image',
+		choose_video: 'Choose a video',
+		choose_file: 'Choose a file'
 	};
 
 	/**
@@ -328,36 +331,42 @@ var editor = (function ($) {
 	 * Callback for the file browser.
 	 */
 	self.filemanager_image = function () {
-		var item = this;
+		$.open_dialog (self.str.choose_image, '<p>...</p>');
+
+		/*var item = this;
 		$.wysiwyg.fileManager.setAjaxHandler ('//' + window.location.host + '/filemanager/embed');
 		$.wysiwyg.fileManager.init (function (file) {
 			item.content (file);
 			self.update_items ();
-		});
+		});*/
 	};
 
 	/**
 	 * Callback for the file browser.
 	 */
 	self.filemanager_video = function () {
-		var item = this;
+		$.open_dialog (self.str.choose_video, '<p>...</p>');
+
+		/*var item = this;
 		$.wysiwyg.fileManager.setAjaxHandler ('//' + window.location.host + '/filemanager/embed');
 		$.wysiwyg.fileManager.init (function (file) {
 			item.content (file);
 			self.update_items ();
-		});
+		});*/
 	};
 
 	/**
 	 * Callback for the file browser.
 	 */
 	self.filemanager_file = function () {
-		var item = this;
+		$.open_dialog (self.str.choose_file, '<p>...</p>');
+
+		/*var item = this;
 		$.wysiwyg.fileManager.setAjaxHandler ('//' + window.location.host + '/filemanager/embed');
 		$.wysiwyg.fileManager.init (function (file) {
 			item.content (file);
 			self.update_items ();
-		});
+		});*/
 	};
 
 	/**

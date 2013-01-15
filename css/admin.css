@@ -136,14 +136,14 @@
 		font-family: monospace;
 	}
 
-	.img-preview {
+	.item-preview {
 		width: 472px;
 		border: 0;
 		margin-left: 83px;
 		margin-bottom: 5px;
 	}
 
-	.img-button {
+	.browse-button {
 		margin-left: 82px;
 	}
 

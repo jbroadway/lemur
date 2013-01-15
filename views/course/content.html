@@ -59,7 +59,10 @@ $(function () {
 		scorm_modules: {{scorm_modules|json_encode}},
 		str: {
 			delete_confirm: '{"Are you sure you want to delete this item?"}',
-			untitled: '{"Untitled"}'
+			untitled: '{"Untitled"}',
+			choose_image: '{"Choose an image"}',
+			choose_video: '{"Choose a video"}',
+			choose_file: '{"Choose a file"}'
 		},
 		type_names: {
 			1: '{"Text"}',
@@ -115,9 +118,9 @@ $(function () {
 		<h6 data-bind="text: type_name"></h6>
 		<p>
 			{"Preview"}:<br />
-			<img data-bind="attr: { src: img_src }" class="img-preview" /><br />
+			<img data-bind="attr: { src: img_src }" class="item-preview" /><br />
 			<input type="hidden" name="content" data-bind="value: content, attr: { id: 'content-' + id }" size="76" />
-			<input type="submit" class="img-button" value="{"Browse"}" data-bind="event: { click: editor.filemanager_image }" />
+			<input type="submit" class="browse-button" value="{"Browse"}" data-bind="event: { click: editor.filemanager_image }" />
 		</p>
 		<p>
 			<label>{"Description"}:</label>

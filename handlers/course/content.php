@@ -24,23 +24,18 @@ try {
 
 $page->title = __ ('Editing Page') . ': ' . $p->title;
 
-$page->add_style ('/css/wysiwyg/jquery.wysiwyg.css');
-$page->add_script ('/js/wysiwyg/jquery.wysiwyg.js');
-$page->add_script ('/js/wysiwyg/plugins/wysiwyg.fileManager.js');
+$this->run ('admin/util/modal');
 
-$page->add_style ('/apps/admin/js/redactor/redactor.css');
-$page->add_style ('/apps/lemur/js/codemirror/lib/codemirror.css');
-$page->add_style ('/apps/lemur/css/admin.css');
 $page->add_script ('/apps/lemur/js/waypoints.min.js');
 $page->add_script ('/apps/lemur/js/jquery-ui.min.js');
 $page->add_script ('/apps/lemur/js/knockout-2.2.0.min.js');
 $page->add_script ('/apps/lemur/js/knockout-sortable.min.js');
 $page->add_script ('/apps/admin/js/redactor/redactor.min.js');
-$page->add_style ('/apps/lemur/js/codemirror/lib/codemirror.js');
-$page->add_style ('/apps/lemur/js/codemirror/mode/xml/xml.js');
-$page->add_style ('/apps/lemur/js/codemirror/mode/javascript/javascript.js');
-$page->add_style ('/apps/lemur/js/codemirror/mode/css/css.js');
-$page->add_style ('/apps/lemur/js/codemirror/mode/htmlmixed/htmlmixed.js');
+$page->add_script ('/apps/lemur/js/codemirror/lib/codemirror.js');
+$page->add_script ('/apps/lemur/js/codemirror/mode/xml/xml.js');
+$page->add_script ('/apps/lemur/js/codemirror/mode/javascript/javascript.js');
+$page->add_script ('/apps/lemur/js/codemirror/mode/css/css.js');
+$page->add_script ('/apps/lemur/js/codemirror/mode/htmlmixed/htmlmixed.js');
 $page->add_script ('/apps/lemur/js/admin.js');
 $page->add_script ('/apps/lemur/js/editor.js');
 
