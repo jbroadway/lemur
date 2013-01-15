@@ -328,7 +328,7 @@ var editor = (function ($) {
 	};
 
 	/**
-	 * Callback for the file browser.
+	 * Open the file browser for an image file.
 	 */
 	self.filemanager_image = function () {
 		$.open_dialog (self.str.choose_image, '<p>...</p>');
@@ -342,7 +342,7 @@ var editor = (function ($) {
 	};
 
 	/**
-	 * Callback for the file browser.
+	 * Open the file browser for a video file.
 	 */
 	self.filemanager_video = function () {
 		$.open_dialog (self.str.choose_video, '<p>...</p>');
@@ -356,7 +356,7 @@ var editor = (function ($) {
 	};
 
 	/**
-	 * Callback for the file browser.
+	 * Open the file browser for any file type.
 	 */
 	self.filemanager_file = function () {
 		$.open_dialog (self.str.choose_file, '<p>...</p>');
@@ -420,6 +420,9 @@ var editor = (function ($) {
 	self.add_definition_field	= function () { return self.create_blank_item (9); };
 	self.add_input_field		= function () { return self.create_blank_item (10); };
 	self.add_para_field			= function () { return self.create_blank_item (11); };
+	self.add_drop_field			= function () { return self.create_blank_item (12); };
+	self.add_check_field		= function () { return self.create_blank_item (13); };
+	self.add_multi_field		= function () { return self.create_blank_item (14); };
 
 	/**
 	 * Put the last item into focus.

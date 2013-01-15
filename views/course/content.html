@@ -20,9 +20,9 @@
 	<ul>
 		<li><a href="#" data-bind="click: add_input_field">{"Single-line answer"}</a></li>
 		<li><a href="#" data-bind="click: add_para_field">{"Paragraph answer"}</a></li>
-		<li><a href="#">{"Drop down"}</a></li>
-		<li><a href="#">{"Checkboxes"}</a></li>
-		<li><a href="#">{"Multiple choice"}</a></li>
+		<li><a href="#" data-bind="click: add_drop_field">{"Drop down"}</a></li>
+		<li><a href="#" data-bind="click: add_check_field">{"Checkboxes"}</a></li>
+		<li><a href="#" data-bind="click: add_multi_field">{"Multiple choice"}</a></li>
 	</ul>
 </div>
 
@@ -251,6 +251,63 @@ $(function () {
 		<p>
 			<label>{"Question"}:</label>
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" style="width: 580px" />
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-12" type="text/html">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
+		<h6 data-bind="text: type_name"></h6>
+		<p>
+			<label>{"Question"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" style="width: 580px" />
+		</p>
+		<p>
+			<label class="ultra-wide">{"Choices (one-per line)"}:</label><br />
+			<textarea
+				name="content"
+				data-bind="value: content,event: { blur: editor.update_items }"
+				style="width: 98%; height: 100px"
+			></textarea>
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-13" type="text/html">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
+		<h6 data-bind="text: type_name"></h6>
+		<p>
+			<label>{"Question"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" style="width: 580px" />
+		</p>
+		<p>
+			<label class="ultra-wide">{"Choices (one-per line)"}:</label><br />
+			<textarea
+				name="content"
+				data-bind="value: content,event: { blur: editor.update_items }"
+				style="width: 98%; height: 100px"
+			></textarea>
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-14" type="text/html">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }">{"Delete"}</a>
+		<h6 data-bind="text: type_name"></h6>
+		<p>
+			<label>{"Question"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" style="width: 580px" />
+		</p>
+		<p>
+			<label class="ultra-wide">{"Choices (one-per line)"}:</label><br />
+			<textarea
+				name="content"
+				data-bind="value: content,event: { blur: editor.update_items }"
+				style="width: 98%; height: 100px"
+			></textarea>
 		</p>
 	</li>
 </script>

@@ -128,6 +128,10 @@
 		width: 105px;
 	}
 
+	.item p label.ultra-wide {
+		width: 600px;
+	}
+
 	.delete {
 		float: right;
 	}
