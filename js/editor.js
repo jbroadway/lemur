@@ -339,14 +339,16 @@ var editor = (function ($) {
 	 * Open the file browser for an image file.
 	 */
 	self.filemanager_image = function () {
-		$.open_dialog (self.str.choose_image, '<p>...</p>');
+		var item = this;
 
-		/*var item = this;
-		$.wysiwyg.fileManager.setAjaxHandler ('//' + window.location.host + '/filemanager/embed');
-		$.wysiwyg.fileManager.init (function (file) {
-			item.content (file);
-			self.update_items ();
-		});*/
+		$.filebrowser ({
+			title: self.str.choose_image,
+			thumbs: true,
+			callback: function (file) {
+				item.content (file);
+				self.update_items ();
+			}
+		});
 	};
 
 	/**

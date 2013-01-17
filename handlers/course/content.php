@@ -24,7 +24,7 @@ try {
 
 $page->title = __ ('Editing Page') . ': ' . $p->title;
 
-$this->run ('admin/util/modal');
+$this->run ('filemanager/util/browser');
 
 $page->add_style ('/apps/admin/js/redactor/redactor.css');
 $page->add_style ('/apps/lemur/js/codemirror/lib/codemirror.css');
