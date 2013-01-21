@@ -359,7 +359,7 @@ var editor = (function ($) {
 
 		$.filebrowser ({
 			title: self.str.choose_video,
-			allowed: ['mp4'],
+			allowed: ['mp4', 'm4v'],
 			callback: function (file) {
 				item.content (file);
 				self.update_items ();
