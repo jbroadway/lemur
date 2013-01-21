@@ -355,28 +355,31 @@ var editor = (function ($) {
 	 * Open the file browser for a video file.
 	 */
 	self.filemanager_video = function () {
-		$.open_dialog (self.str.choose_video, '<p>...</p>');
+		var item = this;
 
-		/*var item = this;
-		$.wysiwyg.fileManager.setAjaxHandler ('//' + window.location.host + '/filemanager/embed');
-		$.wysiwyg.fileManager.init (function (file) {
-			item.content (file);
-			self.update_items ();
-		});*/
+		$.filebrowser ({
+			title: self.str.choose_video,
+			allowed: ['mp4'],
+			callback: function (file) {
+				item.content (file);
+				self.update_items ();
+			}
+		});
 	};
 
 	/**
 	 * Open the file browser for any file type.
 	 */
 	self.filemanager_file = function () {
-		$.open_dialog (self.str.choose_file, '<p>...</p>');
+		var item = this;
 
-		/*var item = this;
-		$.wysiwyg.fileManager.setAjaxHandler ('//' + window.location.host + '/filemanager/embed');
-		$.wysiwyg.fileManager.init (function (file) {
-			item.content (file);
-			self.update_items ();
-		});*/
+		$.filebrowser ({
+			title: self.str.choose_file,
+			callback: function (file) {
+				item.content (file);
+				self.update_items ();
+			}
+		});
 	};
 
 	/**
