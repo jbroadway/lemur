@@ -1,0 +1,46 @@
+.lemur-item {
+	margin-bottom: 15px;
+}
+
+.lemur-item img {
+	max-width: 472px;
+}
+
+.lemur-item pre {
+	border: 1px solid #ccc;
+	background-color: #fff;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	padding: 3px;
+}
+
+.lemur-item dt {
+	font-weight: bold;
+}
+
+.lemur-item dt:after {
+	content: ":";
+}
+
+.lemur-item dd {
+	margin-left: 20px;
+}
+
+.lemur-item figure {
+	width: 472px;
+	margin: auto;
+}
+
+.lemur-item figcaption, .lemur-item .item-caption {
+	font-style: italic;
+}
+
+.lemur-item input[type=text] {
+	width: 98%;
+}
+
+.lemur-item textarea {
+	width: 98%;
+	height: 100px;
+}

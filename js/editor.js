@@ -37,6 +37,7 @@ var editor = (function ($) {
 	self.str = {
 		delete_confirm: 'Are you sure you want to delete this item?',
 		untitled: 'Untitled',
+		loading: 'Loading...',
 		choose_image: 'Choose an image',
 		choose_video: 'Choose a video',
 		choose_file: 'Choose a file'
@@ -118,6 +119,7 @@ var editor = (function ($) {
 	 */
 	self.initialize_plugins = function () {
 		$('.wysiwyg').redactor (self.redactor_options);
+		$('video,audio').mediaelementplayer ();
 
 		$('.html').each (function () {
 			var id = $(this).data ('id');
@@ -336,6 +338,20 @@ var editor = (function ($) {
 	};
 
 	/**
+	 * Update the preview div with the latest page contents.
+	 */
+	self.refresh_preview = function () {
+		var preview_area = $('#item-preview-area');
+		
+		preview_area.html ('<i class="icon-spinner icon-spin"></i> ' + self.str.loading);
+
+		$.get ('/lemur/course/preview', {id: self.course, page: self.page}, function (res) {
+			preview_area.html (res);
+			self.initialize_plugins ();
+		});
+	};
+
+	/**
 	 * Open the file browser for an image file.
 	 */
 	self.filemanager_image = function () {
@@ -359,7 +375,7 @@ var editor = (function ($) {
 
 		$.filebrowser ({
 			title: self.str.choose_video,
-			allowed: ['mp4', 'm4v'],
+			allowed: ['mp4', 'm4v', 'flv', 'f4v'],
 			callback: function (file) {
 				item.content (file);
 				self.update_items ();
@@ -479,8 +495,10 @@ var editor = (function ($) {
 	self.show_list = function () {
 		$('#toggle-full').removeClass ('active');
 		$('#toggle-list').addClass ('active');
+		$('#toggle-preview').removeClass ('active');
 		$('#item-list-full').hide ();
 		$('#item-list-list').show ();
+		$('#item-preview').hide ();
 		return false;
 	};
 
@@ -490,11 +508,29 @@ var editor = (function ($) {
 	self.show_full = function () {
 		$('#toggle-full').addClass ('active');
 		$('#toggle-list').removeClass ('active');
+		$('#toggle-preview').removeClass ('active');
 		$('#item-list-full').show ();
 		$('#item-list-list').hide ();
+		$('#item-preview').hide ();
 
 		// init/re-init plugins
 		self.initialize_plugins ();
+		return false;
+	};
+
+	/**
+	 * Show the list tab.
+	 */
+	self.show_preview = function () {
+		$('#toggle-full').removeClass ('active');
+		$('#toggle-list').removeClass ('active');
+		$('#toggle-preview').addClass ('active');
+		$('#item-list-full').hide ();
+		$('#item-list-list').hide ();
+		$('#item-preview').show ();
+
+		// refresh the preview contents
+		self.refresh_preview ();
 		return false;
 	};
 	

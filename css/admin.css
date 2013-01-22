@@ -96,6 +96,17 @@
 		cursor: move;
 	}
 
+#item-preview-area {
+	width: 84%;
+	margin-left: 8%;
+	border: 1px solid #d5d5d5;
+	background-color: #fff;
+	padding: 0px 15px 0px 15px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
 #items {
 	list-style-type: none;
 	margin-left: 0px;
@@ -179,6 +190,12 @@
 
 	#toggle-list {
 		background: url(list-off.png);
+		border: 1px solid #c5c5c5;
+		border-right: 0px;
+	}
+
+	#toggle-preview {
+		background: url(preview-off.png);
 		-webkit-border-top-right-radius: 3px;
 		-webkit-border-bottom-right-radius: 3px;
 		-moz-border-radius-topright: 3px;
@@ -194,6 +211,10 @@
 
 	#toggle-list.active {
 		background: url(list-on.png);
+	}
+
+	#toggle-preview.active {
+		background: url(preview-on.png);
 	}
 
 /* wysiwyg editor visual integration */

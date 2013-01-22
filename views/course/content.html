@@ -6,9 +6,9 @@
 <div class="sidebar">
 	{"Add content"}:
 	<ul>
-		<li><a href="#" id="add-text" data-bind="click: add_text_field">{"Text"}</a></li>
-		<li><a href="#" id="add-image" data-bind="click: add_image_field">{"Image"}</a></li>
-		<li><a href="#" data-bind="click: add_video_field">{"Video"}</a></li>
+		<li><i class="icon-edit"></i> <a href="#" id="add-text" data-bind="click: add_text_field">{"Text"}</a></li>
+		<li><i class="icon-picture"></i> <a href="#" id="add-image" data-bind="click: add_image_field">{"Image"}</a></li>
+		<li><i class="icon-film"></i> <a href="#" data-bind="click: add_video_field">{"Video"}</a></li>
 		<li><a href="#" data-bind="click: add_html_field">{"HTML code"}</a></li>
 		<li><a href="#" data-bind="click: add_pre_field">{"Pre-formatted text"}</a></li>
 		<li><a href="#" data-bind="click: add_scorm_field">{"SCORM module"}</a></li>
@@ -28,6 +28,7 @@
 
 <div class="main">
 	<div class="toggle">
+		<a href="#" id="toggle-preview" data-bind="click: show_preview" title="{"Preview page"}"></a>
 		<a href="#" id="toggle-list" data-bind="click: show_list" title="{"Sort items"}"></a>
 		<a href="#" id="toggle-full" data-bind="click: show_full" title="{"Edit items"}"></a>
 	</div>
@@ -38,6 +39,10 @@
 	<div id="item-list-list">
 		<p class="info">{"Drag and drop to re-order your page content."}</p>
 		<ul id="item-list-sortable" data-bind="sortable: { template: 'tpl-list-item', data: items }"></ul>
+	</div>
+	<div id="item-preview">
+		<p class="info">{"This is a preview of the rendered page content."}</p>
+		<div id="item-preview-area"></div>
 	</div>
 </div>
 
@@ -60,6 +65,7 @@ $(function () {
 		str: {
 			delete_confirm: '{"Are you sure you want to delete this item?"}',
 			untitled: '{"Untitled"}',
+			loading: '{"Loading..."}',
 			choose_image: '{"Choose an image"}',
 			choose_video: '{"Choose a video"}',
 			choose_file: '{"Choose a file"}'
@@ -86,6 +92,7 @@ $(function () {
 
 <script id="tpl-list-item" type="text/html">
 	<li class="sortable-item" data-bind="attr: { 'data-id': id }">
+		<i class="icon-move"></i>
 		<a href="#" data-bind="attr: { 'data-id': id }">
 			<span data-bind="text: sortable_title"></span>
 			(<span data-bind="text: type_name"></span>)
