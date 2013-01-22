@@ -2,33 +2,18 @@
 
 An e-learning app for the [Elefant CMS](http://www.elefantcms.com/).
 
-**Status: Pre-alpha**
+**Status: Alpha**
+
+The course builder itself is nearly complete, and the work on learner
+management, course publishing, and user interaction is underway.
 
 ## To do
 
-Course editing:
+Backend:
 
-* CRUD for course pages
-  * List pages
-  * For add/edit, see Course page editor
-  * Delete page
-* Course page editor
-  * Text objects
-  * Image objects
-      * Image resizing
-  * Audio objects
-  * Video objects
-      * Encoding method TBD
-  * Definition objects (for glossary)
-  * Accordion objects
-  * Formatted text objects (for code samples)
-  * File download objects (e.g., PDFs, PPTs)
-  * HTML embed objects (for youtube, etc)
-  * Text input objects
-  * Checkbox input objects
-  * Multiple choice input objects
-* Managing learners
-* Deleting courses
+* Learner management
+* Viewing learner responses
+* Integrating SCORM data
 
 Public-facing:
 
