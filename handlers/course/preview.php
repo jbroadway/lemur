@@ -21,6 +21,10 @@ printf ('<h1>%s</h1>', $p->title);
 $items = $p->items ();
 
 foreach ($items as $item) {
+	if (in_array ((int) $item->type, array (12, 13, 14))) {
+		$item->content = explode ("\n", trim ($item->content));
+	}
+
 	echo View::render (
 		'lemur/item/' . $item->type,
 		$item

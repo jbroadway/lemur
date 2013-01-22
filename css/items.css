@@ -2,6 +2,11 @@
 	margin-bottom: 15px;
 }
 
+.lemur-item h4 {
+	border-bottom: 0px;
+	margin-bottom: 15px;
+}
+
 .lemur-item img {
 	max-width: 472px;
 }
@@ -43,4 +48,16 @@
 .lemur-item textarea {
 	width: 98%;
 	height: 100px;
+}
+
+.lemur-item fieldset {
+	margin-bottom: 0px;
+}
+
+.lemur-item label, .lemur-item legend {
+	font-weight: bold;
+}
+
+.lemur-item fieldset label {
+	font-weight: normal;
 }

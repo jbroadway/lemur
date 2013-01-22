@@ -1,0 +1,12 @@
+<div id="item-{{id}}" class="lemur-item item-input-checkboxes">
+	<form>
+		<fieldset>
+			<legend>{{title}}</legend>
+			{% foreach content as num, option %}
+			<input type="checkbox" name="input-{{id}}[]" id="input-{{id}}-{{num}}" value="{{option}}" />
+			<label for="input-{{id}}-{{num}}">{{option}}</label><br />
+			{% end %}
+		</fieldset>
+		<input type="submit" value="{"Submit"}" />
+	</form>
+</div>

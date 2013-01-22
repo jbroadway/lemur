@@ -63,6 +63,23 @@ var editor = (function ($) {
 		14: 'Multiple choice'
 	};
 
+	self.type_icons = {
+		1: '<i class="icon-pencil"></i>',
+		2: '<i class="icon-picture"></i>',
+		3: '<i class="icon-film"></i>',
+		4: '<i class="icon-angle-left icon-combine-left"></i><i class="icon-angle-right icon-combine-right"></i>',
+		5: '<i class="icon-quote-left"></i>',
+		6: '<i class="icon-cogs"></i>',
+		7: '<i class="icon-download-alt"></i>',
+		8: '<i class="icon-reorder"></i>',
+		9: '<i class="icon-lightbulb"></i>',
+		10: '<i class="icon-edit"></i>',
+		11: '<i class="icon-edit"></i>',
+		12: '<i class="icon-circle-arrow-down"></i>',
+		13: '<i class="icon-check"></i>',
+		14: '<i class="icon-ok-circle"></i>'
+	};
+
 	/**
 	 * Options for the wysiwyg editor.
 	 */
@@ -185,6 +202,10 @@ var editor = (function ($) {
 		 */
 		i.type_name = ko.computed (function () {
 			return self.type_names[this.type];
+		}, i);
+
+		i.type_icon = ko.computed (function () {
+			return self.type_icons[this.type];
 		}, i);
 
 		/**
@@ -416,6 +437,8 @@ var editor = (function ($) {
 	 * Add an item on the server so it has an ID value.
 	 */
 	self.create_blank_item = function (type) {
+		self.show_full ();
+
 		var item = {
 			title: '',
 			page: self.page,

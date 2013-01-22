@@ -1,0 +1,12 @@
+<div id="item-{{id}}" class="lemur-item item-input-dropdown">
+	<form>
+		<label for="input-{{id}}">{{title}}</label><br />
+		<select id="input-{{id}}" name="input-{{id}}">
+			<option value="">- {"Select"} -</option>
+			{% foreach content as option %}
+			<option value="{{option}}">{{option}}</option>
+			{% end %}
+		</select><br />
+		<input type="submit" value="{"Submit"}" />
+	</form>
+</div>

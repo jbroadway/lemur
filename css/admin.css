@@ -18,6 +18,15 @@
 	cursor: move;
 }
 
+.icon-combine-left {
+	margin-left: -3px;
+}
+
+.icon-combine-right {
+	margin-left: -10px;
+	margin-right: -3px;
+}
+
 .sidebar {
 	float: left;
 	width: 200px;
@@ -38,7 +47,7 @@
 
 	.sidebar li {
 		list-style-type: none;
-		margin-left: 15px;
+		margin-left: 0px;
 		padding-left: 0;
 	}
 
@@ -50,6 +59,7 @@
 .main {
 	width: 700px;
 	float: right;
+	margin-top: -39px;
 }
 
 .info {
