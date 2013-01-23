@@ -22,7 +22,7 @@ try {
 	$scorm_modules = array ();
 }
 
-$page->title = __ ('Editing Page') . ': ' . $p->title;
+$page->title = __ ('Editing Page') . ': ' . $c->title . ' - ' . $p->title;
 
 $this->run ('admin/util/fontawesome');
 $this->run ('filemanager/util/browser');

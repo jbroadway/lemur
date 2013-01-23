@@ -10,7 +10,7 @@ if ($c->error) {
 	return;
 }
 
-$page->title = __ ('Edit Course') . ': ' . $c->title;
+$page->title = $c->title . ' - ' . __ ('Settings');
 
 $form = new Form ('post', $this);
 

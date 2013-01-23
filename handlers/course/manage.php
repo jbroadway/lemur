@@ -10,7 +10,7 @@ if ($c->error) {
 	return;
 }
 
-$page->title = __ ('Course Content') . ': ' . $c->title;
+$page->title = $c->title . ' - ' . __ ('Pages');
 
 $page->add_style ('/apps/lemur/css/admin.css');
 $page->add_script ('/apps/lemur/js/admin.js');

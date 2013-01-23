@@ -10,7 +10,7 @@ if ($c->error) {
 	return;
 }
 
-$page->title = __ ('Sort Pages') . ': ' . $c->title;
+$page->title = $c->title . ' - ' . __ ('Sort Pages');
 
 $page->add_style ('/apps/lemur/css/admin.css');
 $page->add_script ('/apps/lemur/js/admin.js');
