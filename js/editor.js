@@ -35,32 +35,32 @@ var editor = (function ($) {
 	 * List of translatable strings.
 	 */
 	self.str = {
-		delete_confirm: 'Are you sure you want to delete this item?',
-		untitled: 'Untitled',
-		loading: 'Loading...',
-		choose_image: 'Choose an image',
-		choose_video: 'Choose a video',
-		choose_file: 'Choose a file'
+		delete_confirm: $.i18n ('Are you sure you want to delete this item?'),
+		untitled: $.i18n ('Untitled'),
+		loading: $.i18n ('Loading...'),
+		choose_image: $.i18n ('Choose an image'),
+		choose_video: $.i18n ('Choose a video'),
+		choose_file: $.i18n ('Choose a file')
 	};
 
 	/**
 	 * Type names for display.
 	 */
 	self.type_names = {
-		1: 'Text',
-		2: 'Image',
-		3: 'Video',
-		4: 'HTML code',
-		5: 'Pre-formatted text',
-		6: 'SCORM module',
-		7: 'File download',
-		8: 'Accordion',
-		9: 'Definition',
-		10: 'Single-line answer',
-		11: 'Paragraph answer',
-		12: 'Drop down',
-		13: 'Checkboxes',
-		14: 'Multiple choice'
+		1: $.i18n ('Text'),
+		2: $.i18n ('Image'),
+		3: $.i18n ('Video'),
+		4: $.i18n ('HTML code'),
+		5: $.i18n ('Pre-formatted text'),
+		6: $.i18n ('SCORM module'),
+		7: $.i18n ('File download'),
+		8: $.i18n ('Accordion'),
+		9: $.i18n ('Definition'),
+		10: $.i18n ('Single-line answer'),
+		11: $.i18n ('Paragraph answer'),
+		12: $.i18n ('Drop down'),
+		13: $.i18n ('Checkboxes'),
+		14: $.i18n ('Multiple choice')
 	};
 
 	self.type_icons = {
@@ -114,8 +114,6 @@ var editor = (function ($) {
 	 */
 	self.init = function (options) {
 		self.items = self.make_items_observable (options.items);
-		self.str = options.str;
-		self.type_names = options.type_names;
 		self.course = options.course;
 		self.page = options.page;
 		self.scorm_modules = options.scorm_modules;

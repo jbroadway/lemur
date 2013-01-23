@@ -34,7 +34,7 @@ $page->add_style ('/apps/lemur/css/admin.css');
 $page->add_style ('/apps/lemur/css/items.css');
 
 $page->add_script ('/apps/lemur/js/waypoints.min.js');
-$page->add_script ('/apps/lemur/js/jquery-ui.min.js');
+$page->add_script ('/js/jquery-ui/jquery-ui.min.js');
 $page->add_script ('/apps/lemur/js/knockout-2.2.0.min.js');
 $page->add_script ('/apps/lemur/js/knockout-sortable.min.js');
 $page->add_script ('/apps/admin/js/redactor/redactor.min.js');
@@ -47,6 +47,29 @@ $page->add_script ('/apps/lemur/js/codemirror/mode/htmlmixed/htmlmixed.js');
 $page->add_script ('/apps/scorm/js/scorm.js');
 $page->add_script ('/apps/lemur/js/admin.js');
 $page->add_script ('/apps/lemur/js/editor.js');
+
+$page->add_script (I18n::export (
+	'Are you sure you want to delete this item?',
+	'Choose an image',
+	'Choose a video',
+	'Choose a file',
+	'Loading...',
+	'Untitled',
+	'Text',
+	'Image',
+	'Video',
+	'HTML code',
+	'Pre-formatted text',
+	'SCORM module',
+	'File download',
+	'Accordion',
+	'Definition',
+	'Single-line answer',
+	'Paragraph answer',
+	'Drop down',
+	'Checkboxes',
+	'Multiple choice'
+));
 
 echo View::render (
 	'lemur/course/content',

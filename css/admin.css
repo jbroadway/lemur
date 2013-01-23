@@ -31,7 +31,7 @@
 	float: left;
 	width: 200px;
 	background: #e5e5e5;
-	padding: 10px;
+	padding: 5px 10px 0px 10px;
 	margin-bottom: 15px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -126,8 +126,7 @@
 .item {
 	list-style-type: none;
 	background: #e5e5e5;
-	padding: 10px;
-	padding-bottom: 0px;
+	padding: 5px 10px 0px 10px;
 	margin-left: 0px;
 	margin-bottom: 15px;
 	border-radius: 5px;
@@ -155,6 +154,12 @@
 
 	.delete {
 		float: right;
+		font-size: 15px;
+		text-decoration: none;
+	}
+
+	.delete:hover {
+		text-decoration: none;
 	}
 
 	.item textarea {
