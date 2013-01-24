@@ -1,0 +1,12 @@
+.lemur-course i, .lemur-course img {
+	float: left;
+	height: 39px;
+	width: 39px;
+	text-align: center;
+	margin: 0 10px 10px 0;
+}
+
+.lemur-course i {
+	color: #999;
+	border: 1px solid #ddd;
+}
