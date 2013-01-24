@@ -1,28 +1,56 @@
+{! admin/util/fontawesome !}
+
 <p>
 	<a href="/lemur/admin">&laquo; {"Back"}</a>
 	&nbsp;|&nbsp;
 	<a href="#" onclick="return lemur.add_page ({{course}}, '{"Page name:"}')">{"Add Page"}</a>
-	&nbsp;|&nbsp;
-	<a href="/lemur/course/sort?id={{course}}">{"Sort Pages"}</a>
 </p>
 
-<p>
-<table width="100%">
-	<tr>
-		<th width="70%">{"Page"}</th>
-		<th width="30%">&nbsp;</th>
-	</tr>
+<p><em>{"Drag and drop to re-order pages in this course:"}</em></p>
+
+<ul id="pages">
 {% foreach pages as id, title %}
-	<tr>
-		<td><a id="page-title-{{id}}" href="/lemur/course/{{course}}/{{course_title|URLify::filter}}/{{id}}/{{title|URLify::filter}}">{{title}}</a></td>
-		<td style="text-align: right">
+	<li data-id="{{id}}">
+		<div class="draggable"><i class="icon-sort"></i> <a id="page-title-{{id}}" href="/lemur/course/{{course}}/{{course_title|URLify::filter}}/{{id}}/{{title|URLify::filter}}">{{title}}</a></div>
+		<div style="text-align: right">
 			<a href="#" class="page-rename" data-id="{{id}}" data-title="{{title|quotes}}">{"Rename"}</a>
 			&nbsp;|&nbsp;
 			<a href="/lemur/course/content?id={{course}}&page={{id}}">{"Content"}</a>
 			&nbsp;|&nbsp;
 			<a href="/lemur/page/delete" data-id="{{id}}" data-course="{{course}}" onclick="$.confirm_and_post (this, '{"Are you sure you want to delete this page?"}')">{"Delete"}</a>
-		</td>
-	</tr>
+		</div>
+		<br clear="both" />
+	</li>
 {% end %}
-</table>
-</p>
+</ul>
+
+<p id="saving" class="notice"></p>
+
+<script>
+$(function () {
+	$('#pages').sortable ({
+		handle: '.draggable',
+		update: function (e, ui) {
+			var order = [];
+			
+			$('#pages>li').each (function () {
+				order.push ($(this).data ('id'));
+			});
+
+			lemur.notice ('#saving', '{"Saving new order..."}');
+
+			$.post (
+				lemur.prefix + 'page/order',
+				{course: {{course}}, order: order},
+				function (res) {
+					if (res.success) {
+						lemur.notice ('#saving', '{"Saved!"}');
+					} else {
+						lemur.notice ('#saving', '{"An error occurred."}');
+					}
+				}
+			);
+		}
+	});
+});
+</script>

@@ -18,6 +18,55 @@
 	cursor: move;
 }
 
+#categories, #categories li {
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+	#categories li {
+		border-bottom: 1px solid #ccc;
+		padding: 5px 7px 5px 7px;
+	}
+
+	#categories li:first-child {
+		border-top: 1px solid #666;
+	}
+
+	#categories li i {
+		color: #333;
+	}
+
+#pages, #pages li {
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+	#pages li {
+		border-bottom: 1px solid #ccc;
+		padding: 5px 7px 5px 7px;
+		clear: both;
+	}
+
+	#pages li:first-child {
+		border-top: 1px solid #666;
+	}
+
+	#pages li i {
+		color: #333;
+	}
+
+	#pages li div {
+		display: inline-block;
+		width: 30%;
+		float: left;
+	}
+
+	#pages li div:first-child {
+		width: 70%;
+	}
+
 .icon-combine-left {
 	margin-left: -3px;
 }

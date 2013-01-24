@@ -14,6 +14,7 @@ $page->title = $c->title . ' - ' . __ ('Pages');
 
 $page->add_style ('/apps/lemur/css/admin.css');
 $page->add_script ('/apps/lemur/js/admin.js');
+$page->add_script ('/js/jquery-ui/jquery-ui.min.js');
 
 echo View::render ('lemur/course/manage', array (
 	'course' => $c->id,
