@@ -22,6 +22,7 @@ echo $form->handle (function ($form) {
 
 	$c = new lemur\Course ($_GET['id']);
 	$c->title = $_POST['title'];
+	$c->thumb = $_POST['thumb'];
 	$c->summary = $_POST['summary'];
 	$c->category = $_POST['category'];
 	$c->availability = $_POST['availability'];

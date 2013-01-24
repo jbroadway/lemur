@@ -1,3 +1,5 @@
+{! filemanager/util/browser !}
+
 <div class="form">
 <form method="POST" id="{{_form}}">
 
@@ -14,7 +16,8 @@
 
 <p>
 	{"Thumbnail (optional)"}:<br />
-	<input type="file" name="thumb" value="{{thumb|quotes}}" />
+	<input type="text" name="thumb" id="thumb" value="{{thumb|quotes}}" size="30" />
+	<input type="submit" id="thumb-button" value="{"Browse"}" />
 </p>
 
 <p>
@@ -61,6 +64,15 @@
 
 <script>
 $(function () {
+	$('#thumb-button').click (function () {
+		$.filebrowser ({
+			thumbs: true,
+			set_value: '#thumb',
+			title: '{"Choose an image"}'
+		});
+		return false;
+	});
+
 	// on load
 	if ($('#availability').val () == 4) {
 		$('#pricing').show ();
