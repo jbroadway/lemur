@@ -1,12 +1,40 @@
+.lemur-category {
+	clear: both;
+}
+
+.lemur-course {
+	border-radius: 2px;
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+	padding: 7px 7px 4px 7px;
+	margin-bottom: 15px;
+	width: 46%;
+	margin-right: 15px;
+	float: left;
+	min-height: 95px;
+}
+
 .lemur-course i, .lemur-course img {
 	float: left;
 	height: 39px;
 	width: 39px;
 	text-align: center;
-	margin: 0 10px 10px 0;
+	margin: 0 10px 40px 0;
 }
 
 .lemur-course i {
 	color: #999;
-	border: 1px solid #ddd;
+	border: 1px solid #999;
+}
+
+.lemur-course h4 {
+	color: #333;
+	font-size: 16px;
+	margin-bottom: 0px;
+	line-height: 19px;
+}
+
+.lemur-course p {
+	margin-bottom: 0px;
 }
