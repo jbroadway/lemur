@@ -12,7 +12,7 @@
 	width: 46%;
 	margin-right: 15px;
 	float: left;
-	min-height: 95px;
+	min-height: 79px;
 }
 
 .lemur-course i, .lemur-course img {
@@ -24,8 +24,8 @@
 }
 
 .lemur-course i {
-	color: #999;
-	border: 1px solid #999;
+	background-color: #999;
+	color: #fff;
 }
 
 .lemur-course h4 {

@@ -24,7 +24,7 @@ class Course extends Model {
 		}
 
 		if ($published) {
-			$sql .= ' and lemur_course.status = 2';
+			$sql .= ' and lemur_course.status = 2 and lemur_course.availability > 1';
 		}
 
 		$sql .= ' order by
