@@ -9,6 +9,11 @@ $categories = lemur\Category::sorted ();
 
 // fetch and sort courses by category (published, any owner)
 $courses = lemur\Course::categories (false, true);
+if (count ($courses) === 0) {
+	printf ('<p>%s</p>', __ ('No courses available at this time.'));
+	return;
+}
+
 foreach (array_keys ($categories) as $k) {
 	$categories[$k] = (object) array (
 		'id' => $k,
