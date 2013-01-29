@@ -12,6 +12,41 @@ if ($course->error) {
 	return;
 }
 
+if ((int) $course->status < 2) {
+	echo $this->error (404, __ ('Course not found'), __ ('The course you requested could not be found.'));
+	return;
+}
+
+switch ((int) $course->availability) {
+	case 1:
+		// private
+		if (! lemur\Learner::in_course ($cid)) {
+			echo $this->error (404, __ ('Course not found'), __ ('The course you requested could not be found.'));
+			return;
+		}
+		// show the course
+		break;
+	case 2:
+		// free, show the course
+		break;
+	case 3:
+		// free w/ registration
+		if (! User::is_valid ()) {
+			// show summary and login
+		} else {
+			// show the course
+		}
+		break;
+	case 4:
+		// paid
+		if (User::is_valid ()&& lemur\Learner::in_course ($cid)) {
+			// show the course
+		} else {
+			// show summary and purchase link
+		}
+		break;
+}
+
 $pages = $course->pages ();
 
 if (isset ($this->params[2])) {

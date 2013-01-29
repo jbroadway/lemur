@@ -40,6 +40,7 @@ var editor = (function ($) {
 		loading: $.i18n ('Loading...'),
 		choose_image: $.i18n ('Choose an image'),
 		choose_video: $.i18n ('Choose a video'),
+		choose_audio: $.i18n ('Choose an audio clip'),
 		choose_file: $.i18n ('Choose a file')
 	};
 
@@ -60,7 +61,8 @@ var editor = (function ($) {
 		11: $.i18n ('Paragraph answer'),
 		12: $.i18n ('Drop down'),
 		13: $.i18n ('Checkboxes'),
-		14: $.i18n ('Multiple choice')
+		14: $.i18n ('Multiple choice'),
+		15: $.i18n ('Audio')
 	};
 
 	self.type_icons = {
@@ -77,7 +79,8 @@ var editor = (function ($) {
 		11: '<i class="icon-edit"></i>',
 		12: '<i class="icon-circle-arrow-down"></i>',
 		13: '<i class="icon-check"></i>',
-		14: '<i class="icon-ok-circle"></i>'
+		14: '<i class="icon-ok-circle"></i>',
+		15: '<i class="icon-headphones"></i>'
 	};
 
 	/**
@@ -403,6 +406,22 @@ var editor = (function ($) {
 	};
 
 	/**
+	 * Open the file browser for an audio file.
+	 */
+	self.filemanager_audio = function () {
+		var item = this;
+
+		$.filebrowser ({
+			title: self.str.choose_video,
+			allowed: ['mp3'],
+			callback: function (file) {
+				item.content (file);
+				self.update_items ();
+			}
+		});
+	};
+
+	/**
 	 * Open the file browser for any file type.
 	 */
 	self.filemanager_file = function () {
@@ -474,6 +493,7 @@ var editor = (function ($) {
 	self.add_drop_field			= function () { return self.create_blank_item (12); };
 	self.add_check_field		= function () { return self.create_blank_item (13); };
 	self.add_multi_field		= function () { return self.create_blank_item (14); };
+	self.add_audio_field		= function () { return self.create_blank_item (15); };
 
 	/**
 	 * Put the last item into focus.

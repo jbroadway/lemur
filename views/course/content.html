@@ -9,6 +9,7 @@
 		<li><i class="icon-pencil"></i> <a href="#" id="add-text" data-bind="click: add_text_field">{"Text"}</a></li>
 		<li><i class="icon-picture"></i> <a href="#" id="add-image" data-bind="click: add_image_field">{"Image"}</a></li>
 		<li><i class="icon-film"></i> <a href="#" data-bind="click: add_video_field">{"Video"}</a></li>
+		<li><i class="icon-headphones"></i> <a href="#" data-bind="click: add_audio_field">{"Audio"}</a></li>
 		<li><i class="icon-angle-left icon-combine-left"></i><i class="icon-angle-right icon-combine-right"></i> <a href="#" data-bind="click: add_html_field">{"HTML code"}</a></li>
 		<li><i class="icon-quote-left"></i> <a href="#" data-bind="click: add_pre_field">{"Pre-formatted text"}</a></li>
 		<li><i class="icon-cogs"></i> <a href="#" data-bind="click: add_scorm_field">{"SCORM module"}</a></li>
@@ -310,6 +311,22 @@ $(function () {
 			<select
 				name="answer"
 				data-bind="options: answers, optionsCaption: '- {"Select"} -', value: answer, event: { change: editor.update_items }"></select>
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-15" type="text/html">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
+		<p>
+			<label>{"Audio"}:</label>
+			<input type="text" name="content" placeholder="http://" data-bind="value: content, attr: { id: 'content-' + id }, event: { blur: editor.update_items }" size="76" />
+			<input type="submit" value="{"Browse"}" data-bind="event: { click: editor.filemanager_audio }" />
+		</p>
+		<p>
+			<label>{"Description"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="90" />
 		</p>
 	</li>
 </script>

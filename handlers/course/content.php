@@ -58,6 +58,7 @@ $page->add_script (I18n::export (
 	'Text',
 	'Image',
 	'Video',
+	'Audio',
 	'HTML code',
 	'Pre-formatted text',
 	'SCORM module',
