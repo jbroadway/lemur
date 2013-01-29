@@ -412,7 +412,7 @@ var editor = (function ($) {
 		var item = this;
 
 		$.filebrowser ({
-			title: self.str.choose_video,
+			title: self.str.choose_audio,
 			allowed: ['mp3'],
 			callback: function (file) {
 				item.content (file);
