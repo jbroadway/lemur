@@ -43,3 +43,12 @@ create table lemur_item (
 );
 
 create index lemur_item_page on lemur_item (page, sorting);
+
+create table lemur_learner (
+	user integer not null,
+	course integer not null,
+	ts datetime not null,
+	primary key (user, course)
+);
+
+create index lemur_learner_ts on lemur_learner (ts);

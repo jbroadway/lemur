@@ -39,3 +39,11 @@ create table lemur_item (
 	answer char(128) not null default '',
 	index (page, sorting)
 );
+
+create table lemur_learner (
+	user int not null,
+	course int not null,
+	ts datetime not null,
+	primary key (user, course),
+	index (ts)
+);
