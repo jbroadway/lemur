@@ -46,6 +46,25 @@ class Course extends Model {
 			$this->id
 		);
 	}
+
+	/**
+	 * Fetches a list of learners in a course. Returns their user
+	 * ID, name, and email.
+	 */
+	public function learners () {
+		return DB::fetch (
+			'select
+				#prefix#user.id as id,
+				#prefix#user.name as name,
+				#prefix#user.email as email
+			from
+				#prefix#user, lemur_learner
+			where
+				lemur_learner.course = ? and
+				lemur_learner.user = #prefix#user.id',
+			$this->id
+		);
+	}
 }
 
 ?>
