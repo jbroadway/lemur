@@ -61,7 +61,9 @@ class Course extends Model {
 				#prefix#user, lemur_learner
 			where
 				lemur_learner.course = ? and
-				lemur_learner.user = #prefix#user.id',
+				lemur_learner.user = #prefix#user.id
+			order by
+				#prefix#user.name asc',
 			$this->id
 		);
 	}
