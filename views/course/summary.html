@@ -1,0 +1,22 @@
+{! admin/util/fontawesome !}
+
+<div class="lemur-course-summary">
+
+{% if thumb != '' %}
+	<img src="/{{thumb|Image::resize (%s, 39, 39)}}" alt="{{title}}" class="lemur-course-thumbnail" />
+{% else %}
+	<i class="icon-lightbulb icon-3x lemur-course-thumbnail"></i>
+{% end %}
+
+<p>{{summary}}<br />
+
+{% if availability == 4 %}
+	<strong class="lemur-course-price lemur-course-price-paid">{{price|lemur\Filter::money}}</strong>
+{% elseif availability == 3 %}
+	<strong class="lemur-course-price lemur-course-price-free">{"Free with registration"}</strong>
+{% else %}
+	<strong class="lemur-course-price lemur-course-price-free">{"Free"}</strong>
+{% end %}
+</p>
+
+</div>

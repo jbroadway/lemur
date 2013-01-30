@@ -6,7 +6,7 @@
 		{% foreach category->courses as course %}
 		<div class="lemur-course">
 			{% if course->thumb != '' %}
-				<img src="{{course->thumb|Image::resize(%s, 39, 39)}}" alt="{{course->title}}" class="lemur-course-thumbnail" />
+				<img src="/{{course->thumb|Image::resize(%s, 39, 39)}}" alt="{{course->title}}" class="lemur-course-thumbnail" />
 			{% else %}
 				<i class="icon-lightbulb icon-3x lemur-course-thumbnail"></i>
 			{% end %}
