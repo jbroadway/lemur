@@ -47,3 +47,17 @@ create table lemur_learner (
 	primary key (user, course),
 	index (ts)
 );
+
+create table lemur_data (
+	id int unsigned not null auto_increment primary key,
+	course int not null,
+	user int not null,
+	item int not null,
+	status tinyint not null, // 0-100
+	correct tinyint not null,
+	ts datetime not null,
+	answer text not null,
+	feedback text not null,
+	index (user, ts),
+	index (course, user)
+);

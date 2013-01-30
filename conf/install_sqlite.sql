@@ -52,3 +52,18 @@ create table lemur_learner (
 );
 
 create index lemur_learner_ts on lemur_learner (ts);
+
+create table lemur_data (
+	id integer primary key,
+	course int not null,
+	user int not null,
+	item int not null,
+	status int not null,
+	correct int not null,
+	ts datetime not null,
+	answer text not null,
+	feedback text not null
+);
+
+create index lemur_data_user on lemur_data (user, ts);
+create index lemur_data_course_user on lemur_data (course, user);
