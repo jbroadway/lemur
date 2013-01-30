@@ -3,6 +3,7 @@
 namespace lemur;
 
 use DB;
+use User;
 
 /**
  * Helpers for learner management.
@@ -15,7 +16,7 @@ class Learner {
 	public static function in_course ($course, $user = false) {
 		$user = $user ? $user : User::val ('id');
 
-		return DB::shift (
+		return (int) DB::shift (
 			'select count(*) from lemur_learner where user = ? and course = ?',
 			$user,
 			$course
