@@ -1,0 +1,44 @@
+{! admin/util/fontawesome !}
+
+<p>
+	<a href="/lemur/admin">&laquo; {"Back"}</a>
+	&nbsp;|&nbsp;
+	<a href="#" class="add-learner" data-course="{{course}}">{"Add Learner"}</a>
+</p>
+
+<p>
+<table id="learners" width="100%">
+	<tr>
+		<th width="30%">{"Learner"}</th>
+		<th width="30%">{"Progress"}</th>
+		<th width="20%">{"Status"}</th>
+		<th width="20%">&nbsp;</th>
+	</tr>
+{% foreach learners as learner %}
+	<tr id="learner-{{learner->id}}" data-id="{{learner->id}}">
+		<td><a href="mailto:{{learner->email}}">{{learner->name}}</a></td>
+		<td>
+			<span class="learner-progress-bar">
+				<span class="learner-progress-made" id="progress-{{learner->id}}"></span>
+			</span>
+		</td>
+		<td id="status-{{learner->id}}">{"Incomplete"}</td>
+		<td style="text-align: right">
+			<a href="/lemur/course/learner?id={{course}}&learner={{learner->id}}">{"Details"}</a>
+			&nbsp;|&nbsp;
+			<a href="#" class="remove-learner" data-course="{{course}}" data-id="{{learner->id}}">{"Remove"}</a>
+		</td>
+	</tr>
+{% end %}
+</table>
+</p>
+
+<script>
+// setup sample progress
+$(function () {
+	$('#progress-1').css ({width: '60%'});
+	$('#progress-2').css ({width: '40%'});
+	$('#progress-3').addClass ('learner-progress-done');
+	$('#status-3').text ('{"Passed"}');
+});
+</script>

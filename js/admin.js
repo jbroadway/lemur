@@ -114,6 +114,46 @@ var lemur = (function ($) {
 	};
 
 	/**
+	 * Add a learner prompt.
+	 */
+	self.add_learner = function (e) {
+		var course = $(e.target).data ('course');
+
+		$.userbrowser ({
+			callback: function (user) {
+				$.post (self.prefix + 'learner/add', {course: course, user: user}, function (res) {
+				});
+			}
+		});
+		return false;
+	};
+
+	/**
+	 * Remove a learner.
+	 */
+	self.remove_learner = function (e) {
+		var course = $(e.target).data ('course'),
+			id = $(e.target).data ('id');
+
+		if (! confirm ('Are you sure you want to remove this learner?')) {
+			return false;
+		}
+
+		console.log ('removing learner: ' + course + ' - ' + id);
+
+		$.post (self.prefix + 'learner/remove', {course: course, user: id}, function (res) {
+			console.log (res);
+			if (res.success) {
+				$.add_notification ('Learner removed.');
+				$('#learner-' + id).remove ();
+			} else {
+				$.add_notification (res.error);
+			}
+		});
+		return false;
+	};
+
+	/**
 	 * Update an element with a message that will fade out.
 	 * Usage: lemur.notice ('#saving', 'Saving...');
 	 */
@@ -134,4 +174,10 @@ $(function () {
 
 	$('.page-rename')
 		.click (lemur.edit_page);
+
+	$('.add-learner')
+		.click (lemur.add_learner);
+
+	$('.remove-learner')
+		.click (lemur.remove_learner);
 });

@@ -23,6 +23,14 @@
 	margin: 0 10px 40px 0;
 }
 
+.lemur-course-summary .lemur-course-thumbnail {
+	float: left;
+	height: 39px;
+	width: 39px;
+	text-align: center;
+	margin: 0 10px 10px 0;
+}
+
 .lemur-course i {
 	background-color: #999;
 	color: #fff;
@@ -38,3 +46,17 @@
 .lemur-course p {
 	margin-bottom: 0px;
 }
+
+#lemur-course-menu {
+	float: left;
+	width: 200px;
+}
+
+#lemur-course-body {
+	float: left;
+	width: 600px;
+}
+
+	#lemur-course-body img {
+		max-width: 472px;
+	}

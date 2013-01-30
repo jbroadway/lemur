@@ -226,6 +226,27 @@
 		margin-left: 82px;
 	}
 
+.learner-progress-bar {
+	display: block;
+	width: 255px;
+	height: 16px;
+	border: 1px solid #bbb;
+	background-color: #fff;
+}
+
+.learner-progress-made {
+	display: block;
+	width: 0%;
+	height: 16px;
+	border: 0;
+	background-color: #fd0;
+}
+
+.learner-progress-done {
+	background-color: #8dc63f !important;
+	width: 100% !important;
+}
+
 /* full/list fields toggle */
 .toggle {
 	float: right;
