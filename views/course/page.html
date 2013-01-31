@@ -3,16 +3,21 @@
 <div id="lemur-course-menu">
 	<p>{"Contents"}:</p>
 
-	<ul>
+	<ol>
 	{% foreach pages as page_id, page_title %}
 		<li><a href="/course/{{course}}/{{title|URLify::filter}}/{{page_id}}/{{page_title|URLify::filter}}">{{page_title}}</a></li>
 	{% end %}
-	</ul>
+	</ol>
 </div>
 
 <div id="lemur-course-body">
 <h3>{{title}}</h3>
 {{page_body|none}}
+
+	<div id="lemur-course-comments">
+	<h4>{"Comments"}</h4>
+	{! comments/embed?identifier=[comments_id] !}
+	</div>
 </div>
 
 <br clear="both" />

@@ -1,7 +1,7 @@
 <p>{"Contents"}:</p>
 
-<ul>
+<ol>
 {% foreach pages as page_id, page_title %}
 	<li><a href="/course/{{id}}/{{title|URLify::filter}}/{{page_id}}/{{page_title|URLify::filter}}">{{page_title}}</a></li>
 {% end %}
-</ul>
+</ol>

@@ -22,7 +22,7 @@ class Item extends Restful {
 			$i->title = $item['title'];
 			$i->sorting = $item['sorting'];
 			$i->content = $item['content'];
-			$i->answer = $item['answer'];
+			$i->answer = isset ($item['answer']) ? $item['answer'] : '';
 
 			if (! $i->put ()) {
 				return $this->error ($i->error);
@@ -38,6 +38,8 @@ class Item extends Restful {
 		if (! User::require_admin ()) {
 			return $this->error (__ ('Admin access required.'));
 		}
+
+		$_POST['answer'] = isset ($_POST['answer']) ? $_POST['answer'] : '';
 
 		$i = new \lemur\Item (array (
 			'title' => $_POST['title'],

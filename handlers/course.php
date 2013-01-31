@@ -23,6 +23,7 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 	$page->title = $course->title;
 	$page->layout = $appconf['Lemur']['layout'];
 	$page->add_script ('/apps/lemur/css/default.css');
+	$page->add_script ('/apps/lemur/css/items.css');
 
 	$pages = $course->pages ();
 
@@ -56,19 +57,24 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 				'pages' => $pages,
 				'id' => $pid,
 				'title' => $p->title,
-				'page_body' => $page_body
+				'page_body' => $page_body,
+				'comments_id' => 'lemur-course-' . $course->id . '-' . $pid
 			)
 		);
 	} else {
+		foreach ($pages as $id => $title) {
+			$this->redirect ($_SERVER['REQUEST_URI'] . '/' . $id . '/' . URLify::filter ($title));
+		}
+
 		// show the table of contents
-		echo View::render (
+		/*echo View::render (
 			'lemur/course/toc',
 			array (
 				'id' => $course->id,
 				'title' => $course->title,
 				'pages' => $pages,
 			)
-		);
+		);*/
 	}
 
 	return;

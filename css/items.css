@@ -61,3 +61,14 @@
 .lemur-item fieldset label {
 	font-weight: normal;
 }
+
+.lemur-item table {
+	width: 98%;
+	border-collapse: collapse;
+	border: 1px solid #ddd;
+}
+
+	.lemur-item table td {
+		padding: 3px 5px 3px 7px;
+		border: 1px solid #ddd;
+	}

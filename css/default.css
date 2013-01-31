@@ -60,3 +60,7 @@
 	#lemur-course-body img {
 		max-width: 472px;
 	}
+
+#lemur-course-comments {
+	border-top: 5px solid #ddd;
+}
