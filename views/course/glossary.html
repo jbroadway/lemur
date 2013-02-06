@@ -1,0 +1,36 @@
+{! admin/util/fontawesome !}
+
+<div id="lemur-course-menu">
+	<p>{"Contents"}:</p>
+
+	<ol>
+	{% foreach pages as page_id, page_title %}
+		<li><a href="/course/{{course}}/{{course_title|URLify::filter}}/{{page_id}}/{{page_title|URLify::filter}}">{{page_title}}</a></li>
+	{% end %}
+	</ol>
+	<p>
+		<a href="/course/{{course}}/{{course_title|URLify::filter}}/contact">{"Email instructor"}</a>
+	{% if has_glossary %}
+		<br /><a href="/course/{{course}}/{{course_title|URLify::filter}}/glossary">{"Glossary"}</a>
+	{% end %}
+	</p>
+</div>
+
+<div id="lemur-course-body">
+	<h3>{"Glossary"}</h3>
+	{% foreach glossary as word, definition %}
+		<div class="lemur-item item-definition">
+			<dl>
+				<dt>{{word}}</dt>
+				<dd>{{definition}}</dd>
+			</dl>
+		</div>
+	{% end %}
+
+	<div id="lemur-course-comments">
+	<h4>{"Comments"}</h4>
+	{! comments/embed?identifier=[comments_id] !}
+	</div>
+</div>
+
+<br clear="both" />
