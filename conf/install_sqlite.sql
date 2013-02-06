@@ -18,7 +18,8 @@ create table lemur_course (
 	sorting int not null,
 	availability int not null,
 	price float not null,
-	status int not null
+	status int not null,
+	has_glossary int not null default 0
 );
 
 create index lemur_course_owner_category on lemur_course (owner, category, sorting, status);
@@ -39,10 +40,12 @@ create table lemur_item (
 	sorting int not null,
 	type int not null,
 	content text not null,
-	answer char(128) not null default ''
+	answer char(128) not null default '',
+	course int not null,
 );
 
 create index lemur_item_page on lemur_item (page, sorting);
+create index lemur_item_course on lemur_item (course, type);
 
 create table lemur_learner (
 	user integer not null,
