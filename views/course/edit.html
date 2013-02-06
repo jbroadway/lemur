@@ -1,4 +1,5 @@
 {! filemanager/util/browser !}
+{! user/util/userchooser !}
 
 <div class="form">
 <form method="POST" id="{{_form}}">
@@ -18,6 +19,14 @@
 	{"Thumbnail (optional)"}:<br />
 	<input type="text" name="thumb" id="thumb" value="{{thumb|quotes}}" size="30" />
 	<input type="submit" id="thumb-button" value="{"Browse"}" />
+</p>
+
+<p>
+	{"Instructor"}:<br />
+	<strong id="instructor-name" style="display: inline-block; min-width: 140px">{{instructor_name}}</strong>
+	<input type="hidden" name="instructor" id="instructor" value="{{instructor|quotes}}" />
+	<input type="submit" id="instructor-button" value="{"Browse"}" />
+	<a href="#" id="instructor-clear">{"Clear"}</a>
 </p>
 
 <p>
@@ -70,6 +79,20 @@ $(function () {
 			set_value: '#thumb',
 			title: '{"Choose an image"}'
 		});
+		return false;
+	});
+
+	$('#instructor-button').click (function () {
+		$.userchooser ({
+			set_id_value: '#instructor',
+			set_name_value: '#instructor-name'
+		});
+		return false;
+	});
+
+	$('#instructor-clear').click (function () {
+		$('#instructor').val (0);
+		$('#instructor-name').text ('{"None"}');
 		return false;
 	});
 

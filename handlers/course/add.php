@@ -8,9 +8,14 @@ $page->title = __ ('Add Course');
 
 $form = new Form ('post', $this);
 
+$instructor = $_POST['instructor']
+	? new User ($_POST['instructor'])
+	: (object) array ('name' => __ ('None'));
+
 $form->data = array (
 	'categories' => lemur\Category::sorted (),
-	'category' => $_GET['category']
+	'category' => $_GET['category'],
+	'instructor_name' => $instructor->name
 );
 
 echo $form->handle (function ($form) {

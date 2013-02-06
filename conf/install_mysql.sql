@@ -19,6 +19,7 @@ create table lemur_course (
 	price float not null,
 	status int not null,
 	has_glossary int not null default 0,
+	instructor int not null default 0,
 	index (owner, category, sorting, status)
 );
 

@@ -19,7 +19,8 @@ create table lemur_course (
 	availability int not null,
 	price float not null,
 	status int not null,
-	has_glossary int not null default 0
+	has_glossary int not null default 0,
+	instructor int not null default 0
 );
 
 create index lemur_course_owner_category on lemur_course (owner, category, sorting, status);

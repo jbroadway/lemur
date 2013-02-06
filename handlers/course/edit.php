@@ -14,8 +14,13 @@ $page->title = $c->title . ' - ' . __ ('Settings');
 
 $form = new Form ('post', $this);
 
+$instructor = $c->instructor
+	? new User ($c->instructor)
+	: (object) array ('name' => __ ('None'));
+
 $form->data = $c->orig ();
 $form->data->categories = lemur\Category::sorted ();
+$form->data->instructor_name = $instructor->name;
 
 echo $form->handle (function ($form) {
 	unset ($_POST['_token_']);
@@ -28,6 +33,7 @@ echo $form->handle (function ($form) {
 	$c->availability = $_POST['availability'];
 	$c->price = $_POST['price'];
 	$c->status = $_POST['status'];
+	$c->instructor = $_POST['instructor'];
 
 	if (! $c->put ()) {
 		echo View::render ('lemur/admin/error', $c);
