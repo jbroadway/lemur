@@ -60,8 +60,8 @@ var editor = (function ($) {
 		10: $.i18n ('Single-line answer'),
 		11: $.i18n ('Paragraph answer'),
 		12: $.i18n ('Drop down'),
-		13: $.i18n ('Checkboxes'),
-		14: $.i18n ('Multiple choice'),
+		13: $.i18n ('Multiple choice'),
+		14: $.i18n ('Checkboxes'),
 		15: $.i18n ('Audio')
 	};
 
@@ -78,8 +78,8 @@ var editor = (function ($) {
 		10: '<i class="icon-edit"></i>',
 		11: '<i class="icon-edit"></i>',
 		12: '<i class="icon-circle-arrow-down"></i>',
-		13: '<i class="icon-check"></i>',
-		14: '<i class="icon-ok-circle"></i>',
+		13: '<i class="icon-ok-circle"></i>',
+		14: '<i class="icon-check"></i>',
 		15: '<i class="icon-headphones"></i>'
 	};
 
@@ -491,8 +491,8 @@ var editor = (function ($) {
 	self.add_input_field		= function () { return self.create_blank_item (10); };
 	self.add_para_field			= function () { return self.create_blank_item (11); };
 	self.add_drop_field			= function () { return self.create_blank_item (12); };
-	self.add_check_field		= function () { return self.create_blank_item (13); };
-	self.add_multi_field		= function () { return self.create_blank_item (14); };
+	self.add_multi_field		= function () { return self.create_blank_item (13); };
+	self.add_check_field		= function () { return self.create_blank_item (14); };
 	self.add_audio_field		= function () { return self.create_blank_item (15); };
 
 	/**
