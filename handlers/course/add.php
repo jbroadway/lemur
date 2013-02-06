@@ -21,6 +21,7 @@ echo $form->handle (function ($form) {
 	$_POST['owner'] = 0;
 	$_POST['sorting'] = $c->next ('sorting');
 	$_POST['status'] = 1;
+	$_POST['has_glossary'] = 0;
 
 	$c = new lemur\Course ($_POST);
 	if (! $c->put ()) {
