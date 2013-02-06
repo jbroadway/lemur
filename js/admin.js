@@ -7,6 +7,11 @@ var lemur = (function ($) {
 	self.prefix = '/lemur/api/';
 
 	/**
+	 * List of users for userchooser that are already in a course.
+	 */
+	self.chosen_users = [];
+
+	/**
 	 * Prompt for and save a new category.
 	 */
 	self.add_category = function (msg) {
@@ -114,13 +119,24 @@ var lemur = (function ($) {
 	};
 
 	/**
+	 * Set the chosen user list.
+	 */
+	self.set_chosen_users = function (learners) {
+		self.chosen_users = [];
+		for (var i = 0; i < learners.length; i++) {
+			self.chosen_users.push (parseInt (learners[i].id));
+		}
+	};
+
+	/**
 	 * Add a learner prompt.
 	 */
 	self.add_learner = function (e) {
 		var course = $(e.target).data ('course');
 
-		$.userbrowser ({
-			callback: function (user) {
+		$.userchooser ({
+			chosen: self.chosen_users,
+			callback: function (user, name, email) {
 				$.post (self.prefix + 'learner/add', {course: course, user: user}, function (res) {
 				});
 			}

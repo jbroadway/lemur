@@ -1,4 +1,5 @@
 {! admin/util/fontawesome !}
+{! user/util/userchooser !}
 
 <p>
 	<a href="/lemur/admin">&laquo; {"Back"}</a>
@@ -40,5 +41,6 @@ $(function () {
 	$('#progress-2').css ({width: '40%'});
 	$('#progress-3').addClass ('learner-progress-done');
 	$('#status-3').text ('{"Passed"}');
+	lemur.set_chosen_users ({{learners|json_encode}});
 });
 </script>
