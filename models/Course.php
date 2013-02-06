@@ -67,6 +67,20 @@ class Course extends Model {
 			$this->id
 		);
 	}
+
+	/**
+	 * Fetch all words and their definitions for this course.
+	 */
+	public function glossary () {
+		return DB::pairs (
+			'select title, content
+			from lemur_item
+			where course = ? and type = ?
+			order by title asc',
+			$this->id,
+			Item::DEFINITION
+		);
+	}
 }
 
 ?>

@@ -27,41 +27,7 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 
 	$pages = $course->pages ();
 
-	if (isset ($this->params[2])) {
-		$pid = $this->params[2];
-		if (! isset ($pages[$pid])) {
-			echo $this->error (404, __ ('Page not found'), __ ('The page you requested could not be found.'));
-			return;
-		}
-
-		// build the page body
-		$page_body = '';
-		$p = new lemur\Page ($pid);
-		$items = $p->items ();
-
-		foreach ($items as $item) {
-			if (in_array ((int) $item->type, array (12, 13, 14))) {
-				$item->content = explode ("\n", trim ($item->content));
-			}
-			$page_body .= View::render (
-				'lemur/item/' . $item->type,
-				$item
-			);
-		}
-
-		// show a page
-		echo View::render (
-			'lemur/course/page',
-			array (
-				'course' => $course->id,
-				'pages' => $pages,
-				'id' => $pid,
-				'title' => $p->title,
-				'page_body' => $page_body,
-				'comments_id' => 'lemur-course-' . $course->id . '-' . $pid
-			)
-		);
-	} else {
+	if (! isset ($this->params[2])) {
 		foreach ($pages as $id => $title) {
 			$this->redirect ($_SERVER['REQUEST_URI'] . '/' . $id . '/' . URLify::filter ($title));
 		}
@@ -76,6 +42,62 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 			)
 		);*/
 	}
+
+	if ($this->params[2] === 'contact') {
+		// contact the instructor
+		echo $this->run ('lemur/course/contact', $course);
+		return;
+	} elseif ($this->params[2] === 'glossary') {
+		// show the glossary
+		echo View::render (
+			'lemur/course/glossary',
+			array (
+				'course' => $course->id,
+				'course_title' => $course->title,
+				'pages' => $pages,
+				'glossary' => $course->glossary (),
+				'has_glossary' => $course->has_glossary,
+				'comments_id' => 'lemur-course-' . $course->id . '-glossary'
+			)
+		);
+		return;
+	}
+
+	$pid = $this->params[2];
+	if (! isset ($pages[$pid])) {
+		echo $this->error (404, __ ('Page not found'), __ ('The page you requested could not be found.'));
+		return;
+	}
+
+	// build the page body
+	$page_body = '';
+	$p = new lemur\Page ($pid);
+	$items = $p->items ();
+
+	foreach ($items as $item) {
+		if (in_array ((int) $item->type, array (12, 13, 14))) {
+			$item->content = explode ("\n", trim ($item->content));
+		}
+		$page_body .= View::render (
+			'lemur/item/' . $item->type,
+			$item
+		);
+	}
+
+	// show a page
+	echo View::render (
+		'lemur/course/page',
+		array (
+			'course' => $course->id,
+			'pages' => $pages,
+			'id' => $pid,
+			'title' => $p->title,
+			'course_title' => $course->title,
+			'page_body' => $page_body,
+			'comments_id' => 'lemur-course-' . $course->id . '-' . $pid,
+			'has_glossary' => $course->has_glossary
+		)
+	);
 
 	return;
 }
