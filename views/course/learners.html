@@ -15,32 +15,40 @@
 		<th width="20%">{"Status"}</th>
 		<th width="20%">&nbsp;</th>
 	</tr>
-{% foreach learners as learner %}
-	<tr id="learner-{{learner->id}}" data-id="{{learner->id}}">
-		<td><a href="mailto:{{learner->email}}">{{learner->name}}</a></td>
-		<td>
-			<span class="learner-progress-bar">
-				<span class="learner-progress-made" id="progress-{{learner->id}}"></span>
-			</span>
-		</td>
-		<td id="status-{{learner->id}}">{"Incomplete"}</td>
-		<td style="text-align: right">
-			<a href="/lemur/course/learner?id={{course}}&learner={{learner->id}}">{"Details"}</a>
-			&nbsp;|&nbsp;
-			<a href="#" class="remove-learner" data-course="{{course}}" data-id="{{learner->id}}">{"Remove"}</a>
-		</td>
-	</tr>
-{% end %}
+	<tbody id="learner-list"></tbody>
 </table>
 </p>
 
 <script>
 // setup sample progress
 $(function () {
+	lemur.tpl.learner = Handlebars.compile ($('#learner-tpl').html ());
+	lemur.course = {{course}};
+	lemur.set_learners ({{learners|json_encode}});
+
+	// temp stuff
+	/*
 	$('#progress-1').css ({width: '60%'});
 	$('#progress-2').css ({width: '40%'});
 	$('#progress-3').addClass ('learner-progress-done');
 	$('#status-3').text ('{"Passed"}');
-	lemur.set_chosen_users ({{learners|json_encode}});
+	//*/
 });
+</script>
+
+<script id="learner-tpl" type="text/html">
+	<tr id="learner-\{{id}}" data-id="\{{course}}" data-id="\{{id}}">
+		<td><a href="mailto:\{{email}}">\{{name}}</a></td>
+		<td>
+			<span class="learner-progress-bar">
+				<span class="learner-progress-made" id="progress-\{{id}}"></span>
+			</span>
+		</td>
+		<td id="status-\{{id}}">{"Incomplete"}</td>
+		<td style="text-align: right">
+			<a href="/lemur/course/learner?id=\{{course}}&learner=\{{id}}">{"Details"}</a>
+			&nbsp;|&nbsp;
+			<a href="#" class="remove-learner" data-course="\{{course}}" data-id="\{{id}}">{"Remove"}</a>
+		</td>
+	</tr>
 </script>

@@ -2,7 +2,9 @@
 
 namespace lemur\API;
 
+use DB;
 use Restful;
+use User;
 
 class Learner extends Restful {
 	/**
@@ -21,7 +23,7 @@ class Learner extends Restful {
 			return $this->error (__ ('Missing parameter: user'));
 		}
 
-		$res = lemur\Learner::add_to_course ($_POST['course'], $_POST['user']);
+		$res = \lemur\Learner::add_to_course ($_POST['course'], $_POST['user']);
 		if (! $res) {
 			error_log (DB::error ());
 			return $this->error (__ ('Failed to add learner.'));
@@ -45,7 +47,7 @@ class Learner extends Restful {
 			return $this->error (__ ('Missing parameter: user'));
 		}
 
-		$res = lemur\Learner::remove_from_course ($_POST['course'], $_POST['user']);
+		$res = \lemur\Learner::remove_from_course ($_POST['course'], $_POST['user']);
 		if (! $res) {
 			error_log (DB::error ());
 			return $this->error (__ ('Failed to remove learner.'));

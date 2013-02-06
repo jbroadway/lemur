@@ -7,9 +7,14 @@ var lemur = (function ($) {
 	self.prefix = '/lemur/api/';
 
 	/**
-	 * List of users for userchooser that are already in a course.
+	 * List of templates to render.
 	 */
-	self.chosen_users = [];
+	self.tpl = {};
+
+	/**
+	 * Current course.
+	 */
+	self.course = 0;
 
 	/**
 	 * Prompt for and save a new category.
@@ -119,13 +124,53 @@ var lemur = (function ($) {
 	};
 
 	/**
-	 * Set the chosen user list.
+	 * Set the user list on first loading the learners page.
 	 */
-	self.set_chosen_users = function (learners) {
-		self.chosen_users = [];
-		for (var i = 0; i < learners.length; i++) {
-			self.chosen_users.push (parseInt (learners[i].id));
+	self.set_learners = function (learners) {
+		self.learners = learners;
+		self.redraw_learners ();
+	};
+
+	/**
+	 * Redraw the learner list when a user has been added.
+	 */
+	self.redraw_learners = function (sort) {
+		var list = $('#learner-list').html ('');
+
+		if (sort) {
+			// new user added, sort them first.
+			self.learners.sort (function (a, b) {
+				if (typeof b === 'boolean') {
+					return -1;
+				}
+
+				var a_name = a.name.toLowerCase (),
+					b_name = b.name.toLowerCase ();
+				
+				if (a_name < b_name) {
+					return -1;
+				} else if (a_name > b_name) {
+					return 1;
+				}
+				return 0;
+			});
 		}
+
+		for (var i = 0; i < self.learners.length; i++) {
+			self.learners[i].course = self.course;
+			list.append (self.tpl.learner (self.learners[i]));
+		}
+	};
+
+	/**
+	 * Fetch a list of existing users for the userchooser.
+	 */
+	self.chosen_users = function () {
+		var chosen_users = [];
+		for (var i = 0; i < self.learners.length; i++) {
+			chosen_users.push (parseInt (self.learners[i].id));
+		}
+		return chosen_users;
 	};
 
 	/**
@@ -135,9 +180,20 @@ var lemur = (function ($) {
 		var course = $(e.target).data ('course');
 
 		$.userchooser ({
-			chosen: self.chosen_users,
+			chosen: self.chosen_users (),
 			callback: function (user, name, email) {
 				$.post (self.prefix + 'learner/add', {course: course, user: user}, function (res) {
+					if (res.success) {
+						$.add_notification ($.i18n ('Learner added.'));
+						self.learners.push ({
+							id: user,
+							name: name,
+							email: email
+						});
+						self.redraw_learners (true);
+					} else {
+						$.add_notification (res.error);
+					}
 				});
 			}
 		});
@@ -151,17 +207,20 @@ var lemur = (function ($) {
 		var course = $(e.target).data ('course'),
 			id = $(e.target).data ('id');
 
-		if (! confirm ('Are you sure you want to remove this learner?')) {
+		if (! confirm ($.i18n ('Are you sure you want to remove this learner from the course?'))) {
 			return false;
 		}
 
-		console.log ('removing learner: ' + course + ' - ' + id);
-
 		$.post (self.prefix + 'learner/remove', {course: course, user: id}, function (res) {
-			console.log (res);
 			if (res.success) {
-				$.add_notification ('Learner removed.');
+				$.add_notification ($.i18n ('Learner removed.'));
 				$('#learner-' + id).remove ();
+				for (var i = 0; i < self.learners.length; i++) {
+					if (self.learners[i].id == id) {
+						self.learners.splice (i, 1);
+						break;
+					}
+				}
 			} else {
 				$.add_notification (res.error);
 			}
@@ -194,6 +253,6 @@ $(function () {
 	$('.add-learner')
 		.click (lemur.add_learner);
 
-	$('.remove-learner')
-		.click (lemur.remove_learner);
+	$('#learners')
+		.on ('click', '.remove-learner', lemur.remove_learner);
 });
