@@ -45,6 +45,8 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 
 	if ($this->params[2] === 'contact') {
 		// contact the instructor
+		$course = $course->orig ();
+		$course->pages = $pages;
 		echo $this->run ('lemur/course/contact', $course);
 		return;
 	} elseif ($this->params[2] === 'glossary') {
@@ -57,6 +59,7 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 				'pages' => $pages,
 				'glossary' => $course->glossary (),
 				'has_glossary' => $course->has_glossary,
+				'instructor' => $course->instructor,
 				'comments_id' => 'lemur-course-' . $course->id . '-glossary'
 			)
 		);
@@ -95,7 +98,8 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 			'course_title' => $course->title,
 			'page_body' => $page_body,
 			'comments_id' => 'lemur-course-' . $course->id . '-' . $pid,
-			'has_glossary' => $course->has_glossary
+			'has_glossary' => $course->has_glossary,
+			'instructor' => $course->instructor
 		)
 	);
 

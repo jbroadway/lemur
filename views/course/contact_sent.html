@@ -1,0 +1,25 @@
+<div id="lemur-course-menu">
+	<p>{"Contents"}:</p>
+
+	<ol>
+	{% foreach pages as page_id, page_title %}
+		<li><a href="/course/{{id}}/{{title|URLify::filter}}/{{page_id}}/{{page_title|URLify::filter}}">{{page_title}}</a></li>
+	{% end %}
+	</ol>
+	<p>
+	{% if instructor %}
+		<a href="/course/{{id}}/{{title|URLify::filter}}/contact">{"Email instructor"}</a><br />
+	{% end %}
+	{% if has_glossary %}
+		<a href="/course/{{id}}/{{title|URLify::filter}}/glossary">{"Glossary"}</a>
+	{% end %}
+	</p>
+</div>
+
+<div id="lemur-course-body">
+	<h3>{"Email the instructor"}</h3>
+
+	<p>{"Your message has been sent."}</p>
+</div>
+
+<br clear="both" />

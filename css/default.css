@@ -64,3 +64,8 @@
 #lemur-course-comments {
 	border-top: 5px solid #ddd;
 }
+
+.error {
+	font-weight: bold;
+	color: #c33;
+}

@@ -9,9 +9,11 @@
 	{% end %}
 	</ol>
 	<p>
-		<a href="/course/{{course}}/{{course_title|URLify::filter}}/contact">{"Email instructor"}</a>
+	{% if instructor %}
+		<a href="/course/{{course}}/{{course_title|URLify::filter}}/contact">{"Email instructor"}</a><br />
+	{% end %}
 	{% if has_glossary %}
-		<br /><a href="/course/{{course}}/{{course_title|URLify::filter}}/glossary">{"Glossary"}</a>
+		<a href="/course/{{course}}/{{course_title|URLify::filter}}/glossary">{"Glossary"}</a>
 	{% end %}
 	</p>
 </div>
