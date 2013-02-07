@@ -191,7 +191,8 @@ var lemur = (function ($) {
 						self.learners.push ({
 							id: user,
 							name: name,
-							email: email
+							email: email,
+							progress: 0
 						});
 						self.redraw_learners (true);
 					} else {
