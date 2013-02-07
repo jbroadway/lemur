@@ -160,6 +160,8 @@ var lemur = (function ($) {
 			self.learners[i].course = self.course;
 			list.append (self.tpl.learner (self.learners[i]));
 		}
+
+		$('#learner-count').text (self.learners.length);
 	};
 
 	/**
@@ -218,6 +220,7 @@ var lemur = (function ($) {
 				for (var i = 0; i < self.learners.length; i++) {
 					if (self.learners[i].id == id) {
 						self.learners.splice (i, 1);
+						$('#learner-count').text (self.learners.length);
 						break;
 					}
 				}

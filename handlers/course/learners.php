@@ -12,7 +12,7 @@ if ($c->error) {
 
 $learners = $c->learners ();
 
-$page->title = $c->title . ' - ' . __ ('Learners') . ' (' . count ($learners) . ')';
+$page->title = $c->title . ' - ' . __ ('Learners') . ' (<span id="learner-count">' . count ($learners) . '</span>)';
 
 $page->add_style ('/apps/lemur/css/admin.css');
 $page->add_script ('/apps/lemur/js/handlebars.js');

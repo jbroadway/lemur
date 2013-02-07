@@ -30,12 +30,16 @@ class Learner {
 	public static function add_to_course ($course, $user = false) {
 		$user = $user ? $user : User::val ('id');
 		
-		return DB::execute (
+		$res = DB::execute (
 			'insert into lemur_learner values (?, ?, ?)',
 			$user,
 			$course,
 			gmdate ('Y-m-d H:i:s')
 		);
+
+		// add records for input tracking
+
+		return $res;
 	}
 
 	/**
@@ -45,11 +49,15 @@ class Learner {
 	public static function remove_from_course ($course, $user = false) {
 		$user = $user ? $user : User::val ('id');
 		
-		return DB::execute (
+		$res = DB::execute (
 			'delete from lemur_learner where user = ? and course = ?',
 			$user,
 			$course
 		);
+		
+		// remove records for input tracking
+		
+		return $res;
 	}
 
 	/**
