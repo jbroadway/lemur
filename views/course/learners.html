@@ -25,14 +25,6 @@ $(function () {
 	lemur.tpl.learner = Handlebars.compile ($('#learner-tpl').html ());
 	lemur.course = {{course}};
 	lemur.set_learners ({{learners|json_encode}});
-
-	// temp stuff
-	/*
-	$('#progress-1').css ({width: '60%'});
-	$('#progress-2').css ({width: '40%'});
-	$('#progress-3').addClass ('learner-progress-done');
-	$('#status-3').text ('{"Passed"}');
-	//*/
 });
 </script>
 

@@ -12,6 +12,13 @@ if ($c->error) {
 
 $learners = $c->learners ();
 
+$progress = lemur\Data::for_course ($c->id);
+foreach ($learners as $k => $learner) {
+	$learners[$k]->progress = isset ($progress[$learner->id])
+		? ceil ($progress[$learner->id])
+		: 0;
+}
+
 $page->title = $c->title . ' - ' . __ ('Learners') . ' (<span id="learner-count">' . count ($learners) . '</span>)';
 
 $page->add_style ('/apps/lemur/css/admin.css');

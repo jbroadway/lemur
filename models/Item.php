@@ -24,6 +24,13 @@ class Item extends \Model {
 	public static $input_types = array (10, 11, 12, 13, 14);
 
 	public static $all_types = array (1, 2, 3, 4, 5, 6, 7/*, 8*/, 9, 10, 11, 12, 13, 14, 15);
+
+	public static function get_inputs ($course) {
+		return self::query ()
+			->where ('course', $course)
+			->where ('type in(' . join (', ', self::$input_types) . ')')
+			->fetch_orig ();
+	}
 }
 
 ?>

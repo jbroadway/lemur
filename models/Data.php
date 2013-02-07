@@ -2,6 +2,7 @@
 
 namespace lemur;
 
+use DB;
 use Model;
 
 /**
@@ -21,6 +22,24 @@ use Model;
  */
 class Data extends Model {
 	public $table = 'lemur_data';
+
+	public static function remove_user ($course, $user) {
+		return DB::execute (
+			'delete from lemur_data
+			where course = ?
+			and user = ?',
+			$course,
+			$user
+		);
+	}
+
+	public static function for_course ($course) {
+		return DB::pairs (
+			'select user, (sum(status) * 100) / count() as progress
+			from lemur_data where course = ? group by user',
+			$course
+		);
+	}
 }
 
 ?>

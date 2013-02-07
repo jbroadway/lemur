@@ -159,6 +159,7 @@ var lemur = (function ($) {
 		for (var i = 0; i < self.learners.length; i++) {
 			self.learners[i].course = self.course;
 			list.append (self.tpl.learner (self.learners[i]));
+			$('#progress-' + self.learners[i].id).css ({width: self.learners[i].progress + '%'});
 		}
 
 		$('#learner-count').text (self.learners.length);
