@@ -9,6 +9,24 @@ class Course extends Model {
 	public $table = 'lemur_course';
 
 	/**
+	 * Delete a course and all its associated data.
+	 */
+	public function delete () {
+		DB::beginTransaction ();
+		DB::execute ('delete from lemur_data where course = ?', $this->id);
+		DB::execute ('delete from lemur_learner where course = ?', $this->id);
+		DB::execute ('delete from lemur_item where course = ?', $this->id);
+		DB::execute ('delete from lemur_page where course = ?', $this->id);
+		DB::execute ('delete from lemur_course where id = ?', $this->id);
+		$this->error = DB::error ();
+		if ($this->error) {
+			DB::rollback ();
+			return false;
+		}
+		return DB::commit ();
+	}
+
+	/**
 	 * Get all courses grouped by category, optionally limited by owner.
 	 */
 	public static function categories ($owner = false, $published = false) {
