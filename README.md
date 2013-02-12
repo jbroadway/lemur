@@ -4,33 +4,27 @@ An e-learning app for the [Elefant CMS](http://www.elefantcms.com/).
 
 **Status: Alpha**
 
-The course builder itself is complete, and the work on learner
-management, course publishing, and user interaction is underway.
+Course building and management is complete, learner management is
+mostly complete, and basic course publishing works, with learner
+input and registration also underway.
 
 ## To do
 
 Backend:
 
-* Learner management
 * Viewing learner responses
+  * Submitting feedback on responses
 * Integrating SCORM data
 
 Public-facing:
 
-* Browse course contents
-  * Sign-up wall for registered courses
+* Sign-up wall for registered courses
   * Pay wall for paid courses
-  * Table of contents sidebar
-  * Email instructor
-  * Glossary
   * Status indicator (course completion w/ link to next outstanding question)
-  * Course content rendering
-  * Comments in page footers
   * Input objects save to assessments
-      * Assessment list screen
-      * Assessment detail screen for individual input
-          * Comments in detail screen for student-instructor discussion
-      * Save an input to come back to without submitting
+    * Assessment list screen
+    * Assessment detail screen for individual input
+      * Comments in detail screen for student-instructor discussion
 
 Email notifications:
 
