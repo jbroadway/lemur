@@ -93,7 +93,8 @@ class Learner {
 				lemur_learner, lemur_course
 			where
 				lemur_learner.user = ? and
-				lemur_learner.course = lemur_course.id',
+				lemur_learner.course = lemur_course.id and
+				lemur_course.status = 2',
 			$user
 		);
 	}

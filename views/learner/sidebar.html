@@ -1,0 +1,5 @@
+<ul>
+{% foreach courses as course %}
+	<li><a href="/course/{{course->id}}/{{course->title|URLify::filter}}">{{course->title}}</a></li>
+{% end %}
+</ul>
