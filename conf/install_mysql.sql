@@ -58,7 +58,7 @@ create table lemur_data (
 	user int not null,
 	item int not null,
 	status tinyint not null, // 0-100
-	correct tinyint not null,
+	correct tinyint not null, // -1=no, 0=undetermined, 1=yes
 	ts datetime not null,
 	answer text not null,
 	feedback text not null,

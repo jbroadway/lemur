@@ -4,6 +4,7 @@ namespace lemur;
 
 use DB;
 use Model;
+use User;
 
 /**
  * Learner input data management belongs here.
