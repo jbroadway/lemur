@@ -37,7 +37,7 @@ class Data extends Restful {
 		$data->status = 1;
 		$data->ts = gmdate ('Y-m-d H:i:s');
 
-		if (! empty ($item->answer)) {
+		if ($item->answer !== '') {
 			if ($data->answer == $item->answer) {
 				$data->correct = 1;
 				$correct = 'yes';

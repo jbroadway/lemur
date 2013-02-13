@@ -77,6 +77,27 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 	$p = new lemur\Page ($pid);
 	$items = $p->items ();
 
+	// build a list of input item ids to fetch answers
+	$item_ids = array ();
+	foreach ($items as $k => $item) {
+		if (in_array ((int) $item->type, lemur\Item::$input_types)) {
+			$item_ids[] = $item->id;
+		}
+	}
+
+	// fetch answers for input items
+	$answers = lemur\Data::for_items ($item_ids);
+	foreach ($answers as $answer) {
+		foreach ($items as $k => $item) {
+			if ($item->id === $answer->item) {
+				$items[$k]->answered = (int) $answer->status;
+				$items[$k]->answer = $answer->answer;
+				$items[$k]->correct = (int) $answer->correct;
+				break;
+			}
+		}
+	}
+
 	foreach ($items as $item) {
 		if (in_array ((int) $item->type, array (12, 13, 14))) {
 			$item->content = explode ("\n", trim ($item->content));
@@ -86,6 +107,9 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 			$item
 		);
 	}
+
+	$page->add_script ('/apps/lemur/js/api.js');
+	$page->add_script ('/apps/lemur/js/course.js');
 
 	// show a page
 	echo View::render (
