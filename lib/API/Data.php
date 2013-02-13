@@ -56,6 +56,12 @@ class Data extends Restful {
 			return $this->error (__ ('An unknown error occurred.'));
 		}
 		
+		if ($correct === 'no') {
+			return array (
+				'correct' => $correct,
+				'answer' => $item->answer
+			);
+		}
 		return array ('correct' => $correct);
 	}
 }
