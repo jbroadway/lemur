@@ -63,5 +63,6 @@ create table lemur_data (
 	answer text not null,
 	feedback text not null,
 	index (user, ts),
-	index (course, user)
+	index (course, user),
+	index (item, user)
 );

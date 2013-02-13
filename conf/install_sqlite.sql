@@ -71,3 +71,4 @@ create table lemur_data (
 
 create index lemur_data_user on lemur_data (user, ts);
 create index lemur_data_course_user on lemur_data (course, user);
+create index lemur_data_item_user on lemur_data (item, user);
