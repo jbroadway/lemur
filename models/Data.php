@@ -24,6 +24,16 @@ use User;
 class Data extends Model {
 	public $table = 'lemur_data';
 
+	public static function for_items ($items, $user = false) {
+		$user = $user ? $user : User::val ('id');
+		return DB::fetch (
+			'select * from lemur_data
+			where item in(' . join (',', $items) . ')
+			and user = ?',
+			$user
+		);
+	}
+
 	public static function remove_user ($course, $user) {
 		return DB::execute (
 			'delete from lemur_data
