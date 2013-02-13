@@ -1,5 +1,16 @@
 <div id="item-{{id}}" class="lemur-item item-input-dropdown">
-	<form>
+	{% if answered %}
+	<div class="item-answer">
+	<strong class="item-question">{{title}}</strong><br />
+	{"You answered"}: <span class="item-answer">{{answer}}</span>
+		{% if correct === -1 %}
+		({"incorrect"})
+		{% elseif correct === 1 %}
+		({"correct"})
+		{% end %}
+	</div>
+	{% else %}
+	<form class="item-input-form" data-id="{{id}}" data-question="{{title|quotes}}">
 		<label for="input-{{id}}">{{title}}</label><br />
 		<select id="input-{{id}}" name="input-{{id}}">
 			<option value="">- {"Select"} -</option>
@@ -9,4 +20,5 @@
 		</select><br />
 		<input type="submit" value="{"Submit"}" />
 	</form>
+	{% end %}
 </div>
