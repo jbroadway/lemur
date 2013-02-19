@@ -33,7 +33,7 @@ create table lemur_page (
 
 create table lemur_item (
 	id int not null auto_increment primary key,
-	title char(128) not null,
+	title char(192) not null,
 	page int not null,
 	sorting int not null,
 	type int not null,
