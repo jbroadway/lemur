@@ -87,6 +87,7 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 
 	// fetch answers for input items
 	$answers = lemur\Data::for_items ($item_ids);
+	$answers = is_array ($answers) ? $answers : array ();
 	foreach ($answers as $answer) {
 		foreach ($items as $k => $item) {
 			if ($item->id === $answer->item) {
