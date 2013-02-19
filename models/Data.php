@@ -24,6 +24,15 @@ use User;
 class Data extends Model {
 	public $table = 'lemur_data';
 
+	public static function for_learner ($course, $user) {
+		return DB::fetch (
+			'select * from lemur_data
+			where course = ? and user = ?',
+			$course,
+			$user
+		);
+	}
+
 	public static function for_items ($items, $user = false) {
 		$user = $user ? $user : User::val ('id');
 		return DB::fetch (
