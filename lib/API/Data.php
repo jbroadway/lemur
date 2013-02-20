@@ -17,6 +17,11 @@ class Data extends Restful {
 		if (! User::is_valid ()) {
 			return $this->error (__ ('Must be logged in first.'));
 		}
+
+		$item = new \lemur\Item ($id);
+		if ($item->error) {
+			return $this->error (__ ('Question not found.'));
+		}
 		
 		$data = \lemur\Data::query ()
 			->where ('user', User::val ('id'))
@@ -24,14 +29,21 @@ class Data extends Restful {
 			->single ();
 
 		if ($data->error) {
-			return $this->error (__ ('Question not found.'));
+			$data = new \lemur\Data (array (
+				'course' => $item->course,
+				'user' => User::val ('id'),
+				'item' => $id,
+				'status' => 0,
+				'correct' => 0,
+				'ts' => gmdate ('Y-m-d H:i:s'),
+				'answer' => '',
+				'feedback' => ''
+			));
 		}
 		
 		if ($data->status == 1) {
 			return $this->error (__ ('Question already answered.'));
 		}
-
-		$item = new \lemur\Item ($data->item);
 		
 		$data->answer = trim ($_POST['answer']);
 		$data->status = 1;
