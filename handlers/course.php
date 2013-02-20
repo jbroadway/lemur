@@ -18,7 +18,7 @@ if ((int) $course->status < 2) {
 	return;
 }
 
-if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in_course ($cid))) {
+if ((int) $course->availability === 2 || (User::is_valid () && ($course->instructor == User::val ('id') || lemur\Learner::in_course ($cid)))) {
 	// free or already registered, show the course
 	$page->title = $course->title;
 	$page->layout = $appconf['Lemur']['layout'];
@@ -100,6 +100,9 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 	}
 
 	foreach ($items as $item) {
+		if ($course->instructor == User::val ('id')) {
+			$item->instructor = true;
+		}
 		if (in_array ((int) $item->type, array (12, 13, 14))) {
 			$item->content = explode ("\n", trim ($item->content));
 		}

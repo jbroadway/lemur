@@ -10,7 +10,8 @@ var course = (function ($) {
 	self.strings = {
 		answered: 'You answered',
 		correct: 'correct',
-		incorrect: 'incorrect'
+		incorrect: 'incorrect',
+		instructor: 'Sorry, but instructors cannot submit answers.'
 	};
 
 	// Initialize the event handling
@@ -22,7 +23,13 @@ var course = (function ($) {
 	// Save learner input through the API
 	self.save_input = function (evt) {
 		var id = $(this).data ('id'),
-			answer = $('#input-' + id).val ();
+			answer = $('#input-' + id).val (),
+			instructor = this.elements.hasOwnProperty ('instructor');
+		
+		if (instructor) {
+			alert (self.strings.instructor);
+			return false;
+		}
 
 		if (typeof answer === 'undefined') {
 			var el = this.elements['input-' + id];

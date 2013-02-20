@@ -11,6 +11,9 @@
 	</div>
 	{% else %}
 	<form class="item-input-form" data-id="{{id}}" data-question="{{title|quotes}}">
+	{% if instructor %}
+		<input type="hidden" name="instructor" value="yes" />
+	{% end %}
 		<fieldset>
 			<legend>{{title}}</legend>
 			{% foreach content as num, option %}
