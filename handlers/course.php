@@ -29,7 +29,7 @@ if ((int) $course->availability === 2 || (User::is_valid () && ($course->instruc
 
 	if (! isset ($this->params[2])) {
 		foreach ($pages as $id => $title) {
-			$this->redirect ($_SERVER['REQUEST_URI'] . '/' . $id . '/' . URLify::filter ($title));
+			$this->redirect (preg_replace ('|^/lemur|', '', $_SERVER['REQUEST_URI']) . '/' . $id . '/' . URLify::filter ($title));
 		}
 
 		// show the table of contents
