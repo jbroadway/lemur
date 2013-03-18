@@ -1,0 +1,20 @@
+{
+    "name": "elefant/app-lemur",
+    "type": "elefant-app",
+    "description": "E-learning platform for the Elefant CMS",
+    "keywords": ["elearning", "e-learning", "courses", "courseware", "lessons", "education", "training", "elefant", "cms", "app"],
+    "license": "MIT",
+	"authors": [
+		{
+			"name": "Centre for Education and Work",
+			"email": "jluxford@cewca.org",
+			"homepage": "http://www.cewca.org/"
+		}
+	],
+    "repositories": [
+        {"type": "git", "url": "http://github.com/jbroadway/elefant_installer"}
+    ],
+    "require": {
+        "elefant/app-installer": "*"
+    }
+}

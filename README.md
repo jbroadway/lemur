@@ -40,8 +40,6 @@ Documentation:
 * How to use the Lemur Learning API
 * How to contribute to the project
 
-Other TBD.
-
 ## Installation
 
 First, you will need to install the following Elefant apps that Lemur depends on:
