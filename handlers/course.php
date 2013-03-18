@@ -18,7 +18,7 @@ if ((int) $course->status < 2) {
 	return;
 }
 
-if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in_course ($cid))) {
+if ((int) $course->availability === 2 || (User::is_valid () && ($course->instructor == User::val ('id') || lemur\Learner::in_course ($cid)))) {
 	// free or already registered, show the course
 	$page->title = $course->title;
 	$page->layout = $appconf['Lemur']['layout'];
@@ -29,7 +29,7 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 
 	if (! isset ($this->params[2])) {
 		foreach ($pages as $id => $title) {
-			$this->redirect ($_SERVER['REQUEST_URI'] . '/' . $id . '/' . URLify::filter ($title));
+			$this->redirect (preg_replace ('|^/lemur|', '', $_SERVER['REQUEST_URI']) . '/' . $id . '/' . URLify::filter ($title));
 		}
 
 		// show the table of contents
@@ -87,6 +87,7 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 
 	// fetch answers for input items
 	$answers = lemur\Data::for_items ($item_ids);
+	$answers = is_array ($answers) ? $answers : array ();
 	foreach ($answers as $answer) {
 		foreach ($items as $k => $item) {
 			if ($item->id === $answer->item) {
@@ -99,6 +100,9 @@ if ((int) $course->availability === 2 || (User::is_valid () && lemur\Learner::in
 	}
 
 	foreach ($items as $item) {
+		if ($course->instructor == User::val ('id')) {
+			$item->instructor = true;
+		}
 		if (in_array ((int) $item->type, array (12, 13, 14))) {
 			$item->content = explode ("\n", trim ($item->content));
 		}

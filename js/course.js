@@ -10,7 +10,8 @@ var course = (function ($) {
 	self.strings = {
 		answered: 'You answered',
 		correct: 'correct',
-		incorrect: 'incorrect'
+		incorrect: 'incorrect',
+		instructor: 'Sorry, but instructors cannot submit answers.'
 	};
 
 	// Initialize the event handling
@@ -22,13 +23,29 @@ var course = (function ($) {
 	// Save learner input through the API
 	self.save_input = function (evt) {
 		var id = $(this).data ('id'),
-			answer = $('#input-' + id).val ();
+			answer = $('#input-' + id).val (),
+			instructor = this.elements.hasOwnProperty ('instructor');
+		
+		if (instructor) {
+			alert (self.strings.instructor);
+			return false;
+		}
 
 		if (typeof answer === 'undefined') {
 			var el = this.elements['input-' + id];
-			try {
+			if (typeof el === 'undefined') {
+				el = this.elements['input-' + id + '[]'];
+				answer = '';
+				var sep = '';
+				for (var i = 0; i < el.length; i++) {
+					if ($(el[i]).is (':checked')) {
+						answer += sep + $(el[i]).attr ('value');
+						sep = ', ';
+					}
+				}
+			} else if (el.hasOwnProperty ('selectedIndex')) {
 				answer = el.options[el.selectedIndex].value;
-			} catch (e) {
+			} else {
 				answer = el.value;
 			}
 		}
@@ -46,7 +63,6 @@ var course = (function ($) {
 
 	// Handle API response to saving learner input
 	self.input_saved = function (res) {
-		console.log (res);
 		if (! res.success) {
 			// handle error
 			alert (res.error);

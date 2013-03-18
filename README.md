@@ -12,19 +12,14 @@ input and registration also underway.
 
 Backend:
 
-* Viewing learner responses
-  * Submitting feedback on responses
+* Submitting feedback on responses
 * Integrating SCORM data
 
 Public-facing:
 
 * Sign-up wall for registered courses
-  * Pay wall for paid courses
-  * Status indicator (course completion w/ link to next outstanding question)
-  * Input objects save to assessments
-    * Assessment list screen
-    * Assessment detail screen for individual input
-      * Comments in detail screen for student-instructor discussion
+* Pay wall for paid courses
+* Status indicator (course completion w/ link to next outstanding question)
 
 Email notifications:
 

@@ -1,0 +1,12 @@
+<p>
+	<a href="/lemur/course/learners?id={{course}}">&laquo; {"Back"}</a>
+</p>
+
+{% foreach items as item %}
+<h4>{{item->title}}</h4>
+{% if item->answered %}
+	<p><strong>{"Answered"}:</strong> {{item->answer}}{% if item->correct == -1 %} ({"incorrect"}){% elseif item->correct == 1 %} ({"correct"}){% end %}</p>
+{% else %}
+	<p><strong>{"Not yet completed."}</strong></p>
+{% end %}
+{% end %}

@@ -27,7 +27,7 @@
 	</tr>
 {% foreach category->courses as course %}
 	<tr>
-		<td><a href="/lemur/course/{{course->id}}/{{course->title|URLify::filter}}">{{course->title}}</a></td>
+		<td><a href="/course/{{course->id}}/{{course->title|URLify::filter}}">{{course->title}}</a></td>
 		<td>
 			{{course->availability|lemur\Filter::availability}}
 			{% if course->availability == 4 %}

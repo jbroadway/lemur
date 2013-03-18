@@ -4,7 +4,7 @@ The Lemur REST API can be accessed at `/lemur/api/*` or through the `lemur.js` s
 
 ## Category
 
-### `POST category/order`
+### `POST /lemur/api/category/order`
 
 Update the order of categories.
 
@@ -14,7 +14,7 @@ Parameters:
 
 Requires admin session.
 
-### `POST category/update`
+### `POST /lemur/api/category/update`
 
 Update the name of a category.
 
@@ -29,7 +29,7 @@ Requires admin session.
 
 Learner input in Lemur is managed by the `lemur\Data` model.
 
-### `POST data/submit/:id`
+### `POST /lemur/api/data/submit/:id`
 
 Submit an answer for a learner. Returns a `correct` parameter that will contain either `yes`, `no`, or `undetermined`. If the answer is incorrect, then the response will also include an `answer` parameter with the correct answer.
 
@@ -43,7 +43,7 @@ Requires authenticated learner session.
 
 Items are the sequential content that appears on each page of a course. An item can be a block of text, an image or video, a SCORM module, learner inputs, etc.
 
-### `POST item/update_all`
+### `POST /lemur/api/item/update_all`
 
 Update all items for a page.
 
@@ -58,7 +58,7 @@ Parameters:
 
 Requires admin session.
 
-### `POST item/create`
+### `POST /lemur/api/item/create`
 
 Create a new item.
 
@@ -75,7 +75,7 @@ Returns the new item object, which also contains a `course` property and a new `
 
 Requires admin session.
 
-### `POST item/delete`
+### `POST /lemur/api/item/delete`
 
 Delete an item.
 
@@ -87,7 +87,7 @@ Requires admin session.
 
 ## Learner
 
-### `POST learner/add`
+### `POST /lemur/api/learner/add`
 
 Add a learner to a course.
 
@@ -98,7 +98,7 @@ Parameters:
 
 Requires admin session.
 
-### `POST learner/remove`
+### `POST /lemur/api/learner/remove`
 
 Remove a learner from a course.
 
@@ -113,7 +113,7 @@ Requires admin session.
 
 Courses in Lemur are composed of a series of pages, which contain a series of content items.
 
-### `POST page/order`
+### `POST /lemur/api/page/order`
 
 Update the order of pages for a course.
 
@@ -124,7 +124,7 @@ Parameters:
 
 Requires admin session.
 
-### `POST page/update`
+### `POST /lemur/api/page/update`
 
 Update the name of a page.
 

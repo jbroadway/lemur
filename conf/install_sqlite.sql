@@ -36,7 +36,7 @@ create index lemur_page_course on lemur_page (course, sorting);
 
 create table lemur_item (
 	id integer primary key,
-	title char(72) not null,
+	title char(192) not null,
 	page int not null,
 	sorting int not null,
 	type int not null,
