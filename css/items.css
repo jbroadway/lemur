@@ -72,3 +72,26 @@
 		padding: 3px 5px 3px 7px;
 		border: 1px solid #ddd;
 	}
+
+.item-reveal {
+	background-color: #ffe;
+	border: 1px dashed #bbb;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+	.item-reveal h4 {
+		cursor: pointer;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		margin-bottom: 0;
+	}
+
+	.item-reveal h4 i {
+		color: #49afcd;
+		margin-right: 2px;
+	}
+	
+	.item-reveal>div {
+		margin-top: 12px;
+	}

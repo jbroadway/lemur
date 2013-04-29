@@ -17,7 +17,6 @@ Backend:
 
 Public-facing:
 
-* Sign-up wall for registered courses
 * Pay wall for paid courses
 * Status indicator (course completion w/ link to next outstanding question)
 

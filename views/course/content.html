@@ -11,10 +11,10 @@
 		<li><i class="icon-film"></i> <a href="#" data-bind="click: add_video_field">{"Video"}</a></li>
 		<li><i class="icon-headphones"></i> <a href="#" data-bind="click: add_audio_field">{"Audio"}</a></li>
 		<li><i class="icon-angle-left icon-combine-left"></i><i class="icon-angle-right icon-combine-right"></i> <a href="#" data-bind="click: add_html_field">{"HTML code"}</a></li>
+		<li><i class="icon-plus-sign"></i> <a href="#" data-bind="click: add_reveal_field">{"Click-to-reveal"}</a></li>
 		<li><i class="icon-quote-left"></i> <a href="#" data-bind="click: add_pre_field">{"Pre-formatted text"}</a></li>
 		<li><i class="icon-cogs"></i> <a href="#" data-bind="click: add_scorm_field">{"SCORM module"}</a></li>
 		<li><i class="icon-download-alt"></i> <a href="#" data-bind="click: add_file_field">{"File download"}</a></li>
-		<!-- li><i class="icon-reorder"></i> <a href="#" data-bind="click: add_accordion_field">{"Accordion"}</a></li -->
 		<li><i class="icon-lightbulb"></i> <a href="#" data-bind="click: add_definition_field">{"Definition"}</a></li>
 	</ul>
 	<strong>{"Add a question"}:</strong>
@@ -193,6 +193,25 @@ $(function () {
 		<p>
 			<label>{"Description"}:</label>
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="90" />
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-8" type="text/html">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
+		<p>
+			<label>{"Title"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="50" />
+		</p>
+		<p>
+			<textarea
+				name="content"
+				class="wysiwyg"
+				data-bind="value: content, attr: { 'data-id': id }"
+				style="width: 100%; height: 200px"
+			></textarea>
 		</p>
 	</li>
 </script>

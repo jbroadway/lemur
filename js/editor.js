@@ -55,7 +55,7 @@ var editor = (function ($) {
 		5: $.i18n ('Pre-formatted text'),
 		6: $.i18n ('SCORM module'),
 		7: $.i18n ('File download'),
-		8: $.i18n ('Accordion'),
+		8: $.i18n ('Click-to-reveal'),
 		9: $.i18n ('Definition'),
 		10: $.i18n ('Single-line answer'),
 		11: $.i18n ('Paragraph answer'),
@@ -73,7 +73,7 @@ var editor = (function ($) {
 		5: '<i class="icon-quote-left"></i>',
 		6: '<i class="icon-cogs"></i>',
 		7: '<i class="icon-download-alt"></i>',
-		8: '<i class="icon-reorder"></i>',
+		8: '<i class="icon-plus-sign"></i>',
 		9: '<i class="icon-lightbulb"></i>',
 		10: '<i class="icon-edit"></i>',
 		11: '<i class="icon-edit"></i>',
@@ -486,7 +486,7 @@ var editor = (function ($) {
 	self.add_pre_field			= function () { return self.create_blank_item (5); };
 	self.add_scorm_field		= function () { return self.create_blank_item (6); };
 	self.add_file_field			= function () { return self.create_blank_item (7); };
-	//self.add_accordion_field	= function () { return self.create_blank_item (8); };
+	self.add_reveal_field		= function () { return self.create_blank_item (8); };
 	self.add_definition_field	= function () { return self.create_blank_item (9); };
 	self.add_input_field		= function () { return self.create_blank_item (10); };
 	self.add_para_field			= function () { return self.create_blank_item (11); };

@@ -18,6 +18,10 @@ var course = (function ($) {
 	self.init = function (options) {
 		self.strings = (options && options.strings) ? options.strings : self.strings;
 		$('.item-input-form').submit (self.save_input);
+		$('.item-reveal h4').click (function () {
+			$(this).next ().toggle (400);
+			return false;
+		});
 	};
 
 	// Save learner input through the API
