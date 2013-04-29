@@ -65,3 +65,7 @@ You should now have a working Lemur installation.
 To create courses, go to Tools > Courses. To install SCORM modules for use in your
 courses, go to Tools > SCORM. To view the list of courses on your site visit the
 `/courses` URL and you will see any publicly visible courses listed there.
+
+## Documentation
+
+Early documentation is available through Lemur's [Github wiki page](https://github.com/cewca/lemur/wiki).
