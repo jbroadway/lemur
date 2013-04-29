@@ -27,7 +27,9 @@ $page->add_script ('/apps/lemur/js/admin.js');
 $page->add_script (I18n::export (
 	'Learner removed.',
 	'Learner added.',
-	'Are you sure you want to remove this learner from the course?'
+	'Are you sure you want to remove this learner from the course?',
+	'Incomplete',
+	'Complete'
 ));
 
 echo View::render ('lemur/course/learners', array (

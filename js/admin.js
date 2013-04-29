@@ -160,6 +160,9 @@ var lemur = (function ($) {
 			self.learners[i].course = self.course;
 			list.append (self.tpl.learner (self.learners[i]));
 			$('#progress-' + self.learners[i].id).css ({width: self.learners[i].progress + '%'});
+			if (parseInt (self.learners[i].progress) === 100) {
+				$('#status-' + self.learners[i].id).html ($.i18n ('Complete'));
+			}
 		}
 
 		$('#learner-count').text (self.learners.length);
