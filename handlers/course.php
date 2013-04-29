@@ -147,11 +147,21 @@ switch ((int) $course->availability) {
 		$page->add_script ('/apps/lemur/css/default.css');
 		echo View::render ('lemur/course/summary', $course);
 
-		if (User::is_valid ()) {
-			// show join link
-		} else {
-			// show login form
+		// show login form
+		if (! User::is_valid ()) {
+			$this->redirect ('/user/login?redirect=' . urlencode ($_SERVER['REQUEST_URI']));
 		}
+
+		// add learner
+		$res = lemur\Learner::add_to_course ($course->id, User::val ('id'));
+		if (! $res) {
+			error_log (DB::error ());
+			echo $this->error (404, __ ('An error occurred'), __ ('There was an error in the course registration. Please try again later.'));
+			return;
+		}
+
+		// reload to show course
+		$this->redirect ($_SERVER['REQUEST_URI']);
 		return;
 
 	case 4:
@@ -161,11 +171,13 @@ switch ((int) $course->availability) {
 		$page->add_script ('/apps/lemur/css/default.css');
 		echo View::render ('lemur/course/summary', $course);
 
-		if (User::is_valid ()) {
-			// show purchase link
-		} else {
-			// show login form
+		// show login form
+		if (! User::is_valid ()) {
+			$this->redirect ('/user/login?redirect=' . urlencode ($_SERVER['REQUEST_URI']));
 		}
+
+		// TODO: show pay wall
+
 		return;
 }
 
