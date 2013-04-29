@@ -243,6 +243,13 @@ $(function () {
 			<label>{"Question"}:</label>
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" style="width: 580px" />
 		</p>
+		<p>
+			<label class="wide">{"Correct answer"}:</label>
+			<input
+				type="text"
+				name="answer"
+				data-bind="value: answer, event: { blur: editor.update_items }" style="width: 200px" />
+		</p>
 	</li>
 </script>
 
