@@ -2,6 +2,13 @@
 
 [Lemur]
 
+; A virtual page title to include in the navigation tree.
+title = Courses
+
+; Whether to include a virtual page in the navigation tree
+; (see Tools > Navigation).
+include_in_nav = "/courses"
+
 ; The public app name. Will appear as the
 ; page title at /lemur
 public_name = Courses
