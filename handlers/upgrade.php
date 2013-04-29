@@ -1,11 +1,8 @@
 <?php
 
-$page->layout = 'admin';
+$this->require_admin ();
 
-if (! User::require_admin ()) {
-	header ('Location: /admin');
-	exit;
-}
+$page->layout = 'admin';
 
 if ($this->installed ('lemur', $appconf['Admin']['version']) === true) {
 	$page->title = 'Already up-to-date';
