@@ -12,11 +12,35 @@ class Item extends Restful {
 		if (! User::require_admin ()) {
 			return $this->error (__ ('Admin access required.'));
 		}
+		
+		if (! isset ($_POST['items'])) {
+			return $this->error (__ ('Missing parameter: items'));
+		}
+
+		if (! is_array ($_POST['items'])) {
+			return $this->error (__ ('Invalid parameter: items'));
+		}
+
+		if (! isset ($_POST['course'])) {
+			return $this->error (__ ('Missing parameter: course'));
+		}
+
+		if (! isset ($_POST['page'])) {
+			return $this->error (__ ('Missing parameter: page'));
+		}
 
 		foreach ($_POST['items'] as $item) {
 			$i = new \lemur\Item ($item['id']);
 			if ($i->error) {
 				return $this->error ($i->error);
+			}
+		
+			if ($_POST['course'] != $i->course) {
+				return $this->error (__ ('Invalid parameter: course'));
+			}
+		
+			if ($_POST['page'] != $i->page) {
+				return $this->error (__ ('Invalid parameter: page'));
 			}
 
 			$i->title = isset ($item['title']) ? $item['title'] : '';
@@ -39,7 +63,20 @@ class Item extends Restful {
 			return $this->error (__ ('Admin access required.'));
 		}
 
+		if (! isset ($_POST['page'])) {
+			return $this->error (__ ('Missing parameter: page'));
+		}
+
+		if (! isset ($_POST['sorting'])) {
+			return $this->error (__ ('Missing parameter: sorting'));
+		}
+
+		if (! isset ($_POST['type'])) {
+			return $this->error (__ ('Missing parameter: type'));
+		}
+
 		$_POST['title'] = isset ($_POST['title']) ? $_POST['title'] : '';
+		$_POST['content'] = isset ($_POST['content']) ? $_POST['content'] : '';
 		$_POST['answer'] = isset ($_POST['answer']) ? $_POST['answer'] : '';
 
 		$p = new \lemur\Page ($_POST['page']);
@@ -81,6 +118,22 @@ class Item extends Restful {
 
 		if ($i->error) {
 			return $this->error ($i->error);
+		}
+
+		if (! isset ($_POST['course'])) {
+			return $this->error (__ ('Missing parameter: course'));
+		}
+		
+		if ($_POST['course'] != $i->course) {
+			return $this->error (__ ('Invalid parameter: course'));
+		}
+
+		if (! isset ($_POST['page'])) {
+			return $this->error (__ ('Missing parameter: page'));
+		}
+		
+		if ($_POST['page'] != $i->page) {
+			return $this->error (__ ('Invalid parameter: page'));
 		}
 
 		if (! $i->remove ()) {

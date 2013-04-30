@@ -262,19 +262,23 @@ var editor = (function ($) {
 			self.updating_items = true;
 			self.show_saving ();
 
-			$.post (self.prefix + 'item/delete', {item: item.id}, function (res) {
-				self.updating_items = false;
-				self.done_saving ();
+			$.post (
+				self.prefix + 'item/delete',
+				{course: self.course, page: self.page, item: item.id},
+				function (res) {
+					self.updating_items = false;
+					self.done_saving ();
 
-				if (! res.success) {
-					$.add_notification (res.error);
-				} else {
-					if (self.codemirror_instances[item.id]) {
-						self.codemirror_instances.splice (item.id, 1);
+					if (! res.success) {
+						$.add_notification (res.error);
+					} else {
+						if (self.codemirror_instances[item.id]) {
+							self.codemirror_instances.splice (item.id, 1);
+						}
+						self.items.remove (item);
 					}
-					self.items.remove (item);
 				}
-			});
+			);
 		}
 
 		return false;
@@ -295,19 +299,31 @@ var editor = (function ($) {
 		self.updating_items = true;
 		self.show_saving ();
 
-		var items = ko.toJS (self.items);
-		for (var i = 0; i < items.length; i++) {
-			items[i].sorting = i + 1;
+		var _items = ko.toJS (self.items),
+			items = [];
+		for (var i = 0; i < _items.length; i++) {
+			var item = {
+				id: _items[i].id,
+				title: _items[i].title,
+				sorting: i + 1,
+				content: _items[i].content,
+				answer: _items[i].answer
+			};
+			items.push (item);
 		}
 
-		$.post (self.prefix + 'item/update_all', {items: items}, function (res) {
-			self.updating_items = false;
-			self.done_saving ();
-
-			if (! res.success) {
-				$.add_notification (res.error);
+		$.post (
+			self.prefix + 'item/update_all',
+			{course: self.course, page: self.page, items: items},
+			function (res) {
+				self.updating_items = false;
+				self.done_saving ();
+	
+				if (! res.success) {
+					$.add_notification (res.error);
+				}
 			}
-		});
+		);
 
 		return false;
 	};
