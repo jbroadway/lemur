@@ -12,7 +12,7 @@ class Item extends \Model {
 	const FORMATTED  = 5;
 	const SCORM      = 6;
 	const FILE       = 7;
-	const ACCORDION  = 8; // not yet implemented
+	const ACCORDION  = 8;
 	const DEFINITION = 9;
 	const TEXT_INPUT = 10;
 	const PARA_INPUT = 11;
@@ -23,7 +23,7 @@ class Item extends \Model {
 
 	public static $input_types = array (10, 11, 12, 13, 14);
 
-	public static $all_types = array (1, 2, 3, 4, 5, 6, 7/*, 8*/, 9, 10, 11, 12, 13, 14, 15);
+	public static $all_types = array (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
 
 	public static function get_inputs ($course) {
 		return self::query ()
