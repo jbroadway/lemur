@@ -422,6 +422,22 @@ var editor = (function ($) {
 	};
 
 	/**
+	 * Open the file browser for an image file.
+	 */
+	self.filemanager_cover = function () {
+		var item = this;
+
+		$.filebrowser ({
+			title: self.str.choose_image,
+			thumbs: true,
+			callback: function (file) {
+				item.answer (file);
+				self.update_items ();
+			}
+		});
+	};
+
+	/**
 	 * Open the file browser for an audio file.
 	 */
 	self.filemanager_audio = function () {
