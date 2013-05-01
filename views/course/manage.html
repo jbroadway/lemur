@@ -11,7 +11,7 @@
 <ul id="pages">
 {% foreach pages as id, title %}
 	<li data-id="{{id}}">
-		<div class="draggable"><i class="icon-sort"></i> <a id="page-title-{{id}}" href="/lemur/course/{{course}}/{{course_title|URLify::filter}}/{{id}}/{{title|URLify::filter}}">{{title}}</a></div>
+		<div class="draggable"><i class="icon-sort"></i> <a id="page-title-{{id}}" href="/course/{{course}}/{{course_title|URLify::filter}}/{{id}}/{{title|URLify::filter}}">{{title}}</a></div>
 		<div style="text-align: right">
 			<a href="#" class="page-rename" data-id="{{id}}" data-title="{{title|quotes}}">{"Rename"}</a>
 			&nbsp;|&nbsp;
