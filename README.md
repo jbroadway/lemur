@@ -2,7 +2,7 @@
 
 An e-learning app for the [Elefant CMS](http://www.elefantcms.com/).
 
-**Status: Alpha**
+**Status: Beta**
 
 Course building and management is complete, learner management is
 mostly complete, and basic course publishing works, with learner
