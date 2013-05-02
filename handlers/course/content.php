@@ -29,7 +29,7 @@ $this->run ('filemanager/util/browser');
 
 $page->add_style ('/apps/admin/js/redactor/redactor.css');
 $page->add_style ('/apps/lemur/js/codemirror/lib/codemirror.css');
-$page->add_style ('/apps/filemanager/css/mediaelement/mediaelementplayer.css');
+$page->add_style ('/apps/lemur/css/video-js.min.css');
 $page->add_style ('/apps/lemur/css/admin.css');
 $page->add_style ('/apps/lemur/css/items.css');
 
@@ -39,7 +39,7 @@ $page->add_script ('/apps/lemur/js/knockout-2.2.0.min.js');
 $page->add_script ('/apps/lemur/js/knockout-sortable.min.js');
 $page->add_script ('/apps/admin/js/redactor/redactor.min.js');
 $page->add_script ('/apps/lemur/js/codemirror/lib/codemirror.js');
-$page->add_script ('/apps/filemanager/js/mediaelement-and-player.min.js');
+$page->add_script ('/apps/lemur/js/video.min.js');
 $page->add_script ('/apps/lemur/js/codemirror/mode/xml/xml.js');
 $page->add_script ('/apps/lemur/js/codemirror/mode/javascript/javascript.js');
 $page->add_script ('/apps/lemur/js/codemirror/mode/css/css.js');

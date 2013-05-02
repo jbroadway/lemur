@@ -118,14 +118,16 @@ $(function () {
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			{"Preview"}:<br />
-			<div class="item-preview"><video width="480" height="270" controls="controls" preload="none" data-bind="attr: { id: 'video-' + id }">
-			    <source type="video/mp4" data-bind="attr: { src: content }" />
-			    <object width="480" height="270" type="application/x-shockwave-flash" data="/apps/filemanager/js/flashmediaelement.swf">
-			        <param name="movie" value="/apps/filemanager/js/flashmediaelement.swf" />
-			        <param name="flashvars" data-bind="value: 'controls=true&file=' + content" />
-			        {"No video playback capabilities"}
-			    </object>
-			</video></div>
+			<div class="item-preview">
+				<video width="480" height="270" controls preload="none" class="video-js vjs-default-skin" data-bind="attr: { id: 'video-' + id }">
+				    <source type="video/mp4" data-bind="attr: { src: content }" />
+				    <object width="480" height="270" type="application/x-shockwave-flash" data="/apps/filemanager/js/flashmediaelement.swf">
+				        <param name="movie" value="/apps/filemanager/js/flashmediaelement.swf" />
+				        <param name="flashvars" data-bind="value: 'controls=true&file=' + content" />
+				        {"No video playback capabilities"}
+				    </object>
+				</video>
+			</div>
 			<input type="hidden" name="content" placeholder="http://" data-bind="value: content, attr: { id: 'content-' + id }, event: { blur: editor.update_items }" size="76" />
 			<input type="submit" class="browse-button" value="{"Browse"}" data-bind="event: { click: editor.filemanager_video }" />
 		</p>

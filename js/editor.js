@@ -137,7 +137,10 @@ var editor = (function ($) {
 	 */
 	self.initialize_plugins = function () {
 		$('.wysiwyg').redactor (self.redactor_options);
-		$('video,audio').mediaelementplayer ();
+		_V_.options.flash.swf = '/apps/lemur/css/video-js.swf';
+		$('video').each (function () {
+			_V_ ($(this).attr ('id'));
+		});
 
 		$('.html').each (function () {
 			var id = $(this).data ('id');
@@ -417,6 +420,8 @@ var editor = (function ($) {
 			callback: function (file) {
 				item.content (file);
 				self.update_items ();
+				var vid = _V_ ('video-' + item.id);
+				vid.src (file);
 			}
 		});
 	};
