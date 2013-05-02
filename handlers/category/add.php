@@ -1,6 +1,6 @@
 <?php
 
-$this->require_admin ();
+$this->require_acl ('admin', 'lemur');
 
 if (! isset ($_GET['category']) || empty ($_GET['category'])) {
 	$this->redirect ('/lemur/admin');

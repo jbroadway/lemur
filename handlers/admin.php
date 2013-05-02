@@ -2,7 +2,7 @@
 
 $page->layout = 'admin';
 
-$this->require_admin ();
+$this->require_acl ('admin', 'lemur');
 
 $page->title = __ ('Courses');
 

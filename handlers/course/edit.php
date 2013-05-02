@@ -2,7 +2,7 @@
 
 $page->layout = 'admin';
 
-$this->require_admin ();
+$this->require_acl ('admin', 'lemur');
 
 $c = new lemur\Course ($_GET['id']);
 if ($c->error) {
