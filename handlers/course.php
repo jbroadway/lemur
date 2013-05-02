@@ -18,7 +18,15 @@ if ((int) $course->status < 2) {
 	return;
 }
 
-if ((int) $course->availability === 2 || (User::is_valid () && ($course->instructor == User::val ('id') || lemur\Learner::in_course ($cid)))) {
+if (User::is_valid ()) {
+	$is_instructor = ($course->instructor == User::val ('id'));
+	$is_learner = (! $instructor) ? lemur\Learner::in_course ($cid) : false;
+} else {
+	$is_instructor = false;
+	$is_learner = false;
+}
+
+if (((int) $course->availability === 2 && $_SERVER['REQUEST_METHOD'] === 'GET') || $is_instructor || $is_learner) {
 	// free or already registered, show the course
 	$page->title = $course->title;
 	$page->layout = $appconf['Lemur']['layout'];
@@ -47,6 +55,8 @@ if ((int) $course->availability === 2 || (User::is_valid () && ($course->instruc
 		// contact the instructor
 		$course = $course->orig ();
 		$course->pages = $pages;
+		$course->is_instructor = $is_instructor;
+		$course->is_learner = $is_learner;
 		echo $this->run ('lemur/course/contact', $course);
 		return;
 	} elseif ($this->params[2] === 'glossary') {
@@ -60,6 +70,8 @@ if ((int) $course->availability === 2 || (User::is_valid () && ($course->instruc
 				'glossary' => $course->glossary (),
 				'has_glossary' => $course->has_glossary,
 				'instructor' => $course->instructor,
+				'is_instructor' => $is_instructor,
+				'is_learner' => $is_learner,
 				'comments_id' => 'lemur-course-' . $course->id . '-glossary'
 			)
 		);
@@ -134,7 +146,9 @@ if ((int) $course->availability === 2 || (User::is_valid () && ($course->instruc
 			'page_body' => $page_body,
 			'comments_id' => 'lemur-course-' . $course->id . '-' . $pid,
 			'has_glossary' => $course->has_glossary,
-			'instructor' => $course->instructor
+			'instructor' => $course->instructor,
+			'is_instructor' => $is_instructor,
+			'is_learner' => $is_learner
 		)
 	);
 
@@ -143,32 +157,47 @@ if ((int) $course->availability === 2 || (User::is_valid () && ($course->instruc
 
 switch ((int) $course->availability) {
 	case 1:
-		// private
-		echo $this->error (404, __ ('Course not found'), __ ('The course you requested could not be found.'));
-		return;
-
-	case 3:
-		// free w/ registration, show summary and login/join link
-		$page->title = $course->title;
-		$page->layout = $appconf['Lemur']['layout'];
-		$page->add_script ('/apps/lemur/css/default.css');
-		echo View::render ('lemur/course/summary', $course);
-
+		// private, show login or 404
+		
 		// show login form
 		if (! User::is_valid ()) {
 			$this->redirect ('/user/login?redirect=' . urlencode ($_SERVER['REQUEST_URI']));
 		}
 
-		// add learner
-		$res = lemur\Learner::add_to_course ($course->id, User::val ('id'));
-		if (! $res) {
-			error_log (DB::error ());
-			echo $this->error (404, __ ('An error occurred'), __ ('There was an error in the course registration. Please try again later.'));
-			return;
-		}
+		// still no access, show 404
+		echo $this->error (404, __ ('Course not found'), __ ('The course you requested could not be found.'));
+		return;
 
-		// reload to show course
-		$this->redirect ($_SERVER['REQUEST_URI']);
+	case 2:
+	case 3:
+		// free or free w/ registration, show summary and login/join link
+		
+		// show login form
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			if (! User::is_valid ()) {
+				$this->redirect ('/user/login?redirect=' . urlencode ($_SERVER['REQUEST_URI']));
+			}
+
+			// add learner
+			if ($_POST['subscribe'] == 1) {
+				$res = lemur\Learner::add_to_course ($course->id, User::val ('id'));
+				if (! $res) {
+					error_log (DB::error ());
+					echo $this->error (404, __ ('An error occurred'), __ ('There was an error in the course registration. Please try again later.'));
+					return;
+				}
+
+				// reload to show course
+				$this->redirect ($_SERVER['REQUEST_URI']);
+				return;
+			}
+		}
+		
+		// show summary
+		$page->title = $course->title;
+		$page->layout = $appconf['Lemur']['layout'];
+		$page->add_script ('/apps/lemur/css/default.css');
+		echo View::render ('lemur/course/summary', $course);
 		return;
 
 	case 4:
@@ -179,11 +208,13 @@ switch ((int) $course->availability) {
 		echo View::render ('lemur/course/summary', $course);
 
 		// show login form
-		if (! User::is_valid ()) {
-			$this->redirect ('/user/login?redirect=' . urlencode ($_SERVER['REQUEST_URI']));
-		}
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			if (! User::is_valid ()) {
+				$this->redirect ('/user/login?redirect=' . urlencode ($_SERVER['REQUEST_URI']));
+			}
 
-		// TODO: show pay wall
+			// TODO: show pay wall
+		}
 
 		return;
 }

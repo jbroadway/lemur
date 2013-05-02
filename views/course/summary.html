@@ -10,13 +10,13 @@
 
 <p>{{summary}}<br />
 
+<form method="post">
+<input type="hidden" name="subscribe" value="1" />
 {% if availability == 4 %}
-	<strong class="lemur-course-price lemur-course-price-paid">{{price|lemur\Filter::money}}</strong>
-{% elseif availability == 3 %}
-	<strong class="lemur-course-price lemur-course-price-free">{"Free with registration"}</strong>
+	<button class="lemur-course-price lemur-course-price-paid">{"Join this course"} - {{price|lemur\Filter::money}}</button>
 {% else %}
-	<strong class="lemur-course-price lemur-course-price-free">{"Free"}</strong>
+	<button class="lemur-course-price lemur-course-price-free">{"Join this course for free"}</button>
 {% end %}
-</p>
+</form>
 
 </div>
