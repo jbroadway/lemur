@@ -60,6 +60,16 @@ class Data extends Model {
 			$course
 		);
 	}
+
+	public static function learner_status ($course, $user = false) {
+		$user = $user ? $user : User::val ('id');
+		return DB::shift (
+			'select (sum(status) * 100) / count() from lemur_data
+			where course = ? and user = ?',
+			$course,
+			$user
+		);
+	}
 }
 
 ?>

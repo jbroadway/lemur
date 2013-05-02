@@ -40,6 +40,10 @@
 			</ul>
 		</div>
 	{% end %}
+	
+	{% if is_learner %}
+		<p class="lemur-learner-progress">{"Your progress"}: {! lemur/status?course=[id] !}</p>
+	{% end %}
 </div>
 
 <div id="lemur-course-body">
