@@ -82,6 +82,13 @@ if ((int) $course->availability === 2 || (User::is_valid () && ($course->instruc
 	foreach ($items as $k => $item) {
 		if (in_array ((int) $item->type, lemur\Item::$input_types)) {
 			$item_ids[] = $item->id;
+		} elseif ($item->type == 3) { // video
+			$page->add_style ('/apps/lemur/css/video-js.min.css');
+			$page->add_script ('/apps/lemur/js/video.min.js');
+		} elseif ($item->type == 15) { // audio
+			$page->add_style ('<style>.audiojs audio{display:none;}</style>');
+			$page->add_script ('/apps/lemur/js/audiojs/audio.min.js');
+			$page->add_script ('<script>audiojs.events.ready(function(){audiojs.createAll();});</script>');
 		}
 	}
 

@@ -1,6 +1,16 @@
 <div id="item-{{id}}" class="lemur-item item-video">
 	<figure>
-		{! filemanager/video?file=[content]&poster=[answer] !}
+		<video
+				width="480"
+				height="270"
+				controls
+				preload="metadata"
+				class="video-js vjs-default-skin"
+				id="video-{{id}}"
+				data-setup="{}"
+				{% if answer != '' %}poster="{{answer}}"{% end %}>
+			<source type="video/mp4" src="{{content}}" />
+		</video>
 		<figcaption>{{title}}</figcaption>
 	</figure>
 </div>

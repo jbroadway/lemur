@@ -141,6 +141,7 @@ var editor = (function ($) {
 		$('video').each (function () {
 			_V_ ($(this).attr ('id'));
 		});
+		audiojs.createAll ();
 
 		$('.html').each (function () {
 			var id = $(this).data ('id');
@@ -454,6 +455,12 @@ var editor = (function ($) {
 			callback: function (file) {
 				item.content (file);
 				self.update_items ();
+				for (var i in audiojs.instances) {
+					if ($(audiojs.instances[i].element).attr ('id') === 'audio-' + item.id) {
+						audiojs.instances[i].load (file);
+						break;
+					}
+				}
 			}
 		});
 	};

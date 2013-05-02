@@ -1,6 +1,6 @@
 <div id="item-{{id}}" class="lemur-item item-audio">
 	<figure>
-		{! filemanager/audio?file=[content] !}
+		<audio type="audio/mp3" controls id="audio-{{id}}" src="{{content}}"></audio>
 		<figcaption>{{title}}</figcaption>
 	</figure>
 </div>

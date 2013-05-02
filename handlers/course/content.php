@@ -40,6 +40,7 @@ $page->add_script ('/apps/lemur/js/knockout-sortable.min.js');
 $page->add_script ('/apps/admin/js/redactor/redactor.min.js');
 $page->add_script ('/apps/lemur/js/codemirror/lib/codemirror.js');
 $page->add_script ('/apps/lemur/js/video.min.js');
+$page->add_script ('/apps/lemur/js/audiojs/audio.min.js');
 $page->add_script ('/apps/lemur/js/codemirror/mode/xml/xml.js');
 $page->add_script ('/apps/lemur/js/codemirror/mode/javascript/javascript.js');
 $page->add_script ('/apps/lemur/js/codemirror/mode/css/css.js');
