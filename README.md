@@ -17,7 +17,7 @@ through learning.
 
 Here is a screenshot of the Lemur Learning course editor:
 
-![Lemur Learning course editor](https://github.com/cewca/lemur/blob/master/pix/screenshot-editor.png)
+![Lemur Learning course editor](https://raw.github.com/cewca/lemur/master/pix/screenshot-editor.png)
 
 ## Features
 
