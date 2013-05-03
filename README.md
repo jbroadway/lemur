@@ -1,12 +1,35 @@
 # Lemur Learning
 
-An e-learning app for the [Elefant CMS](http://www.elefantcms.com/).
-
 **Status: Beta**
 
-Course building and management is complete, learner management is
-mostly complete, and basic course publishing works, with learner
-input and registration also underway.
+An e-learning app for the [Elefant CMS](http://www.elefantcms.com/). Lemur aims
+to be the Wordpress of e-learning, a simple way to publish and host your own
+courses.
+
+However, Lemur has a ways to go before it is ready for non-developers. We still
+have a number of features to finish, reams of documentation to write, and more
+work to do to make it as simple as possible to get up and running, regardless
+of your skill level.
+
+Lemur Learning is brought to you by the [Centre for Education and Work](http://www.cewca.org/),
+a Canadian non-profit dedicated to helping Canadians improve their lives
+through learning.
+
+Here is a screenshot of the Lemur Learning course editor:
+
+![Lemur Learning course editor](https://github.com/cewca/lemur/blob/master/pix/screenshot-editor.png)
+
+## Features
+
+* Publish your own courses of any length
+* Easy-to-use and powerful course editor
+* Embed SCORM modules and other dynamic content into courses
+* Courses can be free, paid, or private
+* Easy learner account management
+* Learner input and instructor feedback cycle
+* Built on a fast, completely modern CMS platform
+* Easy theming of your learner website
+* Integrate with the Lemur Learning API
 
 ## To do
 
