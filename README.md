@@ -58,6 +58,10 @@ your site root as `bootstrap.php` (if the file `bootstrap.php` already exists,
 simply copy the initialization code from `sample_bootstrap.php` into your
 existing bootstrap file.
 
+> **Optional:** Copy the `product.php` file from your `apps/lemur` folder into
+> the global `conf` folder, overwriting the existing copy. This will replace the
+> Elefant branding with Lemur's own.
+
 Now log into Elefant and run the Lemur installer by navigating to Tools > Courses.
 You should now have a working Lemur installation.
 
