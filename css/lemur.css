@@ -1,3 +1,7 @@
+#toggle-full.active { background: url(/apps/lemur/pix/full-on.png) !important; }
+#toggle-list.active { background: url(/apps/lemur/pix/list-on.png) !important; }
+#toggle-preview.active { background: url(/apps/lemur/pix/preview-on.png) !important; }
+
 body {
 	background: #f5f5f5;
 	color: #333;
