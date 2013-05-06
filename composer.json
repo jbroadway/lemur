@@ -17,8 +17,8 @@
     ],
     "require": {
         "elefant/app-installer": "*",
-        "elefant/app-comments": "dev-master",
-        "elefant/app-scorm": "dev-master"
+        "elefant/app-comments": "1.0.*",
+        "elefant/app-scorm": "1.0.*"
     },
     "scripts": {
     	"post-install-cmd": "php index.php lemur/post-install"
