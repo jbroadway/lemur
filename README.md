@@ -41,7 +41,6 @@ Backend:
 Public-facing:
 
 * Pay wall for paid courses
-* Status indicator (course completion w/ link to next outstanding question)
 
 Email notifications:
 
