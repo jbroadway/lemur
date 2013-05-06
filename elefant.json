@@ -2,7 +2,7 @@
     "type":         "app",
     "folder":       "lemur",
     "name":         "Lemur Learning",
-    "version":      "0.6.0",
+    "version":      "0.6.1",
     "website":      "http://www.lemurlearning.com/",
     "repository":   "git://github.com/cewca/lemur.git",
     "author": {
