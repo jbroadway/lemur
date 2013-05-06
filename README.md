@@ -63,29 +63,35 @@ Documentation:
 
 ## Installation
 
-First, you will need to install the following Elefant apps that Lemur depends on:
+First, you will need to install the [Elefant CMS](http://www.elefantcms.com/download).
+Once that is running, follow these steps:
+
+1\. From the root folder of the site run the following command:
+
+```bash
+php composer.phar require elefant/app-lemur
+```
+
+This will also install the following apps that Lemur depends on:
 
 * [Comments](https://github.com/jbroadway/comments)
 * [SCORM](https://github.com/jbroadway/scorm)
 
-Next, clone Lemur into your apps folder:
+2\. Log into Elefant and run the Lemur installer by navigating to Tools > Courses.
 
-```
-cd apps
-git clone git://github.com/cewca/lemur.git
-```
+### Optional steps
 
-Finally, copy the `sample_bootstrap.php` file from your `apps/lemur` folder into
-your site root as `bootstrap.php` (if the file `bootstrap.php` already exists,
-simply copy the initialization code from `sample_bootstrap.php` into your
-existing bootstrap file.
+3\. Go to Tools > Navigation and add the `Courses` page to your site tree.
 
-> **Optional:** Copy the `product.php` file from your `apps/lemur` folder into
-> the global `conf` folder, overwriting the existing copy. This will replace the
-> Elefant branding with Lemur's own.
+4\. Go to Tools > Designer and set the Lemur theme as the default.
 
-Now log into Elefant and run the Lemur installer by navigating to Tools > Courses.
+5\. Copy the `product.php` file from your `apps/lemur` folder into the global
+`conf` folder, overwriting the existing copy. This will replace the Elefant
+branding with Lemur's own.
+
 You should now have a working Lemur installation.
+
+## First steps
 
 To create courses, go to Tools > Courses. To install SCORM modules for use in your
 courses, go to Tools > SCORM. To view the list of courses on your site visit the

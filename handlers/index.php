@@ -2,7 +2,6 @@
 
 $page->title = __ ($appconf['Lemur']['public_name']);
 $page->layout = $appconf['Lemur']['layout'];
-$page->add_script ('/apps/lemur/css/default.css');
 
 // fetch sorted categories
 $categories = lemur\Category::sorted ();
