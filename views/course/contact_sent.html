@@ -1,19 +1,40 @@
 <div id="lemur-course-menu">
-	<p>{"Contents"}:</p>
+	<h3>{"Contents"}:</h3>
 
 	<ol>
 	{% foreach pages as page_id, page_title %}
 		<li><a href="/course/{{id}}/{{title|URLify::filter}}/{{page_id}}/{{page_title|URLify::filter}}">{{page_title}}</a></li>
 	{% end %}
 	</ol>
-	<p>
+
+	<p class="lemur-learner-links">
+	{% if is_learner %}
 	{% if instructor %}
 		<a href="/course/{{id}}/{{title|URLify::filter}}/contact" class="current">{"Email instructor"}</a><br />
+	{% end %}
 	{% end %}
 	{% if has_glossary %}
 		<a href="/course/{{id}}/{{title|URLify::filter}}/glossary">{"Glossary"}</a>
 	{% end %}
 	</p>
+
+	{% if is_instructor %}
+		<div class="lemur-instructor-menu">
+			<p>{"Instructor Links"}:</p>
+			<ul>
+				<li><a href="/lemur/course/learners?id={{id}}">{"Learners"}</a></li>
+				<li><a href="/lemur/course/manage?id={{id}}">{"Edit course"}</a></li>
+				<li><a href="/lemur/course/edit?id={{id}}">{"Settings"}</a></li>
+			</ul>
+		</div>
+	{% end %}
+	
+	{% if is_learner %}
+		<p class="lemur-learner-progress">
+			{"Your progress"}:<br />
+			{! lemur/status?course=[id] !}
+		</p>
+	{% end %}
 </div>
 
 <div id="lemur-course-body">

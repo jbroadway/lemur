@@ -4,7 +4,7 @@
 	{% if ! is_instructor %}
 	{% if ! is_learner %}
 		<form method="post">
-		<p>
+		<p class="lemur-subscribe">
 			<input type="hidden" name="subscribe" value="1" />
 			<button class="lemur-course-price lemur-course-price-free">{"Join this course"}</button>
 		</p>
@@ -12,14 +12,14 @@
 	{% end %}
 	{% end %}
 
-	<p>{"Contents"}:</p>
+	<h3>{"Contents"}:</h3>
 
 	<ol>
 	{% foreach pages as page_id, page_title %}
 		<li{% if page_id == $data->id %} class="current"{% end %}><a href="/course/{{course}}/{{course_title|URLify::filter}}/{{page_id}}/{{page_title|URLify::filter}}">{{page_title}}</a></li>
 	{% end %}
 	</ol>
-	<p>
+	<p class="lemur-learner-links">
 	{% if is_learner %}
 	{% if instructor %}
 		<a href="/course/{{course}}/{{course_title|URLify::filter}}/contact">{"Email instructor"}</a><br />
