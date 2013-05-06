@@ -4,6 +4,11 @@
  * Display the status of a learner within a course.
  */
 
-echo lemur\Data::learner_status ($data['course'], User::val ('id')) . '%';
+echo $tpl->render (
+	'lemur/status',
+	array (
+		'status' => lemur\Data::learner_status ($data['course'], User::val ('id'))
+	)
+);
 
 ?>

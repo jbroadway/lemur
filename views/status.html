@@ -1,0 +1,7 @@
+<span class="learner-progress-bar" title="{{status}}% {"complete"}">
+{% if status == 100 %}
+	<span class="learner-progress-done"></span>
+{% else %}
+	<span class="learner-progress-made" style="width: {{status}}% !important"></span>
+{% end %}
+</span>

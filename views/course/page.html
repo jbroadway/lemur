@@ -42,7 +42,10 @@
 	{% end %}
 	
 	{% if is_learner %}
-		<p class="lemur-learner-progress">{"Your progress"}: {! lemur/status?course=[id] !}</p>
+		<p class="lemur-learner-progress">
+			{"Your progress"}:<br />
+			{! lemur/status?course=[id] !}
+		</p>
 	{% end %}
 </div>
 
