@@ -22,13 +22,13 @@ class Data extends Restful {
 		if ($item->error) {
 			return $this->error (__ ('Question not found.'));
 		}
-		
+
 		$data = \lemur\Data::query ()
 			->where ('user', User::val ('id'))
 			->where ('item', $id)
 			->single ();
 
-		if ($data->error) {
+		if (!$data or $data->error) {
 			$data = new \lemur\Data (array (
 				'course' => $item->course,
 				'user' => User::val ('id'),
@@ -40,11 +40,11 @@ class Data extends Restful {
 				'feedback' => ''
 			));
 		}
-		
+
 		if ($data->status == 1) {
 			return $this->error (__ ('Question already answered.'));
 		}
-		
+
 		$data->answer = trim ($_POST['answer']);
 		$data->status = 1;
 		$data->ts = gmdate ('Y-m-d H:i:s');
@@ -67,7 +67,7 @@ class Data extends Restful {
 			error_log ('Error saving answer: ' . $data->error);
 			return $this->error (__ ('An unknown error occurred.'));
 		}
-		
+
 		if ($correct === 'no') {
 			return array (
 				'correct' => $correct,
