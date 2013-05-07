@@ -77,6 +77,9 @@ This will also install the following apps that Lemur depends on:
 * [Comments](https://github.com/jbroadway/comments)
 * [SCORM](https://github.com/jbroadway/scorm)
 
+> **Note:** You may need to add `"minimum-stability": "dev"` to your `composer.json`
+> file in order for Composer to work correctly while Lemur is still in development.
+
 2\. Log into Elefant and run the Lemur installer by navigating to Tools > Courses.
 
 ### Optional steps
