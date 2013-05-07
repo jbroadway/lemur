@@ -127,28 +127,21 @@ a:hover {
 	padding-left: 10px;
 }
 
-#lemur-course-menu ol, #lemur-other-menu ol {
+#lemur-course-menu ol, #lemur-other-menu ol,
+#lemur-course-menu ul, #lemur-other-menu ul {
 	padding-left: 20px;
 }
 
 #lemur-course-menu li, #lemur-other-menu li {
-	font-family: 'Telex';
 	font-size: 13px;
-	margin-top: 10px;
+	margin-top: 3px;
 	margin-left: 0;
 	padding-left: 0;
 }
 
-#lemur-course-menu a {
-	color: #222;
-}
-
-#lemur-course-menu li.current {
-	color: #6a9678;
-}
-
 #lemur-course-menu li.current a {
-	color: #6a9678;
+	color: #222;
+	font-weight: bold;
 }
 
 #lemur-course-menu p.lemur-learner-links {
@@ -165,6 +158,11 @@ a:hover {
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
+}
+
+.lemur-instructor-menu p {
+	font-weight: bold;
+	color: #404041;
 }
 
 #lemur-course-body {
