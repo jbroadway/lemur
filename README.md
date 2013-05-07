@@ -80,15 +80,29 @@ This will also install the following apps that Lemur depends on:
 > **Note:** You may need to add `"minimum-stability": "dev"` to your `composer.json`
 > file in order for Composer to work correctly while Lemur is still in development.
 
-2\. Log into Elefant and run the Lemur installer by navigating to Tools > Courses.
+2\. Copy the file `apps/lemur/sample_bootstrap.php` into your document root and rename
+it `bootstrap.php`. If a `bootstrap.php` already exists, open the file and add the
+relevant lines of code to your existing `bootstrap.php` file.
+
+```bash
+cp apps/lemur/sample_bootstrap.php bootstrap.php
+```
+
+3\. Copy the `apps/lemur/theme` folder into your `layouts` folder and rename it `lemur`.
+
+```bash
+cp -R apps/lemur/theme layouts/lemur
+```
+
+4\. Log into Elefant and run the Lemur installer by navigating to Tools > Courses.
 
 ### Optional steps
 
-3\. Go to Tools > Navigation and add the `Courses` page to your site tree.
+5\. Go to Tools > Navigation and add the `Courses` page to your site tree.
 
-4\. Go to Tools > Designer and set the Lemur theme as the default.
+6\. Go to Tools > Designer and set the Lemur layout as your default.
 
-5\. Copy the `product.php` file from your `apps/lemur` folder into the global
+7\. Copy the `product.php` file from your `apps/lemur` folder into the global
 `conf` folder, overwriting the existing copy. This will replace the Elefant
 branding with Lemur's own.
 
