@@ -3,8 +3,8 @@
 **Status: Beta**
 
 An e-learning app for the [Elefant CMS](http://www.elefantcms.com/). Lemur aims
-to be the Wordpress of e-learning, a simple way to publish and host your own
-courses.
+to be the Wordpress of e-learning, a free and ultra-simple way to publish and
+host your own courses that keeps you in control.
 
 However, Lemur has a ways to go before it is ready for non-developers. We still
 have a number of features to finish, reams of documentation to write, and more
