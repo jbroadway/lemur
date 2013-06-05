@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ conf('General', 'site_name') }} - {{ window_title|none }}</title>
+	<meta charset="{{ i18n.charset }}" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Telex" />
+	<link rel="stylesheet" href="/layouts/lemur/style.css" />
+	{! admin/head !}
+	{{ head|none }}
+</head>
+<body>
+<div id="wrapper" class="container_12">
+	<div id="head" class="grid_12 alpha omega">
+		<h1><a href="/">{{ conf('General', 'site_name') }}</a></h1>
+		<div id="navbar">
+			{! navigation/top !}
+		</div>
+{% if User::is_valid() %}
+		<div id="userbar">
+			<a href="/user">{{User::val('name')}}</a> | <a href="/user/logout">{"Log out"}</a>
+		</div>
+{% end %}
+	</div>
+	<div class="clear"></div>
+	<div id="body" class="grid_12 alpha omega">
+
+<div id="lemur-other-menu">
+{! blocks/index?id=sidebar-[id]&fallback=members !}
+</div>
+		
+{% if title != '' %}<h2>{{ title|none }}</h2>{% end %}
+{{ body|none }}
+
+<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+</div>
+{{ tail|none }}
+</body>
+</html>

@@ -29,7 +29,7 @@ var course = (function ($) {
 		var id = $(this).data ('id'),
 			answer = $('#input-' + id).val (),
 			instructor = this.elements.hasOwnProperty ('instructor');
-		
+
 		if (instructor) {
 			alert (self.strings.instructor);
 			return false;
@@ -49,6 +49,13 @@ var course = (function ($) {
 				}
 			} else if (el.hasOwnProperty ('selectedIndex')) {
 				answer = el.options[el.selectedIndex].value;
+            } else if (el.length) {
+				for (var i = 0; i < el.length; i++) {
+					if ($(el[i]).is (':checked')) {
+						answer = $(el[i]).attr ('value');
+						break;
+					}
+				}
 			} else {
 				answer = el.value;
 			}

@@ -1,0 +1,5 @@
+; <?php /*
+
+lemur = "Modify courses"
+
+; */ ?>

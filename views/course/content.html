@@ -117,9 +117,21 @@ $(function () {
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
-			<label>{"Video"}:</label>
-			<input type="text" name="content" placeholder="http://" data-bind="value: content, attr: { id: 'content-' + id }, event: { blur: editor.update_items }" size="76" />
-			<input type="submit" value="{"Browse"}" data-bind="event: { click: editor.filemanager_video }" />
+			{"Preview"}:<br />
+			<div class="item-preview">
+				<video width="480" height="270" controls preload="metadata" class="video-js vjs-default-skin" data-bind="attr: { id: 'video-' + id }">
+				    <source type="video/mp4" data-bind="attr: { src: content }" />
+				</video>
+			</div>
+			<input type="hidden" name="content" placeholder="http://" data-bind="value: content, attr: { id: 'content-' + id }, event: { blur: editor.update_items }" size="76" />
+			<input type="submit" class="browse-button" value="{"Browse"}" data-bind="event: { click: editor.filemanager_video }" />
+		</p>
+		<p>
+			{"Cover photo (min 480x270)"}:<br />
+			<img data-bind="attr: { src: answer }" class="item-preview" /><br />
+			<input type="hidden" name="answer" placeholder="http://" data-bind="value: answer, attr: { id: 'answer-' + id }, event: { blur: editor.update_items }" size="76" />
+			<input type="submit" class="browse-button" value="{"Browse"}" data-bind="event: { click: editor.filemanager_cover }" />
+		</p>
 		</p>
 		<p>
 			<label>{"Description"}:</label>
@@ -346,9 +358,12 @@ $(function () {
 		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
-			<label>{"Audio"}:</label>
-			<input type="text" name="content" placeholder="http://" data-bind="value: content, attr: { id: 'content-' + id }, event: { blur: editor.update_items }" size="76" />
-			<input type="submit" value="{"Browse"}" data-bind="event: { click: editor.filemanager_audio }" />
+			{"Preview"}:<br />
+			<div class="item-preview">
+				<audio type="audio/mp3" controls preload="none" data-bind="attr: { id: 'audio-' + id, src: content }"></audio>
+			</div>
+			<input type="hidden" name="content" placeholder="http://" data-bind="value: content, attr: { id: 'content-' + id }, event: { blur: editor.update_items }" size="76" />
+			<input type="submit" class="browse-button" value="{"Browse"}" data-bind="event: { click: editor.filemanager_audio }" />
 		</p>
 		<p>
 			<label>{"Description"}:</label>

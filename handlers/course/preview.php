@@ -1,6 +1,6 @@
 <?php
 
-$this->require_admin ();
+$this->require_acl ('admin', 'lemur');
 
 $page->layout = false;
 

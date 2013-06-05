@@ -1,6 +1,6 @@
 <?php
 
-$this->require_admin ();
+$this->require_acl ('admin', 'lemur');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 	$this->redirect ('/lemur/admin');

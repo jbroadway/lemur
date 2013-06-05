@@ -137,7 +137,11 @@ var editor = (function ($) {
 	 */
 	self.initialize_plugins = function () {
 		$('.wysiwyg').redactor (self.redactor_options);
-		$('video,audio').mediaelementplayer ();
+		_V_.options.flash.swf = '/apps/lemur/css/video-js.swf';
+		$('video').each (function () {
+			_V_ ($(this).attr ('id'));
+		});
+		audiojs.createAll ();
 
 		$('.html').each (function () {
 			var id = $(this).data ('id');
@@ -417,6 +421,24 @@ var editor = (function ($) {
 			callback: function (file) {
 				item.content (file);
 				self.update_items ();
+				var vid = _V_ ('video-' + item.id);
+				vid.src (file);
+			}
+		});
+	};
+
+	/**
+	 * Open the file browser for an image file.
+	 */
+	self.filemanager_cover = function () {
+		var item = this;
+
+		$.filebrowser ({
+			title: self.str.choose_image,
+			thumbs: true,
+			callback: function (file) {
+				item.answer (file);
+				self.update_items ();
 			}
 		});
 	};
@@ -433,6 +455,12 @@ var editor = (function ($) {
 			callback: function (file) {
 				item.content (file);
 				self.update_items ();
+				for (var i in audiojs.instances) {
+					if ($(audiojs.instances[i].element).attr ('id') === 'audio-' + item.id) {
+						audiojs.instances[i].load (file);
+						break;
+					}
+				}
 			}
 		});
 	};

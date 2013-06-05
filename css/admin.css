@@ -334,3 +334,7 @@
 	width: 98%;
 	overflow: auto;
 }
+
+.audiojs audio {
+	display: none;
+}
