@@ -8,7 +8,7 @@ var course = (function ($) {
 	self.answer = '';
 
 	self.strings = {
-		answered: 'You answered',
+		answered: 'You have submitting the following answer',
 		correct: 'correct',
 		incorrect: 'incorrect',
 		instructor: 'Sorry, but instructors cannot submit answers.'
@@ -88,8 +88,10 @@ var course = (function ($) {
 		$(self.form).replaceWith (
 			'<div class="item-answer">' +
 			'<strong class="item-question">' + question + '</strong><br />' +
-			self.strings.answered + ': <span class="item-answer">' + answer + '</span>' +
-			correct + '</div>'
+			'<div class="learner-response">' +
+			'<span class="learner-notice">' + self.strings.answered + ':</span> ' +
+			'<span class="learner-answer">' + answer + '</span>' +
+			correct + '</div></div>'
 		);
 	};
 

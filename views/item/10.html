@@ -2,12 +2,15 @@
 	{% if answered %}
 	<div class="item-answer">
 	<strong class="item-question">{{title}}</strong><br />
-	{"You answered"}: <span class="item-answer">{{answer}}</span>
+	<div class="learner-response">
+		<span class="learner-notice">{"You have submitting the following answer"}:</span>
+		<span class="item-answer">{{answer}}</span>
 		{% if correct === -1 %}
 		({"incorrect"})
 		{% elseif correct === 1 %}
 		({"correct"})
 		{% end %}
+	</div>
 	</div>
 	{% else %}
 	<form class="item-input-form" data-id="{{id}}" data-question="{{title|quotes}}">
