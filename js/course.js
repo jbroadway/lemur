@@ -8,7 +8,7 @@ var course = (function ($) {
 	self.answer = '';
 
 	self.strings = {
-		answered: 'You have submitting the following answer',
+		answered: 'You have submitted the following answer',
 		correct: 'correct',
 		incorrect: 'incorrect',
 		instructor: 'Sorry, but instructors cannot submit answers.'

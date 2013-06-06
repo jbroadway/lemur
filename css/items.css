@@ -95,3 +95,15 @@
 	.item-reveal>div {
 		margin-top: 12px;
 	}
+
+.learner-response {
+	background-color: #eef5ff;
+	border: 1px solid #bcd;
+	padding: 4px 8px 3px 8px;
+	margin-top: 5px;
+}
+
+	.learner-notice {
+		font-weight: bold;
+		display: block
+	}
