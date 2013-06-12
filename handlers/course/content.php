@@ -77,6 +77,7 @@ echo View::render (
 	'lemur/course/content',
 	array (
 		'course' => $c->id,
+		'published' => ($c->status == 1) ? false : true,
 		'page' => $p->id,
 		'items' => $p->items (),
 		'scorm_modules' => $scorm_modules

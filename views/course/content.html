@@ -1,3 +1,7 @@
+{% if published %}
+<p class="visible-notice">Warning: You are editing a course that has already been published.</p>
+{% end %}
+
 <p>
 	<a href="/lemur/course/manage?id={{course}}" id="done-editing">&laquo; {"Done Editing"}</a>
 	<span id="saving">&nbsp;&nbsp;&nbsp;{"Saving..."}</span>
