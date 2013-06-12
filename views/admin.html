@@ -20,10 +20,10 @@
 <p>
 <table width="100%">
 	<tr>
-		<th width="38%">{"Course"}</th>
+		<th width="37%">{"Course"}</th>
 		<th width="20%">{"Availability"}</th>
-		<th width="12%">{"Status"}</th>
-		<th width="30%">&nbsp;</th>
+		<th width="9%">{"Status"}</th>
+		<th width="34%">&nbsp;</th>
 	</tr>
 {% foreach category->courses as course %}
 	<tr>
@@ -41,6 +41,8 @@
 			<a href="/lemur/course/manage?id={{course->id}}">{"Pages"}</a>
 			&nbsp;|&nbsp;
 			<a href="/lemur/course/edit?id={{course->id}}">{"Settings"}</a>
+			&nbsp;|&nbsp;
+			<a href="/lemur/course/duplicate?id={{course->id}}">{"Duplicate"}</a>
 			&nbsp;|&nbsp;
 			<a href="/lemur/course/delete" data-id="{{course->id}}" onclick="$.confirm_and_post (this, '{"Are you sure you want to delete this course?"}')">{"Delete"}</a>
 		</td>

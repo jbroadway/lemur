@@ -107,3 +107,14 @@
 		font-weight: bold;
 		display: block
 	}
+
+.item-quiz {
+	background-color: #ffe;
+	border: 1px solid #fda;
+	padding: 8px;
+}
+
+	.item-quiz h3 {
+		margin-top: 0;
+		padding-bottom: 8px;
+	}

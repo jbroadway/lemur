@@ -13,13 +13,25 @@
 	</div>
 	</div>
 	{% else %}
-	<form class="item-input-form" data-id="{{id}}" data-question="{{title|quotes}}">
+
+	{% if ! quiz %}
+		<form class="item-input-form" data-id="{{id}}" data-question="{{title|quotes}}">
+	{% else %}
+		<div id="item-input-wrapper-{{id}}" data-question="{{title|quotes}}">
+	{% end %}
+
 	{% if instructor %}
 		<input type="hidden" name="instructor" value="yes" />
 	{% end %}
 		<label for="input-{{id}}">{{title}}</label><br />
-		<input type="text" id="input-{{id}}" name="input-{{id}}" />
+		<input type="text" id="input-{{id}}" name="input-{{id}}" data-id="{{id}}" />
+
+	{% if ! quiz %}
 		<input type="submit" value="{"Submit"}" />
-	</form>
+		</form>
+	{% else %}
+		</div>
+	{% end %}
+
 	{% end %}
 </div>

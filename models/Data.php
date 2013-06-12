@@ -62,6 +62,9 @@ class Data extends Model {
 		);
 		foreach ($res as $k => $v) {
 			$res[$k] = ($inputs > 0) ? ($v / $inputs) * 100 : 0;
+			if ($res[$k] > 100) {
+				$res[$k] = 100;
+			}
 		}
 		return $res;
 	}
@@ -75,7 +78,11 @@ class Data extends Model {
 			$course,
 			$user
 		);
-		return ($inputs > 0) ? ($res / $inputs) * 100 : 0;
+		$res = ($inputs > 0) ? ($res / $inputs) * 100 : 0;
+		if ($res > 100) {
+			$res = 100;
+		}
+		return $res;
 	}
 }
 

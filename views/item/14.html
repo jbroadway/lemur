@@ -13,18 +13,30 @@
 	</div>
 	</div>
 	{% else %}
-	<form class="item-input-form" data-id="{{id}}" data-question="{{title|quotes}}">
+
+	{% if ! quiz %}
+		<form class="item-input-form" data-id="{{id}}" data-question="{{title|quotes}}">
+	{% else %}
+		<div id="item-input-wrapper-{{id}}" data-question="{{title|quotes}}">
+	{% end %}
+
 	{% if instructor %}
 		<input type="hidden" name="instructor" value="yes" />
 	{% end %}
 		<fieldset>
 			<legend>{{title}}</legend>
 			{% foreach content as num, option %}
-			<input type="checkbox" name="input-{{id}}[]" id="input-{{id}}-{{num}}" value="{{option}}" />
+			<input type="checkbox" name="input-{{id}}[]" id="input-{{id}}-{{num}}" value="{{option}}" data-id="{{id}}" />
 			<label for="input-{{id}}-{{num}}">{{option}}</label><br />
 			{% end %}
 		</fieldset>
+
+	{% if ! quiz %}
 		<input type="submit" value="{"Submit"}" />
-	</form>
+		</form>
+	{% else %}
+		</div>
+	{% end %}
+
 	{% end %}
 </div>

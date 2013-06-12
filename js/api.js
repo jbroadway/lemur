@@ -31,15 +31,25 @@ lemur.api = (function ($) {
 			throw new Error ('lemur.api.data_submit() - Missing parameter: id');
 		}
 		
-		if (! _has (data, 'answer')) {
+		if (_has (data, 'quiz')) {
+			if (! _has (data, 'answers')) {
+				throw new Error ('lemur.api.data_submit() - Missing parameter: answers');
+			}
+
+			$.post (
+				_log (self.prefix + 'data/submit/' + encodeURIComponent (data.id)),
+				_log ({ quiz: true, answers: data.answers }),
+				callback
+			);
+		} else if (! _has (data, 'answer')) {
 			throw new Error ('lemur.api.data_submit() - Missing parameter: answer');
-		}
 		
-		$.post (
-			_log (self.prefix + 'data/submit/' + encodeURIComponent (data.id)),
-			_log ({ answer: data.answer }),
-			callback
-		);
+			$.post (
+				_log (self.prefix + 'data/submit/' + encodeURIComponent (data.id)),
+				_log ({ answer: data.answer }),
+				callback
+			);
+		}
 		
 		return self;
 	};

@@ -20,10 +20,12 @@ class Item extends \Model {
 	const RADIO      = 13;
 	const CHECKBOXES = 14;
 	const AUDIO      = 15;
+	const SECTION    = 16;
+	const QUIZ       = 17;
 
 	public static $input_types = array (10, 11, 12, 13, 14);
 
-	public static $all_types = array (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+	public static $all_types = array (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17);
 
 	public static function get_inputs ($course) {
 		return self::query ()
@@ -46,9 +48,11 @@ class Item extends \Model {
 			$cache->set ('lemur:' . $course . ':inputs', $total);
 		}
 
-		error_log ($course . ': ' . $total);
-
 		return $total;
+	}
+
+	public static function is_input ($type) {
+		return in_array ((int) $type, self::$input_types);
 	}
 }
 

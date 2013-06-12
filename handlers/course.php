@@ -121,17 +121,39 @@ if (((int) $course->availability === 2 && $_SERVER['REQUEST_METHOD'] === 'GET') 
 		}
 	}
 
+	$quiz = false;
+	$answered = false;
+	$instructor = ($course->instructor == User::val ('id'));
 	foreach ($items as $item) {
-		if ($course->instructor == User::val ('id')) {
-			$item->instructor = true;
+		$item->instructor = $instructor;
+
+		// combine inputs for quiz
+		if ($item->type == lemur\Item::QUIZ) {
+			$quiz = true;
+		} elseif (lemur\Item::is_input ($item->type)) {
+			$item->quiz = $quiz;
+			if ($item->answered) {
+				$answered = true;
+			}
+		} elseif ($quiz) {
+			$page_body .= View::render ('lemur/item/end_quiz', array ('answered' => $answered));
+			$quiz = false;
 		}
-		if (in_array ((int) $item->type, array (12, 13, 14))) {
+
+		// split options for choice fields
+		if (in_array ((int) $item->type, array (lemur\Item::DROP_DOWN, lemur\Item::RADIO, lemur\Item::CHECKBOXES))) {
 			$item->content = explode ("\n", trim ($item->content));
 		}
+
 		$page_body .= View::render (
 			'lemur/item/' . $item->type,
 			$item
 		);
+	}
+
+	// close quiz if still open
+	if ($quiz) {
+		$page_body .= View::render ('lemur/item/end_quiz', array ('answered' => $answered));
 	}
 
 	$page->add_script ('/apps/lemur/js/api.js');
