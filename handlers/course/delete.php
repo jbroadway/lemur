@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $page->layout = 'admin';
-info ($_POST);
 
 // fetch the course
 $c = new lemur\Course ($_POST['id']);
