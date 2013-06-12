@@ -6,6 +6,7 @@
 <div class="sidebar">
 	<strong>{"Add content"}:</strong>
 	<ul>
+		<li><i class="icon-bookmark"></i> <a href="#" id="add-section" data-bind="click: add_section_field">{"Section"}</a></li>
 		<li><i class="icon-pencil"></i> <a href="#" id="add-text" data-bind="click: add_text_field">{"Text"}</a></li>
 		<li><i class="icon-picture"></i> <a href="#" id="add-image" data-bind="click: add_image_field">{"Image"}</a></li>
 		<li><i class="icon-film"></i> <a href="#" data-bind="click: add_video_field">{"Video"}</a></li>
@@ -19,6 +20,7 @@
 	</ul>
 	<strong>{"Add a question"}:</strong>
 	<ul>
+		<li><i class="icon-star"></i> <a href="#" data-bind="click: add_quiz_field">{"Quiz"}</a></li>
 		<li><i class="icon-edit"></i> <a href="#" data-bind="click: add_input_field">{"Single-line answer"}</a></li>
 		<li><i class="icon-edit"></i> <a href="#" data-bind="click: add_para_field">{"Paragraph answer"}</a></li>
 		<li><i class="icon-circle-arrow-down"></i> <a href="#" data-bind="click: add_drop_field">{"Drop down"}</a></li>
@@ -368,6 +370,30 @@ $(function () {
 		<p>
 			<label>{"Description"}:</label>
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="90" />
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-16" type="text/html">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
+		<p>
+			<label>{"Title"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="50" />
+			<input type="hidden" name="content" value="" />
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-17" type="text/html">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
+		<p>
+			<label>{"Title"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="50" />
+			<input type="hidden" name="content" value="" />
 		</p>
 	</li>
 </script>

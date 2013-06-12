@@ -88,6 +88,7 @@ if (((int) $course->availability === 2 && $_SERVER['REQUEST_METHOD'] === 'GET') 
 	$page_body = '';
 	$p = new lemur\Page ($pid);
 	$items = $p->items ();
+	$sections = array ();
 
 	// build a list of input item ids to fetch answers
 	$item_ids = array ();
@@ -101,6 +102,8 @@ if (((int) $course->availability === 2 && $_SERVER['REQUEST_METHOD'] === 'GET') 
 			$page->add_style ('<style>.audiojs audio{display:none;}</style>');
 			$page->add_script ('/apps/lemur/js/audiojs/audio.min.js');
 			$page->add_script ('<script>audiojs.events.ready(function(){audiojs.createAll();});</script>');
+		} elseif ($item->type == 16) { // section
+			$sections['section-' . URLify::filter ($item->title)] = $item->title;
 		}
 	}
 
@@ -148,7 +151,9 @@ if (((int) $course->availability === 2 && $_SERVER['REQUEST_METHOD'] === 'GET') 
 			'has_glossary' => $course->has_glossary,
 			'instructor' => $course->instructor,
 			'is_instructor' => $is_instructor,
-			'is_learner' => $is_learner
+			'is_learner' => $is_learner,
+			'has_sections' => count ($sections),
+			'sections' => $sections
 		)
 	);
 

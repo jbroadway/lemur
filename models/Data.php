@@ -54,21 +54,28 @@ class Data extends Model {
 	}
 
 	public static function for_course ($course) {
-		return DB::pairs (
-			'select user, (sum(status) * 100) / count() as progress
+		$inputs = Item::total_inputs ($course);
+		$res = DB::pairs (
+			'select user, sum(status) as progress
 			from lemur_data where course = ? group by user',
 			$course
 		);
+		foreach ($res as $k => $v) {
+			$res[$k] = ($inputs > 0) ? ($v / $inputs) * 100 : 0;
+		}
+		return $res;
 	}
 
 	public static function learner_status ($course, $user = false) {
 		$user = $user ? $user : User::val ('id');
-		return DB::shift (
-			'select (sum(status) * 100) / count() from lemur_data
+		$inputs = Item::total_inputs ($course);
+		$res = DB::shift (
+			'select sum(status) from lemur_data
 			where course = ? and user = ?',
 			$course,
 			$user
 		);
+		return ($inputs > 0) ? ($res / $inputs) * 100 : 0;
 	}
 }
 

@@ -140,7 +140,7 @@ a:hover {
 	padding-left: 0;
 }
 
-#lemur-course-menu li.current a {
+#lemur-course-menu li.current>a {
 	color: #222;
 	font-weight: bold;
 }

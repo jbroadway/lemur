@@ -62,7 +62,9 @@ var editor = (function ($) {
 		12: $.i18n ('Drop down'),
 		13: $.i18n ('Multiple choice'),
 		14: $.i18n ('Checkboxes'),
-		15: $.i18n ('Audio')
+		15: $.i18n ('Audio'),
+		16: $.i18n ('Section'),
+		17: $.i18n ('Quiz')
 	};
 
 	self.type_icons = {
@@ -80,7 +82,9 @@ var editor = (function ($) {
 		12: '<i class="icon-circle-arrow-down"></i>',
 		13: '<i class="icon-ok-circle"></i>',
 		14: '<i class="icon-check"></i>',
-		15: '<i class="icon-headphones"></i>'
+		15: '<i class="icon-headphones"></i>',
+		16: '<i class="icon-bookmark"></i>',
+		17: '<i class="icon-star"></i>'
 	};
 
 	/**
@@ -538,6 +542,8 @@ var editor = (function ($) {
 	self.add_multi_field		= function () { return self.create_blank_item (13); };
 	self.add_check_field		= function () { return self.create_blank_item (14); };
 	self.add_audio_field		= function () { return self.create_blank_item (15); };
+	self.add_section_field		= function () { return self.create_blank_item (16); };
+	self.add_quiz_field			= function () { return self.create_blank_item (17); };
 
 	/**
 	 * Put the last item into focus.

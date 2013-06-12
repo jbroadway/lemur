@@ -31,6 +31,25 @@ class Item extends \Model {
 			->where ('type in(' . join (', ', self::$input_types) . ')')
 			->fetch_orig ();
 	}
+
+	public static function total_inputs ($course) {
+		global $cache;
+
+		$total = $cache->get ('lemur:' . $course . ':inputs');
+
+		if ($total === false || $total === null) {
+			$total = self::query ()
+				->where ('course', $course)
+				->where ('type in(' . join (', ', self::$input_types) . ')')
+				->count ();
+
+			$cache->set ('lemur:' . $course . ':inputs', $total);
+		}
+
+		error_log ($course . ': ' . $total);
+
+		return $total;
+	}
 }
 
 ?>

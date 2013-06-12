@@ -37,24 +37,6 @@ class Learner {
 			gmdate ('Y-m-d H:i:s')
 		);
 
-		// add records for input tracking
-		if ($res) {
-			$inputs = Item::get_inputs ($course);
-			foreach ($inputs as $item) {
-				$d = new Data (array (
-					'course' => $course,
-					'user' => $user,
-					'item' => $item->id,
-					'status' => 0,
-					'correct' => 0,
-					'ts' => gmdate ('Y-m-d H:i:s'),
-					'answer' => '',
-					'feedback' => ''
-				));
-				$d->put ();
-			}
-		}
-
 		return $res;
 	}
 
