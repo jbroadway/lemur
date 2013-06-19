@@ -3,6 +3,11 @@
 $page->title = __ ($appconf['Lemur']['public_name']);
 $page->layout = $appconf['Lemur']['layout'];
 
+if (User::is_valid ()) {
+	$courses = lemur\Learner::courses ();
+	echo $tpl->render ('lemur/mycourses', array ('courses' => $courses));
+}
+
 // fetch sorted categories
 $categories = lemur\Category::sorted ();
 

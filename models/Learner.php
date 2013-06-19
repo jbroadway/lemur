@@ -76,7 +76,9 @@ class Learner {
 			where
 				lemur_learner.user = ? and
 				lemur_learner.course = lemur_course.id and
-				lemur_course.status = 2',
+				lemur_course.status = 2
+			order by
+				lemur_course.title asc',
 			$user
 		);
 	}
