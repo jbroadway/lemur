@@ -7,6 +7,11 @@
 <span class="notice" id="public_name-notice">{"You must enter a page title."}</span>
 </p>
 
+<p>{"Title in navigation"}:<br />
+<input type="text" name="title" size="30" value="{{ title|quotes }}" />
+<span class="notice" id="title-notice">{"You must enter a navigation title."}</span>
+</p>
+
 <p>{"Course list layout"}:<br />
 <select name="layout">
 {% foreach layouts %}
