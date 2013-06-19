@@ -1,0 +1,39 @@
+<div class="form">
+
+<form method="post" id="{{_form}}">
+
+<p>{"Courses page title"}:<br />
+<input type="text" name="public_name" size="30" value="{{ public_name|quotes }}" />
+<span class="notice" id="public_name-notice">{"You must enter a page title."}</span>
+</p>
+
+<p>{"Course list layout"}:<br />
+<select name="layout">
+{% foreach layouts %}
+	<option value="{{ loop_value }}"{% if loop_value == $data->layout %} selected{% end %}>{{ loop_value|ucfirst }}</option>
+{% end %}
+</select></p>
+
+<p>{"Course content layout"}:<br />
+<select name="course_layout">
+{% foreach layouts %}
+	<option value="{{ loop_value }}"{% if loop_value == $data->course_layout %} selected{% end %}>{{ loop_value|ucfirst }}</option>
+{% end %}
+</select></p>
+
+<p>{"Comments"}:<br />
+<select name="comments">
+	<option value="no"{% if ! comments %} selected{% end %}>{"Off"}</option>
+	<option value="yes"{% if comments %} selected{% end %}>{"On"}</option>
+</select>
+</p>
+
+<p>
+	<input type="submit" value="{"Save Settings"}" />
+	&nbsp;
+	<a href="/lemur/admin" onclick="return confirm ('{"Are you sure you want to cancel and lose any changes?"}')">{"Cancel"}</a>
+</p>
+
+</form>
+
+</div>
