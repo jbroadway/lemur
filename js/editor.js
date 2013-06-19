@@ -71,7 +71,7 @@ var editor = (function ($) {
 		1: '<i class="icon-pencil"></i>',
 		2: '<i class="icon-picture"></i>',
 		3: '<i class="icon-film"></i>',
-		4: '<i class="icon-angle-left icon-combine-left"></i><i class="icon-angle-right icon-combine-right"></i>',
+		4: '<i class="icon-code"></i>',
 		5: '<i class="icon-quote-left"></i>',
 		6: '<i class="icon-cogs"></i>',
 		7: '<i class="icon-download-alt"></i>',
