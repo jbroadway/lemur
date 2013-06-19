@@ -4,6 +4,7 @@ namespace lemur;
 
 use DB;
 use Model;
+use User;
 
 class Course extends Model {
 	public $table = 'lemur_course';
@@ -97,6 +98,21 @@ class Course extends Model {
 			order by title asc',
 			$this->id,
 			Item::DEFINITION
+		);
+	}
+
+	/**
+	 * Return a list of courses that the current user is instructing.
+	 */
+	public static function instructing ($user = false) {
+		if (! $user) $user = User::current ();
+		if (is_object ($user)) $user = $user->id;
+
+		return DB::fetch (
+			'select * from lemur_course
+			where instructor = ?
+			order by title asc',
+			$user
 		);
 	}
 }

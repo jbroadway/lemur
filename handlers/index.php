@@ -5,7 +5,16 @@ $page->layout = $appconf['Lemur']['layout'];
 
 if (User::is_valid ()) {
 	$courses = lemur\Learner::courses ();
-	echo $tpl->render ('lemur/mycourses', array ('courses' => $courses));
+
+	$instructing = lemur\Course::instructing ();
+
+	echo $tpl->render (
+		'lemur/mycourses',
+		array (
+			'courses' => $courses,
+			'instructing' => $instructing
+		)
+	);
 }
 
 // fetch sorted categories

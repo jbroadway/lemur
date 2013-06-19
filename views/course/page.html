@@ -63,10 +63,12 @@
 	<h3>{{title}}</h3>
 	{{page_body|none}}
 
+	{% if Appconf::lemur ('Lemur', 'comments') %}
 	<div id="lemur-course-comments">
 	<h4>{"Comments"}</h4>
 	{! comments/embed?identifier=[comments_id] !}
 	</div>
+	{% end %}
 </div>
 
 <br clear="both" />

@@ -19,11 +19,8 @@ layout = default
 ; The layout to use for course content pages.
 course_layout = default
 
-; The Disqus shortname to enable comments.
-disqus_shortname = Off
-
-; The Filepicker.io key to enable uploads.
-filepicker_key = Off
+; Enable/disable comments at the foot of course pages.
+comments = On
 
 [Admin]
 
