@@ -1,3 +1,5 @@
+{! admin/util/fontawesome !}
+
 <h2>{"My courses"}</h2>
 
 {% if count ($data->courses) == 0 %}
@@ -14,13 +16,6 @@
 		<h4 class="lemur-course-title"><a href="/course/{{course->id}}/{{course->title|URLify::filter}}">{{course->title}}</a></h4>
 		<p class="lemur-course-description">
 			<span class="lemur-course-summary">{{course->summary}}</span>
-			{% if course->availability == 4 %}
-			<strong class="lemur-course-price lemur-course-price-paid">{{course->price|lemur\Filter::money}}</strong>
-			{% elseif course->availability == 3 %}
-			<strong class="lemur-course-price lemur-course-price-free">{"Free with registration"}</strong>
-			{% else %}
-			<strong class="lemur-course-price lemur-course-price-free">{"Free"}</strong>
-			{% end %}
 		</p>
 	</div>
 {% end %}

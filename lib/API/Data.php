@@ -38,7 +38,7 @@ class Data extends Restful {
 					->where ('item', $id)
 					->single ();
 
-				if (!$data or $data->error) {
+				if (! $data or $data->error) {
 					$data = new \lemur\Data (array (
 						'course' => $item->course,
 						'user' => User::val ('id'),
@@ -98,7 +98,7 @@ class Data extends Restful {
 			->where ('item', $id)
 			->single ();
 
-		if (!$data or $data->error) {
+		if (! $data or $data->error) {
 			$data = new \lemur\Data (array (
 				'course' => $item->course,
 				'user' => User::val ('id'),
