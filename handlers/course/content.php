@@ -4,6 +4,15 @@ $this->require_acl ('admin', 'lemur');
 
 $page->layout = 'admin';
 
+$lock = new Lock ('lemur_page', $_GET['id'] . '/' . $_GET['page']);
+if ($lock->exists ()) {
+	$page->title = __ ('Editing Locked');
+	echo $tpl->render ('admin/locked', $lock->info ());
+	return;
+} else {
+	$lock->add ();
+}
+
 $c = new lemur\Course ($_GET['id']);
 if ($c->error) {
 	echo View::render ('lemur/admin/error', $c);

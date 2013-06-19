@@ -4,6 +4,15 @@ $page->layout = 'admin';
 
 $this->require_acl ('admin', 'lemur');
 
+$lock = new Lock ('lemur_course', $_GET['id']);
+if ($lock->exists ()) {
+	$page->title = __ ('Editing Locked');
+	echo $tpl->render ('admin/locked', $lock->info ());
+	return;
+} else {
+	$lock->add ();
+}
+
 $c = new lemur\Course ($_GET['id']);
 if ($c->error) {
 	echo View::render ('lemur/admin/error', $c);
@@ -22,7 +31,7 @@ $form->data = $c->orig ();
 $form->data->categories = lemur\Category::sorted ();
 $form->data->instructor_name = $instructor->name;
 
-echo $form->handle (function ($form) {
+echo $form->handle (function ($form) use ($lock) {
 	unset ($_POST['_token_']);
 
 	$c = new lemur\Course ($_GET['id']);
@@ -39,6 +48,9 @@ echo $form->handle (function ($form) {
 		echo View::render ('lemur/admin/error', $c);
 		return;
 	}
+
+	$lock->remove ();
+
 	$form->controller->add_notification (__ ('Course settings saved.'));
 	$form->controller->redirect ('/lemur/admin');
 });
