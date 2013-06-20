@@ -27,9 +27,13 @@ var editor = (function ($) {
 	self.items = null;
 	
 	/**
-	 * The temp image for image items.
+	 * Defaults for the various item types.
 	 */
-	self.default_img_src = '/apps/lemur/pix/default.png';
+	self.defaults = {
+		2:  { content: '/apps/lemur/pix/default.png' },
+		3:  { content: '/apps/lemur/css/blank.mp4' },
+		15: { content: '/apps/lemur/css/blank.mp3' }
+	};
 	
 	/**
 	 * List of translatable strings.
@@ -222,7 +226,7 @@ var editor = (function ($) {
 		 */
 		i.img_src = ko.computed (function () {
 			if (this.content () === '') {
-				return self.default_img_src;
+				return self.defaults[2].content;
 			}
 			return this.content ();
 		}, i);
@@ -512,6 +516,11 @@ var editor = (function ($) {
 			content: '',
 			answer: ''
 		};
+
+		if (self.defaults[type]) {
+			item = $.extend (item, self.defaults[type]);
+		}
+
 		$.post (self.prefix + 'item/create', item, function (res) {
 			if (! res.success) {
 				$.add_notification (res.error);
