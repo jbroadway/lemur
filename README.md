@@ -35,12 +35,8 @@ Here is a screenshot of the Lemur Learning course editor:
 
 Backend:
 
-* Submitting feedback on responses
+* Submitting instructor feedback on responses
 * Integrating SCORM data
-
-Public-facing:
-
-* Pay wall for paid courses
 
 Email notifications:
 
@@ -48,7 +44,7 @@ Email notifications:
 * To learner/instructor for assessment replies
 * To instructor for new comments
 * To instructor for new learner registered
-* To learner welcome email, course subscribed confirmation/receipt
+* To learner welcome email
 
 Documentation:
 
