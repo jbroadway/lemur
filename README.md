@@ -72,9 +72,14 @@ This will also install the following apps that Lemur depends on:
 
 * [Comments](https://github.com/jbroadway/comments)
 * [SCORM](https://github.com/jbroadway/scorm)
+* [Stripe Payments](https://github.com/jbroadway/stripe)
 
 > **Note:** You may need to add `"minimum-stability": "dev"` to your `composer.json`
 > file in order for Composer to work correctly while Lemur is still in development.
+
+> **Payments:** Additional payment providers can be supported by implementing the
+> [payment handler interface found here](https://github.com/jbroadway/stripe#creating-a-member-payment-or-subscription-form).
+> More documentation and examples still to come.
 
 2\. Copy the file `apps/lemur/sample_bootstrap.php` into your document root and rename
 it `bootstrap.php`. If a `bootstrap.php` already exists, open the file and add the
