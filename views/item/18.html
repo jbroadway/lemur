@@ -15,7 +15,7 @@
 	{% else %}
 
 	{% if ! quiz %}
-		<form class="item-input-form" data-id="{{id}}" data-question="{{title|quotes}}" enctype="multi-part/formdata">
+		<form class="item-input-form" data-id="{{id}}" data-question="{{title|quotes}}" enctype="multipart/form-data">
 	{% else %}
 		<div id="item-input-wrapper-{{id}}" data-question="{{title|quotes}}">
 	{% end %}
