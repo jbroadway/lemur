@@ -91,6 +91,20 @@
 		padding-left: 0;
 	}
 
+	.sidebar ul li i {
+		display: inline-block;
+		width: 18px;
+		text-align: center;
+	}
+
+	.sidebar ul li a {
+		text-decoration: none;
+	}
+
+	.sidebar ul li a:hover {
+		text-decoration: underline;
+	}
+
 .sticky {
 	position: fixed;
 	top: 45px;

@@ -4,7 +4,7 @@
     "description": "E-learning platform for the Elefant CMS",
     "keywords": ["elearning", "e-learning", "courses", "courseware", "lessons", "education", "training", "elefant", "cms", "app"],
     "license": "MIT",
-    "version": "0.6.1-beta",
+    "version": "0.8.0",
 	"authors": [
 		{
 			"name": "Centre for Education and Work",
@@ -18,7 +18,8 @@
     "require": {
         "elefant/app-installer": "*",
         "elefant/app-comments": "1.0.*",
-        "elefant/app-scorm": "1.0.*"
+        "elefant/app-scorm": "1.0.*",
+        "elefant/app-stripe": "1.0.*"
     },
     "scripts": {
     	"post-install-cmd": "php index.php lemur/post-install"
