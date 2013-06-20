@@ -1,3 +1,5 @@
+
+
 <p>
 	<a href="/lemur/course/learners?id={{course}}">&laquo; {"Back"}</a>
 </p>
@@ -6,6 +8,20 @@
 <h4>{{item->title}}</h4>
 {% if item->answered %}
 	<p><strong>{"Answered"}:</strong> {{item->answer}}{% if item->correct == -1 %} ({"incorrect"}){% elseif item->correct == 1 %} ({"correct"}){% end %}</p>
+	{% if item->feedback != '' %}
+	<p><strong>{"Feedback"}:</strong> {{item->feedback|nl2br}}</p>
+	{% else %}
+	<form class="feedback-form">
+		<input type="hidden" name="course" value="{{course}}" />
+		<input type="hidden" name="learner" value="{{learner}}" />
+		<input type="hidden" name="input" value="{{item->data_id}}" />
+		<p id="feedback-{{item->id}}">
+			<strong>{"Feedback"}:</strong><br />
+			<textarea name="feedback" cols="80" rows="5"></textarea><br />
+			<input type="submit" value="{"Send"}" />
+		</p>
+	</form>
+	{% end %}
 {% else %}
 	<p><strong>{"Not yet completed."}</strong></p>
 {% end %}

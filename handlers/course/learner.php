@@ -27,6 +27,7 @@ foreach ($answers as $answer) {
 			$items[$k]->correct = (int) $answer->correct;
 			$items[$k]->answered_on = $answer->ts;
 			$items[$k]->feedback = $answer->feedback;
+			$items[$k]->data_id = $answer->id;
 			break;
 		}
 	}
@@ -34,8 +35,11 @@ foreach ($answers as $answer) {
 
 $page->title = $c->title . ' - ' . __ ('Learner') . ': ' . $u->name;
 
+$page->add_script ('/apps/lemur/js/admin.js');
+
 echo View::render ('lemur/course/learner', array (
 	'course' => $c->id,
+	'learner' => $u->id,
 	'items' => $items
 ));
 

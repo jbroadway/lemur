@@ -237,6 +237,29 @@ var lemur = (function ($) {
 	};
 
 	/**
+	 * Submit feedback to a learner.
+	 */
+	self.feedback_submit = function (e) {
+		var form = e.target,
+			data = {
+				course: form.elements.course.value,
+				user: form.elements.learner.value,
+				input: form.elements.input.value,
+				feedback: form.elements.feedback.value
+			};
+		
+		$.post (self.prefix + 'data/feedback', data, function (res) {
+			if (res.success) {
+				$.add_notification ($.i18n ('Feedback sent.'));
+				$(form).replaceWith ('<p><strong>' + $.i18n ('Feedback') + ':</strong> ' + data.feedback.replace (/\n/g, '<br />') + '</p>');
+			} else {
+				$.add_notification (res.error);
+			}
+		});
+		return false;
+	};
+
+	/**
 	 * Update an element with a message that will fade out.
 	 * Usage: lemur.notice ('#saving', 'Saving...');
 	 */
@@ -263,4 +286,7 @@ $(function () {
 
 	$('#learners')
 		.on ('click', '.remove-learner', lemur.remove_learner);
+
+	$('.feedback-form')
+		.on ('submit', lemur.feedback_submit);
 });

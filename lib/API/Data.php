@@ -146,6 +146,14 @@ class Data extends Restful {
 		}
 		return array ('correct' => $correct);
 	}
+
+	/**
+	 * Save feedback on learner data and send an email notification
+	 * with the feedback to the learner.
+	 */
+	public function post_feedback () {
+		return true;
+	}
 }
 
 ?>
