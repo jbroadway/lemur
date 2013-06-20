@@ -15,7 +15,9 @@ $form->data = array (
 	'layout' => $appconf['Lemur']['layout'],
 	'course_layout' => $appconf['Lemur']['course_layout'],
 	'comments' => $appconf['Lemur']['comments'],
-	'layouts' => admin_get_layouts ()
+	'payment_handler' => $appconf['Lemur']['payment_handler'],
+	'layouts' => admin_get_layouts (),
+	'payment_handlers' => lemur\Lemur::payment_handlers ()
 );
 
 echo $form->handle (function ($form) {
@@ -26,7 +28,8 @@ echo $form->handle (function ($form) {
 				'public_name' => $_POST['public_name'],
 				'layout' => $_POST['layout'],
 				'course_layout' => $_POST['course_layout'],
-				'comments' => ($_POST['comments'] === 'yes') ? true : false
+				'comments' => ($_POST['comments'] === 'yes') ? true : false,
+				'payment_handler' => $_POST['payment_handler']
 			)
 		),
 		'conf/app.lemur.' . ELEFANT_ENV . '.php'

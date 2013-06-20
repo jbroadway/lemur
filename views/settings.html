@@ -33,6 +33,15 @@
 </select>
 </p>
 
+<p>{"Payment handler"}:<br />
+<select name="payment_handler">
+	<option value="">{"None"}</option>
+	{% foreach payment_handlers %}
+	<option value="{{loop_index}}"{% if payment_handler == $data->loop_index %} selected{% end %}>{{loop_value|__}}</option>
+	{% end %}
+</select>
+</p>
+
 <p>
 	<input type="submit" value="{"Save Settings"}" />
 	&nbsp;

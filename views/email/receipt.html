@@ -1,0 +1,12 @@
+Dear {{user->name}},
+
+This is a receipt for your purchase of the "{{course->title}}" course. This is only a receipt, no payment is due. If you have any questions, please contact us any time at {{conf ('General', 'email_from')}}. Thank you for your business!
+
+----- Payment Receipt - {{date ('F j, Y - g:ia')}} -----
+
+Description: {{payment->description}} 
+Amount paid: ${{course->price}} 
+Course link: http://{{$_SERVER.HTTP_HOST}}/course/{{course->id}}/{{course->title|URLify::filter}} 
+
+Sincerely,
+{{conf ('General', 'site_name')}} 

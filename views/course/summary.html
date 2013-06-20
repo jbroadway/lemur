@@ -10,6 +10,7 @@
 
 <p>{{summary}}<br />
 
+{% if $_SERVER['REQUEST_METHOD'] !== 'POST' %}
 <form method="post">
 <input type="hidden" name="subscribe" value="1" />
 {% if availability == 4 %}
@@ -18,5 +19,6 @@
 	<button class="lemur-course-price lemur-course-price-free">{"Join this course for free"}</button>
 {% end %}
 </form>
+{% end %}
 
 </div>

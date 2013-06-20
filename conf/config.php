@@ -22,6 +22,9 @@ course_layout = default
 ; Enable/disable comments at the foot of course pages.
 comments = On
 
+; The payment handler for paid courses.
+payment_handler = ""
+
 [Admin]
 
 handler = lemur/admin

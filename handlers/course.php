@@ -240,7 +240,48 @@ switch ((int) $course->availability) {
 				$this->redirect ('/user/login?redirect=' . urlencode ($_SERVER['REQUEST_URI']));
 			}
 
-			// TODO: show pay wall
+			// Show pay wall
+			$handler = $appconf['Lemur']['payment_handler'];
+			$handler = ($handler === '') ? false : $handler;
+			$controller = $this;
+			if ($handler) {
+				printf ('<h3>%s</h3>', __ ('Payment information'));
+				echo $this->run ($handler, array (
+					'amount' => $course->price * 100,
+					'description' => 'Course: ' . $course->title,
+					'callback' => function ($charge, $payment) use ($course, $controller) {
+						$res = lemur\Learner::add_to_course ($course->id, User::val ('id'));
+						if (! $res) {
+							error_log (DB::error ());
+							echo $controller->error (404, __ ('An error occurred'), __ ('There was an error in the course registration. Please contact the administrator of the site to assist you.'));
+							return;
+						}
+
+						// email receipt
+						try {
+							$user = User::current ();
+
+							Mailer::send (array (
+								'to' => array ($user->email, $user->name),
+								'subject' => 'Payment receipt for course: ' . $course->title,
+								'text' => View::render ('lemur/email/receipt', array (
+									'user' => $user,
+									'course' => $course,
+									'payment' => $payment
+								))
+							));
+						} catch (Exception $e) {
+							error_log ('Mail error: ' . $e->getMessage ());
+						}
+
+						// reload to show course
+						$controller->redirect ($_SERVER['REQUEST_URI']);
+					}
+				));
+			} else {
+				// No payment processor
+				printf ('<p class="visible-notice">%s</p>', __ ('No payment processor has been configured for this site.'));
+			}
 		}
 
 		return;
