@@ -398,6 +398,11 @@ var editor = (function ($) {
 		$.get ('/lemur/course/preview', {id: self.course, page: self.page}, function (res) {
 			preview_area.html (res);
 			self.initialize_plugins ();
+
+			preview_area.on ('submit', function (event) {
+				event && event.preventDefault ();
+				return false;
+			});
 		});
 	};
 

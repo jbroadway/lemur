@@ -16,12 +16,25 @@ if ($p->error) {
 	return;
 }
 
+$page->add_script ('/apps/lemur/js/preview.js');
+
 printf ('<h1>%s</h1>', $p->title);
 
 $items = $p->items ();
 
+$quiz = false;
 foreach ($items as $item) {
-	if (in_array ((int) $item->type, array (12, 13, 14))) {
+	// combine inputs for quiz
+	if ($item->type == lemur\Item::QUIZ) {
+		$quiz = true;
+	} elseif (lemur\Item::is_input ($item->type)) {
+		$item->quiz = $quiz;
+	} elseif ($quiz) {
+		echo View::render ('lemur/item/end_quiz', array ('answered' => false));
+	}
+
+	// split options for choice fields
+	if (in_array ((int) $item->type, array (lemur\Item::DROP_DOWN, lemur\Item::RADIO, lemur\Item::CHECKBOXES))) {
 		$item->content = explode ("\n", trim ($item->content));
 	}
 
@@ -29,6 +42,11 @@ foreach ($items as $item) {
 		'lemur/item/' . $item->type,
 		$item
 	);
+}
+
+// close quiz if still open
+if ($quiz) {
+	echo View::render ('lemur/item/end_quiz', array ('answered' => false));
 }
 
 ?>
