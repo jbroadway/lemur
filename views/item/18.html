@@ -1,0 +1,37 @@
+<div id="item-{{id}}" class="lemur-item item-input-text">
+	{% if answered %}
+	<div class="item-answer">
+	<strong class="item-question">{{title}}</strong><br />
+	<div class="learner-response">
+		<span class="learner-notice">{"You have submitted the following answer"}:</span>
+		<span class="item-answer"><a href="{{answer}}">{{answer|basename}}</a></span>
+		{% if correct === -1 %}
+		({"incorrect"})
+		{% elseif correct === 1 %}
+		({"correct"})
+		{% end %}
+	</div>
+	</div>
+	{% else %}
+
+	{% if ! quiz %}
+		<form class="item-input-form" data-id="{{id}}" data-question="{{title|quotes}}" enctype="multi-part/formdata">
+	{% else %}
+		<div id="item-input-wrapper-{{id}}" data-question="{{title|quotes}}">
+	{% end %}
+
+	{% if instructor %}
+		<input type="hidden" name="instructor" value="yes" />
+	{% end %}
+		<label for="input-{{id}}">{{title}}</label><br />
+		<input type="file" id="input-{{id}}" name="input-{{id}}" data-id="{{id}}" />
+
+	{% if ! quiz %}
+		<input type="submit" value="{"Submit"}" />
+		</form>
+	{% else %}
+		</div>
+	{% end %}
+
+	{% end %}
+</div>

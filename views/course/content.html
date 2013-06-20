@@ -30,6 +30,7 @@
 		<li><i class="icon-circle-arrow-down"></i> <a href="#" data-bind="click: add_drop_field">{"Drop down"}</a></li>
 		<li><i class="icon-check"></i> <a href="#" data-bind="click: add_check_field">{"Checkboxes"}</a></li>
 		<li><i class="icon-ok-circle"></i> <a href="#" data-bind="click: add_multi_field">{"Multiple choice"}</a></li>
+		<li><i class="icon-cloud-upload"></i> <a href="#" data-bind="click: add_upload_field">{"File upload"}</a></li>
 	</ul>
 </div>
 
@@ -398,6 +399,17 @@ $(function () {
 			<label>{"Title"}:</label>
 			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" size="50" />
 			<input type="hidden" name="content" value="" />
+		</p>
+	</li>
+</script>
+
+<script id="tpl-item-18" type="text/html">
+	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
+		<p>
+			<label>{"Instructions"}:</label>
+			<input type="text" name="title" data-bind="value: title, event: { blur: editor.update_items }" style="width: 580px" />
 		</p>
 	</li>
 </script>

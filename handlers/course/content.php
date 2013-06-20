@@ -79,7 +79,8 @@ $page->add_script (I18n::export (
 	'Paragraph answer',
 	'Drop down',
 	'Checkboxes',
-	'Multiple choice'
+	'Multiple choice',
+	'File upload'
 ));
 
 echo View::render (

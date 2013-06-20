@@ -45,6 +45,11 @@
 	width: 98%;
 }
 
+.lemur-item input[type=file] {
+	display: block;
+	margin-bottom: 15px;
+}
+
 .lemur-item textarea {
 	width: 98%;
 	height: 100px;

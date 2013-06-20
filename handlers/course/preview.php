@@ -31,6 +31,7 @@ foreach ($items as $item) {
 		$item->quiz = $quiz;
 	} elseif ($quiz) {
 		echo View::render ('lemur/item/end_quiz', array ('answered' => false));
+		$quiz = false;
 	}
 
 	// split options for choice fields

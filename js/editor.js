@@ -68,7 +68,8 @@ var editor = (function ($) {
 		14: $.i18n ('Checkboxes'),
 		15: $.i18n ('Audio'),
 		16: $.i18n ('Section'),
-		17: $.i18n ('Quiz')
+		17: $.i18n ('Quiz'),
+		18: $.i18n ('File upload')
 	};
 
 	self.type_icons = {
@@ -88,7 +89,8 @@ var editor = (function ($) {
 		14: '<i class="icon-check"></i>',
 		15: '<i class="icon-headphones"></i>',
 		16: '<i class="icon-bookmark"></i>',
-		17: '<i class="icon-star"></i>'
+		17: '<i class="icon-star"></i>',
+		18: '<i class="icon-cloud-upload"></i>'
 	};
 
 	/**
@@ -558,6 +560,7 @@ var editor = (function ($) {
 	self.add_audio_field		= function () { return self.create_blank_item (15); };
 	self.add_section_field		= function () { return self.create_blank_item (16); };
 	self.add_quiz_field			= function () { return self.create_blank_item (17); };
+	self.add_upload_field		= function () { return self.create_blank_item (18); };
 
 	/**
 	 * Put the last item into focus.

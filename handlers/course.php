@@ -102,7 +102,7 @@ if (((int) $course->availability === 2 && $_SERVER['REQUEST_METHOD'] === 'GET') 
 			$page->add_style ('<style>.audiojs audio{display:none;}</style>');
 			$page->add_script ('/apps/lemur/js/audiojs/audio.min.js');
 			$page->add_script ('<script>audiojs.events.ready(function(){audiojs.createAll();});</script>');
-		} elseif ($item->type == 16) { // section
+		} elseif ($item->type == 16 || $item->type == 17) { // section
 			$sections['section-' . URLify::filter ($item->title)] = $item->title;
 		}
 	}
