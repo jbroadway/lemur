@@ -41,7 +41,6 @@ Backend:
 Email notifications:
 
 * To instructor for new assessment input
-* To learner/instructor for assessment replies
 * To instructor for new comments
 * To instructor for new learner registered
 * To learner welcome email

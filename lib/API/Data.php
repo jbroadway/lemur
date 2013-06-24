@@ -3,8 +3,11 @@
 namespace lemur\API;
 
 use DB;
+use Mailer;
 use Restful;
 use User;
+use Validator;
+use View;
 
 class Data extends Restful {
 	/**
@@ -14,8 +17,8 @@ class Data extends Restful {
 	 * tell.
 	 */
 	public function post_submit ($id) {
-		if (! User::is_valid ()) {
-			return $this->error (__ ('Must be logged in first.'));
+		if (! $this->require_acl ('admin', 'lemur')) {
+			return $this->error (__ ('Unauthorized.'));
 		}
 
 		// handle multiple answers at once
@@ -152,6 +155,58 @@ class Data extends Restful {
 	 * with the feedback to the learner.
 	 */
 	public function post_feedback () {
+		if (! $this->require_acl ('admin', 'lemur')) {
+			return $this->error (__ ('Unauthorized.'));
+		}
+		
+		$failed = Validator::validate_list (
+			$_POST,
+			array (
+				'course' => array ('type' => 'numeric'),
+				'user' => array ('type' => 'numeric'),
+				'input' => array ('type' => 'numeric'),
+				'feedback' => array ('not empty' => 1)
+			)
+		);
+		if (count ($failed) > 0) {
+			return $this->error (__ ('Missing or invalid parameters') . ': ' . join (', ', $failed));
+		}
+
+		$data = new \lemur\Data ($_POST['input']);
+		if ($data->error) {
+			return $this->error (__ ('Question not found.'));
+		}
+
+		if ($data->course != $_POST['course'] || $data->user != $_POST['user']) {
+			return $this->error (__ ('Incorrect request data.'));
+		}
+		
+		if ($data->feedback !== '') {
+			return $this->error (__ ('Feedback already given.'));
+		}
+		
+		$data->feedback = $_POST['feedback'];
+		if (! $data->put ()) {
+			error_log ('Error saving feedback: ' . $data->error);
+			return $this->error (__ ('An unknown error occurred.'));
+		}
+
+		try {
+			$u = new User ($data->user);
+
+			Mailer::send (array (
+				'to' => array ($u->email, $u->name),
+				'subject' => 'Instructor feedback received',
+				'text' => View::render ('lemur/email/feedback', array (
+					'user' => $u,
+					'course' => new \lemur\Course ($data->course),
+					'answer' => $data
+				))
+			));
+		} catch (Exception $e) {
+			error_log ('Mail error: ' . $e->getMessage ());
+		}
+
 		return true;
 	}
 }
