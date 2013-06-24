@@ -7,9 +7,8 @@ to be the Wordpress of e-learning, a free and ultra-simple way to publish and
 host your own courses that keeps you in control.
 
 However, Lemur has a ways to go before it is ready for non-developers. We still
-have a number of features to finish, reams of documentation to write, and more
-work to do to make it as simple as possible to get up and running, regardless
-of your skill level.
+have reams of documentation to write, and more work to do to make it as simple
+as possible to get up and running, regardless of your skill level.
 
 Lemur Learning is brought to you by the [Centre for Education and Work](http://www.cewca.org/),
 a Canadian non-profit dedicated to helping Canadians improve their lives
@@ -35,8 +34,7 @@ Here is a screenshot of the Lemur Learning course editor:
 
 Backend:
 
-* Submitting instructor feedback on responses
-* Integrating SCORM data
+* [See our Github issues](https://github.com/cewca/lemur/issues?state=open)
 
 Email notifications:
 
@@ -48,6 +46,7 @@ Email notifications:
 Documentation:
 
 * Installing Lemur Learning
+* Configuration/setup options
 * Building courses
 * Managing learners
 * Managing discussions and assessments
