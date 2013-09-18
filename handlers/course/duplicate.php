@@ -30,14 +30,22 @@ if (! $c2->put ()) {
 	return;
 }
 
+$old_course_id = $c->id;
+$new_course_id = $c2->id;
+unset ($c);
+unset ($c2);
+unset ($data);
+
 $pages = lemur\Page::query ()
-	->where ('course', $c->id)
+	->where ('course', $old_course_id)
 	->fetch_orig ();
 
-foreach ($pages as $page) {
-	unset ($page->id);
-	$page->course = $c2->id;
-	$p = new lemur\Page ($page);
+for ($j = 0; $j < count ($pages); $j++) {
+	$old_page_id = $pages[$j]->id;
+	$data = $pages[$j];
+	unset ($data->id);
+	$data->course = $new_course_id;
+	$p = new lemur\Page ($data);
 
 	if (! $p->put ()) {
 		DB::rollback ();
@@ -45,23 +53,38 @@ foreach ($pages as $page) {
 		return;
 	}
 
+	$new_page_id = $p->id;
+	unset ($p);
+	unset ($data);
+	$pages[$j] = null;
+
 	$items = lemur\Item::query ()
-		->where ('page', $page->id)
+		->where ('page', $old_page_id)
 		->fetch_orig ();
 
-	foreach ($items as $item) {
-		unset ($item->id);
-		$item->page = $p->id;
-		$item->course = $c2->id;
-		$i = new lemur\Item ($item);
+	for ($k = 0; $k < count ($items); $k++) {
+		$id = $items[$k]->id;
+		$data = $items[$k];
+		unset ($data->id);
+		$data->page = $new_page_id;
+		$data->course = $new_course_id;
+		$i = new lemur\Item ($data);
 		
 		if (! $i->put ()) {
 			DB::rollback ();
 			echo View::render ('lemur/admin/error', $i);
 			return;
 		}
+
+		unset ($i);
+		unset ($data);
+		$items[$k] = null;
 	}
+
+	unset ($items);
 }
+
+unset ($pages);
 
 DB::commit ();
 
