@@ -97,11 +97,18 @@ cp -R apps/lemur/theme layouts/lemur
 
 ### Optional steps
 
-5\. Go to Tools > Navigation and add the `Courses` page to your site tree.
+5\. Add the following line to the `[Hooks]` section of `conf/config.php` to enable
+email notifications of comments to course instructors:
 
-6\. Go to Tools > Designer and set the Lemur layout as your default.
+```
+comments/add[] = lemur/hook/comments
+```
 
-7\. Copy the `product.php` file from your `apps/lemur` folder into the global
+6\. Go to Tools > Navigation and add the `Courses` page to your site tree.
+
+7\. Go to Tools > Designer and set the Lemur layout as your default.
+
+8\. Copy the `product.php` file from your `apps/lemur` folder into the global
 `conf` folder, overwriting the existing copy. This will replace the Elefant
 branding with Lemur's own.
 
