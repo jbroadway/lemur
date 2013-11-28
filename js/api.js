@@ -41,8 +41,10 @@ lemur.api = (function ($) {
 				_log ({ quiz: true, answers: data.answers }),
 				callback
 			);
-		} else if (! _has (data, 'answer')) {
-			throw new Error ('lemur.api.data_submit() - Missing parameter: answer');
+		} else {
+			if (! _has (data, 'answer')) {
+				throw new Error ('lemur.api.data_submit() - Missing parameter: answer');
+			}
 		
 			$.post (
 				_log (self.prefix + 'data/submit/' + encodeURIComponent (data.id)),

@@ -17,7 +17,7 @@ class Data extends Restful {
 	 * tell.
 	 */
 	public function post_submit ($id) {
-		if (! $this->require_acl ('admin', 'lemur')) {
+		if (! User::require_login ()) {
 			return $this->error (__ ('Unauthorized.'));
 		}
 
