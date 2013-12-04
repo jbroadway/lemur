@@ -21,19 +21,18 @@ $form->data = array (
 );
 
 echo $form->handle (function ($form) {
-	if (! Ini::write (
-		array (
-			'Lemur' => array (
-				'title' => $_POST['title'],
-				'public_name' => $_POST['public_name'],
-				'layout' => $_POST['layout'],
-				'course_layout' => $_POST['course_layout'],
-				'comments' => ($_POST['comments'] === 'yes') ? true : false,
-				'payment_handler' => $_POST['payment_handler']
-			)
-		),
-		'conf/app.lemur.' . ELEFANT_ENV . '.php'
-	)) {
+	$merged = Appconf::merge ('lemur', array (
+		'Lemur' => array (
+			'title' => $_POST['title'],
+			'public_name' => $_POST['public_name'],
+			'layout' => $_POST['layout'],
+			'course_layout' => $_POST['course_layout'],
+			'comments' => ($_POST['comments'] === 'yes') ? true : false,
+			'payment_handler' => $_POST['payment_handler']
+		)
+	));
+
+	if (! Ini::write ($merged, 'conf/app.lemur.' . ELEFANT_ENV . '.php')) {
 		printf ('<p>%s</p>', __ ('Unable to save changes. Check your folder permissions and try again.'));
 		return;
 	}
