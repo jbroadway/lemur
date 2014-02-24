@@ -5,7 +5,7 @@
 	{% if course->thumb != '' %}
 		<img src="/{{course->thumb|Image::resize(%s, 39, 39)}}" alt="{{course->title}}" class="lemur-course-thumbnail" />
 	{% else %}
-		<i class="icon-lightbulb icon-3x lemur-course-thumbnail"></i>
+		<i class="fa fa-lightbulb-o fa-3x lemur-course-thumbnail"></i>
 	{% end %}
 	<h4 class="lemur-course-title"><a href="/course/{{course->id}}/{{course->title|URLify::filter}}">{{course->title}}</a></h4>
 	<p class="lemur-course-description">

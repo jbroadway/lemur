@@ -73,24 +73,24 @@ var editor = (function ($) {
 	};
 
 	self.type_icons = {
-		1: '<i class="icon-pencil"></i>',
-		2: '<i class="icon-picture"></i>',
-		3: '<i class="icon-film"></i>',
-		4: '<i class="icon-code"></i>',
-		5: '<i class="icon-quote-left"></i>',
-		6: '<i class="icon-cogs"></i>',
-		7: '<i class="icon-download-alt"></i>',
-		8: '<i class="icon-plus-sign"></i>',
-		9: '<i class="icon-lightbulb"></i>',
-		10: '<i class="icon-edit"></i>',
-		11: '<i class="icon-edit"></i>',
-		12: '<i class="icon-circle-arrow-down"></i>',
-		13: '<i class="icon-ok-circle"></i>',
-		14: '<i class="icon-check"></i>',
-		15: '<i class="icon-headphones"></i>',
-		16: '<i class="icon-bookmark"></i>',
-		17: '<i class="icon-star"></i>',
-		18: '<i class="icon-cloud-upload"></i>'
+		1: '<i class="fa fa-pencil"></i>',
+		2: '<i class="fa fa-picture-o"></i>',
+		3: '<i class="fa fa-film"></i>',
+		4: '<i class="fa fa-code"></i>',
+		5: '<i class="fa fa-quote-left"></i>',
+		6: '<i class="fa fa-cogs"></i>',
+		7: '<i class="fa fa-download"></i>',
+		8: '<i class="fa fa-plus-circle"></i>',
+		9: '<i class="fa fa-lightbulb-o"></i>',
+		10: '<i class="fa fa-edit"></i>',
+		11: '<i class="fa fa-edit"></i>',
+		12: '<i class="fa fa-arrow-circle-down"></i>',
+		13: '<i class="fa fa-check-circle-o"></i>',
+		14: '<i class="fa fa-check"></i>',
+		15: '<i class="fa fa-headphones"></i>',
+		16: '<i class="fa fa-bookmark"></i>',
+		17: '<i class="fa fa-star"></i>',
+		18: '<i class="fa fa-cloud-upload"></i>'
 	};
 
 	/**
@@ -395,7 +395,7 @@ var editor = (function ($) {
 	self.refresh_preview = function () {
 		var preview_area = $('#item-preview-area');
 		
-		preview_area.html ('<i class="icon-spinner icon-spin"></i> ' + self.str.loading);
+		preview_area.html ('<i class="fa fa-spinner fa-spin"></i> ' + self.str.loading);
 
 		$.get ('/lemur/course/preview', {id: self.course, page: self.page}, function (res) {
 			preview_area.html (res);

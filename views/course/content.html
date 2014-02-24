@@ -10,27 +10,27 @@
 <div class="sidebar">
 	<strong>{"Add content"}:</strong>
 	<ul>
-		<li><i class="icon-bookmark"></i> <a href="#" id="add-section" data-bind="click: add_section_field">{"Section"}</a></li>
-		<li><i class="icon-pencil"></i> <a href="#" id="add-text" data-bind="click: add_text_field">{"Text"}</a></li>
-		<li><i class="icon-picture"></i> <a href="#" id="add-image" data-bind="click: add_image_field">{"Image"}</a></li>
-		<li><i class="icon-film"></i> <a href="#" data-bind="click: add_video_field">{"Video"}</a></li>
-		<li><i class="icon-headphones"></i> <a href="#" data-bind="click: add_audio_field">{"Audio"}</a></li>
-		<li><i class="icon-code"></i> <a href="#" data-bind="click: add_html_field">{"HTML code"}</a></li>
-		<li><i class="icon-plus-sign"></i> <a href="#" data-bind="click: add_reveal_field">{"Click-to-reveal"}</a></li>
-		<li><i class="icon-quote-left"></i> <a href="#" data-bind="click: add_pre_field">{"Pre-formatted text"}</a></li>
-		<li><i class="icon-cogs"></i> <a href="#" data-bind="click: add_scorm_field">{"SCORM module"}</a></li>
-		<li><i class="icon-download-alt"></i> <a href="#" data-bind="click: add_file_field">{"File download"}</a></li>
-		<li><i class="icon-lightbulb"></i> <a href="#" data-bind="click: add_definition_field">{"Definition"}</a></li>
+		<li><i class="fa fa-bookmark"></i> <a href="#" id="add-section" data-bind="click: add_section_field">{"Section"}</a></li>
+		<li><i class="fa fa-pencil"></i> <a href="#" id="add-text" data-bind="click: add_text_field">{"Text"}</a></li>
+		<li><i class="fa fa-picture-o"></i> <a href="#" id="add-image" data-bind="click: add_image_field">{"Image"}</a></li>
+		<li><i class="fa fa-film"></i> <a href="#" data-bind="click: add_video_field">{"Video"}</a></li>
+		<li><i class="fa fa-headphones"></i> <a href="#" data-bind="click: add_audio_field">{"Audio"}</a></li>
+		<li><i class="fa fa-code"></i> <a href="#" data-bind="click: add_html_field">{"HTML code"}</a></li>
+		<li><i class="fa fa-plus-circle"></i> <a href="#" data-bind="click: add_reveal_field">{"Click-to-reveal"}</a></li>
+		<li><i class="fa fa-quote-left"></i> <a href="#" data-bind="click: add_pre_field">{"Pre-formatted text"}</a></li>
+		<li><i class="fa fa-cogs"></i> <a href="#" data-bind="click: add_scorm_field">{"SCORM module"}</a></li>
+		<li><i class="fa fa-download"></i> <a href="#" data-bind="click: add_file_field">{"File download"}</a></li>
+		<li><i class="fa fa-lightbulb-o"></i> <a href="#" data-bind="click: add_definition_field">{"Definition"}</a></li>
 	</ul>
 	<strong>{"Add a question"}:</strong>
 	<ul>
-		<li><i class="icon-star"></i> <a href="#" data-bind="click: add_quiz_field">{"Quiz"}</a></li>
-		<li><i class="icon-edit"></i> <a href="#" data-bind="click: add_input_field">{"Single-line answer"}</a></li>
-		<li><i class="icon-edit"></i> <a href="#" data-bind="click: add_para_field">{"Paragraph answer"}</a></li>
-		<li><i class="icon-circle-arrow-down"></i> <a href="#" data-bind="click: add_drop_field">{"Drop down"}</a></li>
-		<li><i class="icon-check"></i> <a href="#" data-bind="click: add_check_field">{"Checkboxes"}</a></li>
-		<li><i class="icon-ok-circle"></i> <a href="#" data-bind="click: add_multi_field">{"Multiple choice"}</a></li>
-		<!-- li><i class="icon-cloud-upload"></i> <a href="#" data-bind="click: add_upload_field">{"File upload"}</a></li -->
+		<li><i class="fa fa-star"></i> <a href="#" data-bind="click: add_quiz_field">{"Quiz"}</a></li>
+		<li><i class="fa fa-edit"></i> <a href="#" data-bind="click: add_input_field">{"Single-line answer"}</a></li>
+		<li><i class="fa fa-edit"></i> <a href="#" data-bind="click: add_para_field">{"Paragraph answer"}</a></li>
+		<li><i class="fa fa-arrow-circle-down"></i> <a href="#" data-bind="click: add_drop_field">{"Drop down"}</a></li>
+		<li><i class="fa fa-check"></i> <a href="#" data-bind="click: add_check_field">{"Checkboxes"}</a></li>
+		<li><i class="fa fa-check-circle-o"></i> <a href="#" data-bind="click: add_multi_field">{"Multiple choice"}</a></li>
+		<!-- li><i class="fa fa-cloud-upload"></i> <a href="#" data-bind="click: add_upload_field">{"File upload"}</a></li -->
 	</ul>
 </div>
 
@@ -85,7 +85,7 @@ $(function () {
 
 <script id="tpl-item-1" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"Title"}:</label>
@@ -104,7 +104,7 @@ $(function () {
 
 <script id="tpl-item-2" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			{"Preview"}:<br />
@@ -121,7 +121,7 @@ $(function () {
 
 <script id="tpl-item-3" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			{"Preview"}:<br />
@@ -149,7 +149,7 @@ $(function () {
 
 <script id="tpl-item-4" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"Title"}:</label>
@@ -167,7 +167,7 @@ $(function () {
 
 <script id="tpl-item-5" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"Title"}:</label>
@@ -185,7 +185,7 @@ $(function () {
 
 <script id="tpl-item-6" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"Module"}:</label>
@@ -202,7 +202,7 @@ $(function () {
 
 <script id="tpl-item-7" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"File"}:</label>
@@ -218,7 +218,7 @@ $(function () {
 
 <script id="tpl-item-8" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"Title"}:</label>
@@ -237,7 +237,7 @@ $(function () {
 
 <script id="tpl-item-9" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"Term"}:</label>
@@ -256,7 +256,7 @@ $(function () {
 
 <script id="tpl-item-10" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"Question"}:</label>
@@ -274,7 +274,7 @@ $(function () {
 
 <script id="tpl-item-11" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"Question"}:</label>
@@ -285,7 +285,7 @@ $(function () {
 
 <script id="tpl-item-12" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label class="wide">{"Question"}:</label>
@@ -310,7 +310,7 @@ $(function () {
 
 <script id="tpl-item-13" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label class="wide">{"Question"}:</label>
@@ -335,7 +335,7 @@ $(function () {
 
 <script id="tpl-item-14" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label class="wide">{"Question"}:</label>
@@ -362,7 +362,7 @@ $(function () {
 
 <script id="tpl-item-15" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			{"Preview"}:<br />
@@ -381,7 +381,7 @@ $(function () {
 
 <script id="tpl-item-16" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"Title"}:</label>
@@ -393,7 +393,7 @@ $(function () {
 
 <script id="tpl-item-17" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"Title"}:</label>
@@ -405,7 +405,7 @@ $(function () {
 
 <script id="tpl-item-18" type="text/html">
 	<li class="item" data-bind="attr: { id: 'item-' + id, 'data-id': id }">
-		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="icon-trash"></i></a>
+		<a href="#" class="delete" data-bind="event: { click: editor.delete_item }" title="{"Delete"}"><i class="fa fa-trash"></i></a>
 		<h6><span data-bind="html: type_icon"></span> <span data-bind="text: type_name"></span></h6>
 		<p>
 			<label>{"Instructions"}:</label>
